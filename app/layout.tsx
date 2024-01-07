@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({ subsets: ["latin"] });
+import { dm_sans, playfair_display } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={`${dm_sans.variable} ${playfair_display.variable} font-sans`}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
