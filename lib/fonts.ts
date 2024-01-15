@@ -1,13 +1,15 @@
-import { DM_Sans, Playfair_Display } from "next/font/google";
+import { Playfair_Display, Quicksand } from "next/font/google";
 
-export const dm_sans = DM_Sans({
+export const dm_sans = Quicksand({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-dm-sans",
+  variable: "--font-quicksand",
+  weight: ["400", "500", "700"],
 });
 
 export const playfair_display = Playfair_Display({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-playfair-display",
+  weight: ["400", "500", "700"],
 });

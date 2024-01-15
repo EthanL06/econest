@@ -19,7 +19,7 @@ const config = {
       },
     },
     fontFamily: {
-      sans: ["var(--font-dm-sans)", ...defaultTheme.fontFamily.sans],
+      sans: ["var(--font-quicksand)", ...defaultTheme.fontFamily.sans],
       serif: ["var(--font-playfair-display)", ...defaultTheme.fontFamily.serif],
     },
     extend: {
@@ -57,6 +57,7 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        black: "#26464D",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -72,10 +73,15 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "infinite-scroll": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-100%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "infinite-scroll": "infinite-scroll 45s linear infinite",
       },
     },
   },
