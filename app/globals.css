@@ -10,7 +10,7 @@
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 142.1 76.2% 36.3%;
+    --primary: 142.1 76.2% 40%;
     --primary-foreground: 355.7 100% 97.3%;
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
@@ -45,6 +45,214 @@
     --destructive-foreground: 0 85.7% 97.3%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
-    --ring: 142.4 71.8% 29.2%;
+    --ring: 212.7 26.8% 83.9;
+  }
+}
+
+@layer components {
+  .mouse-gradient {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    background: radial-gradient(
+      800px circle at var(--mouse-gradient-x) var(--mouse-gradient-y),
+      rgba(221, 19, 19, 0.5),
+      transparent 40%
+    );
+  }
+}
+
+@layer utilities {
+  .serif {
+    font-family: var(--playfair-display), serif;
+  }
+
+  .card {
+    position: relative;
+    @apply rounded-2xl border-2 border-emerald-500 bg-emerald-900;
+  }
+
+  .card:hover::before {
+    opacity: 1;
+  }
+
+  .card::before {
+    border-radius: inherit;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    background: radial-gradient(
+      800px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 255, 255, 0.1),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .marker-underline {
+    position: relative;
+  }
+
+  .marker-underline::before {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 7px;
+    transform: skew(-12deg);
+    z-index: -1;
+    width: 100%;
+    @apply bg-primary opacity-40;
+  }
+
+  .stylized-green-background {
+    background: radial-gradient(circle, transparent 25%, #18b452 26%),
+      linear-gradient(
+        0deg,
+        transparent 44%,
+        #1dba56 45%,
+        #1dba56 55%,
+        transparent 56%
+      ),
+      linear-gradient(
+        90deg,
+        transparent 44%,
+        #1dba56 45%,
+        #1dba56 55%,
+        transparent 56%
+      );
+    background-size: 3em 3em;
+    background-color: #18b452;
+    background-attachment: fixed;
+  }
+
+  .logos:hover > * {
+    animation-play-state: paused;
+  }
+
+  @keyframes logo-wall {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  #sustainable-text path {
+    stroke: #064e3b;
+  }
+
+  #sustainable-text path[data-index="11"] {
+    stroke-dasharray: 114;
+    stroke-dashoffset: 114;
+    animation: dash 2s ease forwards 3s;
+  }
+
+  #sustainable-text path[data-index="10"] {
+    stroke-dasharray: 131;
+    stroke-dashoffset: 131;
+    animation: dash 2s ease forwards 2.7s;
+  }
+
+  #sustainable-text path[data-index="9"] {
+    stroke-dasharray: 147;
+    stroke-dashoffset: 147;
+    animation: dash 2s ease forwards 2.4s;
+  }
+
+  #sustainable-text path[data-index="8"] {
+    stroke-dasharray: 125;
+    stroke-dashoffset: 125;
+    animation: dash 2s ease forwards 2.1s;
+  }
+
+  #sustainable-text path[data-index="7"] {
+    stroke-dasharray: 124;
+    stroke-dashoffset: 124;
+    animation: dash 2s ease forwards 1.8s;
+  }
+
+  #sustainable-text path[data-index="6"] {
+    stroke-dasharray: 80;
+    stroke-dashoffset: 80;
+    animation: dash 2s ease forwards 1.5s;
+  }
+
+  #sustainable-text path[data-index="5"] {
+    stroke-dasharray: 125;
+    stroke-dashoffset: 125;
+    animation: dash 2s ease forwards 1.2s;
+  }
+
+  #sustainable-text path[data-index="4"] {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: dash 2s ease forwards 0.9s;
+  }
+
+  #sustainable-text path[data-index="3"] {
+    stroke-dasharray: 99;
+    stroke-dashoffset: 99;
+    animation: dash 2s ease forwards 0.6s;
+  }
+
+  #sustainable-text path[data-index="2"] {
+    stroke-dasharray: 119;
+    stroke-dashoffset: 119;
+    animation: dash 2s ease forwards 0.3s;
+  }
+
+  #sustainable-text path[data-index="1"] {
+    stroke-dasharray: 385;
+    stroke-dashoffset: 385;
+    animation: dash 2s ease forwards;
+  }
+
+  #sustainable-text {
+    fill: transparent;
+    animation: fill 0.3s ease forwards 5s;
+  }
+
+  #svg-underline path {
+    stroke-width: 1px;
+    stroke-dasharray: 120;
+    stroke-linecap: round;
+    animation: dash-2 2s ease forwards 4.5s;
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes dash-2 {
+    from {
+      stroke: transparent;
+      stroke-dashoffset: 105;
+    }
+
+    to {
+      stroke: #064e3b;
+      stroke-dashoffset: 60;
+    }
+  }
+
+  @keyframes fill {
+    from {
+      fill: transparent;
+    }
+    to {
+      fill: #064e3b;
+    }
   }
 }

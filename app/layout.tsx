@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const inter = Inter({ subsets: ["latin"] });
+import { dm_sans, playfair_display } from "@/lib/fonts";
+import Script from "next/script";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
+import Navbar from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,15 +19,23 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={`${dm_sans.variable} ${playfair_display.variable} max-w-screen-[1400px] relative mx-auto font-sans text-black dark:text-white`}
+      >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
           disableTransitionOnChange
         >
+          <Navbar />
           {children}
+          <TailwindIndicator />
         </ThemeProvider>
+        <Script
+          strategy="beforeInteractive"
+          type="text/javascript"
+          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`}
+        />
       </body>
     </html>
   );
