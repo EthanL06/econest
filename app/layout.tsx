@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 
 import { dm_sans, playfair_display } from "@/lib/fonts";
 import Script from "next/script";
@@ -22,15 +21,9 @@ export default function RootLayout({
       <body
         className={`${dm_sans.variable} ${playfair_display.variable} max-w-screen-[1400px] relative mx-auto font-sans text-black dark:text-white`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-        >
-          <Navbar />
-          {children}
-          <TailwindIndicator />
-        </ThemeProvider>
+        <Navbar />
+        {children}
+        <TailwindIndicator />
         <Script
           strategy="beforeInteractive"
           type="text/javascript"
