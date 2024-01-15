@@ -3,7 +3,6 @@
 import React, { useEffect } from "react";
 import Logo from "./logo";
 import { Menu } from "lucide-react";
-import { ThemeToggle } from "./theme-toggle";
 import { useWindowScroll, useMeasure } from "@uidotdev/usehooks";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -58,7 +57,6 @@ const Navbar = (props: Props) => {
 
       <div className="flex items-center gap-x-4">
         {/* <Menu /> */}
-        {/* <ThemeToggle /> */}
         <Link href="/login">
           <div className="cursor-pointer text-sm font-semibold">Login</div>
         </Link>
