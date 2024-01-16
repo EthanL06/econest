@@ -11,7 +11,7 @@ import {
   TreeDeciduous,
   UtilityPole,
 } from "lucide-react";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 type Props = {};
 
@@ -58,8 +58,16 @@ const Statistics = (props: Props) => {
           <Home className="size-20 overflow-visible rounded-full bg-emerald-900 p-4 text-white" />
         </Stat>
 
-        <div className="flex h-screen flex-col items-center justify-center gap-x-[1ch] text-center text-3xl font-bold sm:h-[100vh]">
-          We help make your home more...
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{ type: "spring", bounce: 0.5, duration: 1 }}
+          className="flex h-screen flex-col items-center justify-center gap-x-[1ch] text-center text-3xl font-bold sm:h-[100vh]"
+        >
+          We help make your your home more...
           <svg
             ref={svgRef}
             className="h-[9rem] w-full max-w-4xl sm:h-[15rem]"
@@ -125,7 +133,7 @@ const Statistics = (props: Props) => {
           >
             <path d="M9.7254 11.2438C10.4749 10.0804 11.9496 10.1518 13.1796 10.0896C15.327 9.98102 17.4896 10.0875 19.6223 10.3542C23.8195 10.879 27.9334 11.9928 32.0265 13.0259C39.6602 14.9526 47.4897 16.6668 55.3649 15.2101C59.8154 14.3869 63.8214 12.4005 67.373 9.63386C68.4391 8.80341 68.2447 6.97005 67.373 6.09833C66.3206 5.04594 64.9063 5.26571 63.8375 6.09833C50.2068 16.7163 32.6082 6.33347 17.7837 5.16928C13.4271 4.82715 8.06299 4.59923 5.40804 8.72026C3.66022 11.4332 7.98656 13.9429 9.7254 11.2438Z" />
           </svg>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
@@ -141,12 +149,23 @@ const Stat = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className="flex h-[95vh] flex-col items-center justify-center">
-      {children}
-      <div className="mt-4 text-center text-6xl font-bold">{number}</div>
-      <div className="text-center text-2xl font-semibold text-emerald-900">
-        {description}
-      </div>
+    <div className="flex h-[95vh] items-center justify-center">
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        whileInView={{
+          opacity: 1,
+          scale: 1,
+        }}
+        transition={{ type: "spring", bounce: 0.5, duration: 1 }}
+        className="flex flex-col items-center justify-center"
+      >
+        {" "}
+        {children}
+        <div className="mt-4 text-center text-6xl font-bold">{number}</div>
+        <div className="text-center text-2xl font-semibold text-emerald-900">
+          {description}
+        </div>
+      </motion.div>
     </div>
   );
 };

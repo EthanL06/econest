@@ -8,7 +8,7 @@ type Props = {};
 
 const About = (props: Props) => {
   return (
-    <div className="my-11 flex min-h-screen w-full flex-col items-center justify-between gap-8 lg:flex-row">
+    <div className=" flex min-h-screen w-full flex-col items-center justify-between gap-8 lg:flex-row">
       <div className="flex  flex-col gap-y-1">
         <div className="flex ">
           <div className="text-xl font-bold text-primary">
@@ -22,14 +22,14 @@ const About = (props: Props) => {
           <span className="sm:marker-underline">Green Living.</span>
         </div>
 
-        <p className="mt-4 max-w-[65ch] text-base font-medium leading-loose text-emerald-900">
+        <p className="mt-4 max-w-[65ch] text-pretty text-base font-medium leading-loose text-emerald-900">
           We are ecoNest, a passionate group committed to transforming homes
           into eco-friendly havens. With a focus on green and clean energy
           solutions, we aim to guide homeowners toward sustainable choices the
           benefit both their wallets and the planet.
         </p>
 
-        <p className="mt-4 max-w-[65ch] text-base font-medium leading-loose text-emerald-900">
+        <p className="mt-4 max-w-[65ch] text-pretty text-base font-medium leading-loose text-emerald-900">
           Our mission is to create a more sustainable future by making
           eco-friendly living accessible and rewarding. We envision a world
           where people embrace green solutions not just because it&apos;s the

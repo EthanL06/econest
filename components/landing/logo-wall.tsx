@@ -54,6 +54,8 @@ const LogoWall = (props: Props) => {
           ))}
         </div>
       </div>
+
+      <Separator className="h-[1px] w-full bg-border" />
     </div>
   );
 };

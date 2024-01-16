@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dm_sans.variable} ${playfair_display.variable} max-w-screen-[1400px] relative mx-auto font-sans text-black dark:text-white`}
+        className={`${dm_sans.variable} ${playfair_display.variable} max-w-screen-[1400px] relative mx-auto font-sans text-black`}
       >
         <Navbar />
         {children}

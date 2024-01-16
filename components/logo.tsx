@@ -20,7 +20,7 @@ const Logo = (props: Props) => {
         </svg>
 
         <div className="text-2xl font-semibold">
-          <span className="dark:text-white">eco</span>
+          <span className="">eco</span>
           <span className="text-[#5FA25E]">Nest</span>
         </div>
       </div>

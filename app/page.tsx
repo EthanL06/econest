@@ -8,14 +8,17 @@ import Solutions from "@/components/landing/solutions";
 import LogoWall from "@/components/landing/logo-wall";
 import { ArrowDownCircle, ChevronDownCircle } from "lucide-react";
 import MouseGradient from "@/components/mouse-gradient";
+import { Separator } from "@/components/ui/separator";
 
 export default function Home() {
   return (
     <>
       <MouseGradient />
       <div className="flex flex-col">
-        <div className="flex min-h-screen flex-col justify-around gap-y-24 px-4 py-6 sm:px-8">
-          <Heading />
+        <div className="flex min-h-screen flex-col justify-around gap-y-24 ">
+          <div className="px-4 py-6 sm:px-8">
+            <Heading />
+          </div>
 
           <LogoWall />
         </div>
@@ -31,7 +34,7 @@ export default function Home() {
           <About />
         </div>
 
-        <div className=" px-8 md:px-8 lg:pr-0 xl:p-24">
+        <div className=" px-8 md:px-8 xl:p-24">
           <Solutions />
         </div>
       </div>
