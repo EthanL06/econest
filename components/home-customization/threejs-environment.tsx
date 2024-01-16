@@ -7,10 +7,8 @@ import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 type Props = {
   showSolarPanel: boolean;
 };
-
+   
 const ThreeJsEnvironment: React.FC<Props> = ({ showSolarPanel }) => {
-    console.log("showSolarPanel:", showSolarPanel);
-
 
   return (
     <main className="pointer-events-none flex justify-center items-center h-screen">
