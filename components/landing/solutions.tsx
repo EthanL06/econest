@@ -75,14 +75,14 @@ const Solutions = (props: Props) => {
   }, []);
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center gap-y-12">
+    <div className="flex min-h-screen w-full flex-col items-center gap-y-8">
       <div className="flex w-full flex-col items-center text-center">
-        <div className=" mb-1 text-center text-xl font-black text-primary">
+        <div className=" mb-1 text-center text-lg font-black text-primary sm:text-xl">
           Blogs for Sustainable Living
           <Separator className="h-[3px] rounded-full bg-primary" />
         </div>
 
-        <div className=" text-4xl font-bold text-emerald-900 sm:text-5xl">
+        <div className=" text-3xl font-bold text-emerald-900 sm:text-4xl md:text-5xl">
           Explore our Solutions
         </div>
       </div>
@@ -114,13 +114,13 @@ const Solutions = (props: Props) => {
             )}
           >
             <img
-              className="absolute z-0 h-full w-full object-cover transition-all duration-700 group-hover:scale-125 group-hover:brightness-75"
+              className="absolute z-0 h-full w-full object-cover transition-all duration-700 group-hover:scale-125 group-hover:brightness-50"
               src={item.image}
             />
 
             <div
               className={cn(
-                "absolute -bottom-full left-0 z-10 flex w-full  bg-black px-4 py-3 font-bold text-white transition-all duration-700 group-hover:bottom-0",
+                "absolute -bottom-full left-0 z-10 flex w-full  bg-[#101010]/70 px-4 py-3 font-bold text-white transition-all duration-700 group-hover:bottom-0",
               )}
             >
               <div className="flex flex-col gap-y-1">

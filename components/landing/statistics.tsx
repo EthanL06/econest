@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Separator } from "../ui/separator";
 import {
   ArrowDown,
@@ -36,14 +36,24 @@ const Statistics = (props: Props) => {
       sm:px-8"
     >
       <div className="flex w-full max-w-3xl flex-col items-center text-center">
-        <div className=" mb-1 text-center text-xl font-black text-emerald-900">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className=" mb-1 text-center text-xl font-black text-emerald-900"
+        >
           The Statistics
           <Separator className="h-[3px] rounded-full bg-emerald-900" />
-        </div>
+        </motion.div>
 
-        <div className="text-5xl font-bold">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-5xl font-bold"
+        >
           ecoNest By The <span className="text-emerald-900">Numbers</span>
-        </div>
+        </motion.div>
       </div>
 
       <div className="flex flex-col items-center">
@@ -64,7 +74,7 @@ const Statistics = (props: Props) => {
             opacity: 1,
             y: 0,
           }}
-          transition={{ type: "spring", bounce: 0.5, duration: 1 }}
+          transition={{ type: "spring", bounce: 0.5, duration: 1, delay: 0.2 }}
           className="flex h-screen flex-col items-center justify-center gap-x-[1ch] text-center text-3xl font-bold sm:h-[100vh]"
         >
           We help make your your home more...
@@ -124,7 +134,7 @@ const Statistics = (props: Props) => {
           </svg>
           <svg
             ref={svgUnderlineRef}
-            className="relative bottom-[5.5rem] hidden h-[15rem] w-full max-w-4xl -scale-y-100 sm:block"
+            className=" hidden h-[15rem] w-full max-w-4xl -scale-y-100 sm:block"
             width="74"
             height="21"
             viewBox="0 0 74 21"

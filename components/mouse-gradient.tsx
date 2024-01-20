@@ -12,13 +12,10 @@ const MouseGradient = (props: Props) => {
     scrollPosition,
   } = useMousePosition();
 
-  console.log("position " + x, y);
-  console.log("scroll " + scrollPosition);
-
   return (
     <div
       className={cn(
-        "absolute left-0 top-0 -z-10 h-full w-full",
+        "absolute left-0 top-0 -z-10 hidden h-full w-full lg:block",
         x === 0 && y === 0 && "hidden",
       )}
       style={{

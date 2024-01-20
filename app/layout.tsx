@@ -5,6 +5,8 @@ import { dm_sans, playfair_display } from "@/lib/fonts";
 import Script from "next/script";
 import { TailwindIndicator } from "@/components/tailwind-indicator";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import MouseGradient from "@/components/mouse-gradient";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${dm_sans.variable} ${playfair_display.variable} max-w-screen-[1400px] relative mx-auto font-sans text-black`}
+        className={`${dm_sans.variable} max-w-screen-[1400px] relative mx-auto overflow-x-hidden font-sans text-black`}
       >
+        <MouseGradient />
         <Navbar />
         {children}
+        <Footer />
         <TailwindIndicator />
         <Script
           strategy="beforeInteractive"
