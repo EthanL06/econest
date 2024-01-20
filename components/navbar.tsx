@@ -49,20 +49,19 @@ const Navbar = (props: Props) => {
               ifScrollBelowNavbar() ? "text-base " : " w-24",
             )}
           >
-            <span className="dark:text-white">eco</span>
+            <span className="">eco</span>
             <span className="text-[#5FA25E]">Nest</span>
           </div>
         </div>
       </Link>
 
       <div className="flex items-center gap-x-4">
-        {/* <Menu /> */}
-        <Link href="/login">
-          <div className="cursor-pointer text-sm font-semibold">Login</div>
+        <Link href="/articles">
+          <div className="cursor-pointer text-sm font-semibold">Articles</div>
         </Link>
 
-        <Link href="/signup">
-          <div className="cursor-pointer text-sm font-semibold">Sign Up</div>
+        <Link href="/solutions">
+          <div className="cursor-pointer text-sm font-semibold">Solutions</div>
         </Link>
       </div>
     </div>

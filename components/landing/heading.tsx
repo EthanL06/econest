@@ -5,38 +5,65 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { CircleDollarSign, Home, MapPin } from "lucide-react";
 import AddressInput from "./address-input";
+import { motion } from "framer-motion";
 
 type Props = {};
 
 const Heading = (props: Props) => {
+  const baseDelay = 0.5;
+
   return (
     <div className=" mt-16 flex w-full items-center justify-around gap-x-4">
       <div className="relative mr-auto hidden flex-1 -scale-x-100 justify-end lg:flex xl:justify-center">
-        <div className="flex size-40 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ type: "spring", bounce: 0.3, delay: baseDelay * 2 }}
+          className="flex size-40 items-center"
+        >
           <Bird />
-        </div>
+        </motion.div>
       </div>
 
       <div className="relative flex flex-1 basis-auto flex-col items-center justify-center gap-y-8">
         <div className=" flex flex-col items-center justify-center ">
-          <div className="text-2xl font-medium text-primary">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-2xl font-medium text-primary"
+          >
             One Home at a Time
-          </div>
+          </motion.div>
 
-          <div className=" text-center  text-4xl font-bold">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: baseDelay }}
+            className=" text-center text-3xl font-bold sm:text-4xl"
+          >
             Sustainable Living Starts{" "}
             <span className="text-primary hover:text-primary/90">Here.</span>
-          </div>
+          </motion.div>
         </div>
 
         <div className="flex w-full max-w-3xl flex-col items-center gap-y-1">
-          <div className="self-start text-sm font-semibold">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: baseDelay * 2 }}
+            className="self-start text-sm font-semibold"
+          >
             Discover{" "}
             <span className="text-primary">Eco-Friendly Solutions</span> for
             Your Home
-          </div>
+          </motion.div>
 
-          <div className="flex w-full flex-col items-center  justify-center gap-3 rounded-lg border border-border bg-white p-4 shadow sm:flex-row ">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: baseDelay * 2 }}
+            className="flex w-full flex-col items-center  justify-center gap-3 rounded-lg border border-border bg-white p-4 shadow sm:flex-row "
+          >
             <div className="w-full">
               <AddressInput />
             </div>
@@ -51,14 +78,19 @@ const Heading = (props: Props) => {
               </Input>
               <Button className="font-bold">Discover</Button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
       <div className="relative ml-auto hidden flex-1  justify-end lg:flex xl:justify-center">
-        <div className="flex size-40 items-end ">
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ type: "spring", bounce: 0.3, delay: baseDelay * 2 }}
+          className="flex size-40 items-end "
+        >
           <Bird />
-        </div>
+        </motion.div>
       </div>
     </div>
   );
