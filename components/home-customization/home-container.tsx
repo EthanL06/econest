@@ -1,11 +1,19 @@
 import React from "react";
 import ThreeJsEnvironment from "./threejs-environment";
 
-type Props = {
-  showSolarPanel: string;
-  showWindow: string;
-  showWindMill: string;
+type CustomizationDetails = {
+  title: string;
+  imgUrl: string;
+  price: string;
+  bulletPoints: [string, string];
 };
+
+type Props = {
+  showSolarPanel: CustomizationDetails;
+  showWindow: CustomizationDetails;
+  showWindMill: CustomizationDetails;
+};
+
 
 const HomeContainer: React.FC<Props> = ({ showSolarPanel, showWindow, showWindMill }) => {
   return (

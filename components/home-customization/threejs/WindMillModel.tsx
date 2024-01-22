@@ -9,32 +9,31 @@ function WindMillModel() {
   const targetY = 0.226;
   const speed = 0.01;
 
-  const targetYs = [targetY, targetY]; // Two target Y positions for two windmills
+  const targetYs = [targetY, targetY]; 
 
   const initialPositions = [
-    [-2.5, initialY, -0.1], // Initial position for the first windmill
-    [2, initialY, -0.1]   // Initial position for the second windmill
+    [-2.5, initialY, -0.1],
+    [2, initialY, -0.1]  
   ];
 
   const rotations = [
-    [0, -1.6, 0], // Rotation for the first windmill
-    [0, 1.6, 0]   // Rotation for the second windmill (or any other rotation you want)
+    [0, -1.6, 0],
+    [0, 1.6, 0]  
   ];
 
-  const meshes = useRef(initialPositions.map(() => useRef<THREE.Object3D>(null)));
+  const meshes = useRef<(THREE.Mesh | null)[]>(initialPositions.map(() => null));
 
   useFrame(() => {
     meshes.current.forEach((mesh, index) => {
-      if (mesh.current != null && mesh.current.position.y > targetYs[index]) {
-        mesh.current.position.y -= speed;
-        if (mesh.current.position.y < targetYs[index]) {
-          mesh.current.position.y = targetYs[index];
+      if (mesh && mesh.position.y > targetYs[index]) {
+        mesh.position.y -= speed;
+        if (mesh.position.y < targetYs[index]) {
+          mesh.position.y = targetYs[index];
         }
       }
     });
   });
 
-  // Clone the scene for each initial position
   const clonedScenes = initialPositions.map(() => scene.clone());
 
   return (
@@ -42,7 +41,7 @@ function WindMillModel() {
       {clonedScenes.map((clonedScene, index) => (
         <mesh
           key={index}
-          ref={meshes.current[index]}
+            ref={(el: THREE.Mesh) => (meshes.current[index] = el)}
           position={initialPositions[index]}
           scale={[0.001, 0.001, 0.001]}
           rotation={rotations[index]}

@@ -17,7 +17,7 @@ const HomeSelectCard: React.FC<HomeSelectCardProps> = ({ img, title, price, desc
     </div>
     <div className="px-6 py-4">
       <h3 className="text-gray-600 font-bold text-xl mb-2">{title}</h3>
-      <p className="text-green-600 text-base mb-2">{price}</p>
+      <p className="text-green-600 text-base mb-2">$ {price} est</p>
       <p className="text-gray-700 text-base">{description}</p>
     </div>
   </div>

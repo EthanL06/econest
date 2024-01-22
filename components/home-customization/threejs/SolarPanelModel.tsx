@@ -8,7 +8,7 @@ function SolarPanelModel() {
   const initialY = 3;
   const targetY = 1.2;
   const speed = 0.01;
-
+  
   const targetYs = [1.2, 1.2, 1.35, 1.35];
 
   const initialPositions = [
@@ -25,21 +25,19 @@ function SolarPanelModel() {
     [0.1, 3.14, 0],
   ];
 
-  const meshes = Array.from({ length: initialPositions.length }, () => useRef<THREE.Object3D>(null));
-
+  const meshes = useRef<(THREE.Mesh | null)[]>(initialPositions.map(() => null));
 
   useFrame(() => {
-    meshes.forEach((mesh, index) => {
-      if (mesh.current != null && mesh.current.position.y > targetYs[index]) {
-        mesh.current.position.y -= speed;
-        if (mesh.current.position.y < targetYs[index]) {
-          mesh.current.position.y = targetYs[index];
+    meshes.current.forEach((mesh, index) => {
+      if (mesh && mesh.position.y > targetYs[index]) {
+        mesh.position.y -= speed;
+        if (mesh.position.y < targetYs[index]) {
+          mesh.position.y = targetYs[index];
         }
       }
     });
-   });
+  });
 
-  // Clone the scene for each initial position
   const clonedScenes = initialPositions.map(() => scene.clone());
 
   return (
@@ -47,7 +45,7 @@ function SolarPanelModel() {
       {clonedScenes.map((clonedScene, index) => (
         <mesh
           key={index}
-          ref={meshes[index]}
+            ref={(el: THREE.Mesh) => (meshes.current[index] = el)}
           position={initialPositions[index]}
           scale={[0.2, 0.2, 0.2]}
           rotation={rotations[index]}

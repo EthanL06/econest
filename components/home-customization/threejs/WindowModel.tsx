@@ -29,28 +29,26 @@ function WindowModel() {
     [0, 1.6, 0],
   ];
 
-  const meshes = useRef(initialPositions.map(() => useRef<THREE.Object3D>(null)));
+  const meshes = useRef<(THREE.Mesh | null)[]>(initialPositions.map(() => null));
 
   useFrame(() => {
     meshes.current.forEach((mesh, index) => {
-      if (mesh.current != null && mesh.current.position.x < targetXs[index]) {
-        mesh.current.position.x += speed;
-        if (mesh.current.position.x > targetXs[index]) {
-          mesh.current.position.x = targetXs[index];
+      if (mesh && mesh.position.x < targetXs[index]) {
+        mesh.position.x += speed;
+        if (mesh.position.x > targetXs[index]) {
+          mesh.position.x = targetXs[index];
         }
       }
     });
   });
 
-  // Clone the scene for each initial position
   const clonedScenes = initialPositions.map(() => scene.clone());
-
   return (
     <>
       {clonedScenes.map((clonedScene, index) => (
         <mesh
           key={index}
-          ref={meshes.current[index]}
+            ref={(el: THREE.Mesh) => (meshes.current[index] = el)}
           position={initialPositions[index]}
           scale={[0.002, 0.003, 0.002]}
           rotation={rotations[index]}

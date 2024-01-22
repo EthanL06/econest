@@ -1,58 +1,72 @@
-// CustomizationContainer.tsx
 import React, { useState } from "react";
-import HomeSelectCard from "../../ui/homeSelectCard";
+import HomeSelectCard from "../../ui/customizationComponents/homeSelectCard";
 
+type CustomizationDetails = {
+  title: string;
+  imgUrl: string;
+  price: string;
+  bulletPoints: [string, string];
+};
 
 type Props = {
-  handleShowWindmill: (title: string) => void;
-  };
+  handleShowWindmill: (details: CustomizationDetails) => void;
+};
 
-  
-const SolarPanelCustomizationRow: React.FC<Props> = ({ handleShowWindmill }) => {
+const SolarPanelCustomizationRow: React.FC<Props> = ({
+  handleShowWindmill,
+}) => {
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
-  const cardData = [
+  const cardData: CustomizationDetails[] = [
     {
       title: "Windmill Basic",
-      price: "$1,200 est",
-      description: "Basic wind energy solution for small homes"
+      imgUrl:"/images/solar_panel_house.jpg",
+      // imgUrl: "/images/windmill_basic.jpg",
+      price: "1,200",
+      bulletPoints: ["Basic wind energy solution for small homes", ""],
     },
     {
       title: "Windmill Advanced",
-      price: "$4,750 est",
-      description: "Enhanced wind energy system with increased capacity"
+      imgUrl:"/images/solar_panel_house.jpg",
+      // imgUrl: "/images/windmill_advanced.jpg",
+      price: "4,750",
+      bulletPoints: ["Enhanced wind energy system with increased capacity", ""],
     },
     {
       title: "Windmill Premium",
-      price: "$9,300 est",
-      description: "Premium wind energy setup with maximum efficiency"
+      imgUrl:"/images/solar_panel_house.jpg",
+      // imgUrl: "/images/windmill_premium.jpg",
+      price: "9,300",
+      bulletPoints: ["Premium wind energy setup with maximum efficiency", ""],
     },
   ];
 
-  const handleCardClick = (title: string) => {
-    setSelectedCard(title);
-    handleShowWindmill(title);
+  const handleCardClick = (card: CustomizationDetails) => {
+    setSelectedCard(card.title);
+    handleShowWindmill(card);
   };
 
   return (
+    <div className="w-full">
+      <h3 className="m-4 mb-2 text-xl font-bold text-gray-600">
+        Wind Power for Your Home
+      </h3>
+      <p className="m-4 text-base text-gray-700 ">
+        Harness the power of the wind to generate clean, renewable energy.
+      </p>
 
-      <div className="w-full">
-
-<h3 className="text-gray-600 font-bold text-xl m-4 mb-2">Wind Power for Your Home</h3>
-<p className="text-gray-700 text-base m-4 ">Harness the power of the wind to generate clean, renewable energy.</p>
-
-        {cardData.map((card) => (
-          <HomeSelectCard
-            key={card.title}
-            img="/images/solar_panel_house.jpg"
-            title={card.title}
-            price={card.price || "$0"}
-            description={`${card.title} description`}
-            selected={selectedCard === card.title}
-            onClick={() => handleCardClick(card.title)}
-          />
-        ))}
-      </div>
+      {cardData.map((card) => (
+        <HomeSelectCard
+          key={card.title}
+          img={card.imgUrl}
+          title={card.title}
+          price={card.price}
+          description={card.bulletPoints[0]}
+          selected={selectedCard === card.title}
+          onClick={() => handleCardClick(card)}
+        />
+      ))}
+    </div>
   );
 };
 

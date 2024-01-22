@@ -1,38 +1,51 @@
-// CustomizationContainer.tsx
 import React, { useState } from "react";
-import HomeSelectCard from "../../ui/homeSelectCard";
+import HomeSelectCard from "../../ui/customizationComponents/homeSelectCard";
 
+
+type CustomizationDetails = {
+  title: string;
+  imgUrl: string;
+  price: string;
+  bulletPoints: [string, string];
+};
 
 type Props = {
-    handleShowWindow: (title: string) => void;
-  };
+  handleShowWindow: (details: CustomizationDetails) => void;
+};
 
   
 const SolarPanelCustomizationRow: React.FC<Props> = ({ handleShowWindow }) => {
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
-  const cardData = [
+  const cardData: CustomizationDetails[] = [
     {
       title: "Window Basic",
-      price: "$150 est",
-      description: "Basic window fitting for energy efficiency"
+      imgUrl:"/images/solar_panel_house.jpg",
+      // imgUrl: "/images/window_basic.jpg",
+      price: "1487",
+      bulletPoints: ["Basic window fitting for energy efficiency", ""], 
     },
     {
       title: "Window Advanced",
-      price: "$300 est",
-      description: "Advanced windows with enhanced insulation"
+      imgUrl:"/images/solar_panel_house.jpg",
+      // imgUrl: "/images/window_advanced.jpg", 
+      price: "3126",
+      bulletPoints: ["Advanced windows with enhanced insulation", ""], 
     },
     {
       title: "Window Premium",
-      price: "$450 est",
-      description: "Premium windows for optimal energy savings and aesthetics"
+      imgUrl:"/images/solar_panel_house.jpg",
+      // imgUrl: "/images/window_premium.jpg",
+      price: "4470",
+      bulletPoints: ["Premium windows for optimal energy savings and aesthetics", ""], 
     },
   ];
 
-  const handleCardClick = (title: string) => {
-    setSelectedCard(title);
-    handleShowWindow(title);
+  const handleCardClick = (card: CustomizationDetails) => {
+    setSelectedCard(card.title);
+    handleShowWindow(card);
   };
+
 
 
   return (
@@ -43,17 +56,17 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({ handleShowWindow }) => {
 <p className="text-gray-700 text-base m-4 ">Improve insulation and reduce energy costs with sustainable window solutions.</p>
 
 
-        {cardData.map((card) => (
-          <HomeSelectCard
-            key={card.title}
-            img="/images/solar_panel_house.jpg"
-            title={card.title}
-            price={card.price || "$0"}
-            description={`${card.title} description`}
-            selected={selectedCard === card.title}
-            onClick={() => handleCardClick(card.title)}
-          />
-        ))}
+{cardData.map((card) => (
+        <HomeSelectCard
+          key={card.title}
+          img={card.imgUrl}
+          title={card.title}
+          price={card.price}
+          description={card.bulletPoints[0]} 
+          selected={selectedCard === card.title}
+          onClick={() => handleCardClick(card)}
+        />
+      ))}
       </div>
   );
 };

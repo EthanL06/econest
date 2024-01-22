@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import HomeSelectCard from "../../ui/homeSelectCard";
+import HomeSelectCard from "../../ui/customizationComponents/homeSelectCard";
+
+type CustomizationDetails = {
+  title: string;
+  imgUrl: string;
+  price: string;
+  bulletPoints: [string, string];
+};
 
 type Props = {
-  handleShowSolarPanel: (title: string) => void;
+  handleShowSolarPanel: (details: CustomizationDetails) => void;
 };
 
 const SolarPanelCustomizationRow: React.FC<Props> = ({
@@ -13,24 +20,27 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
   const cardData = [
     {
       title: "Powerwall Only",
-      price: "$6,365 est",
-      description: "Energy backup for your home",
+      imgUrl:"/images/solar_panel_house.jpg",
+      price: "6,365",
+      bulletPoints: ["Energy backup for your home", ""] as [string, string], 
     },
     {
       title: "Solar Panels + Powerwall",
-      price: "$92,476 est",
-      description: "Panels for your existing roof with backup protection",
+      imgUrl:"/images/solar_panel_house.jpg",
+      price: "92,476",
+      bulletPoints: ["Panels for your existing roof with backup protection", ""] as [string, string], 
     },
     {
       title: "Solar Roof + Powerwall",
-      price: "$843,500 est",
-      description: "New luxury integrated solar roof with backup protection",
+      imgUrl:"/images/solar_panel_house.jpg",
+      price: "843,500",
+      bulletPoints: ["New luxury integrated solar roof with backup protection", ""] as [string, string],
     },
   ];
 
-  const handleCardClick = (title: string) => {
-    setSelectedCard(title);
-    handleShowSolarPanel(title);
+  const handleCardClick = (card: CustomizationDetails) => {
+    setSelectedCard(card.title);
+    handleShowSolarPanel(card);
   };
 
   return (
@@ -45,12 +55,12 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
       {cardData.map((card) => (
         <HomeSelectCard
           key={card.title}
-          img="/images/solar_panel_house.jpg"
+          img={card.imgUrl}
           title={card.title}
-          price={card.price || "$0"}
-          description={`${card.title} description`}
+          price={card.price}
+          description={card.bulletPoints[0]}
           selected={selectedCard === card.title}
-          onClick={() => handleCardClick(card.title)}
+          onClick={() => handleCardClick(card)}
         />
       ))}
     </div>
