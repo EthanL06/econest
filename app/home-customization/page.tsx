@@ -6,6 +6,8 @@ import HomeContainer from "@/components/home-customization/home-container";
 
 export default function Home() {
   const [showSolarPanel, setShowSolarPanel] = useState(false);
+  const [showWindow, setShowWindow] = useState(false);
+  const [showWindMill, setShowWindMill] = useState(false);
 
   const handleShowSolarPanel  = () =>  {
     setShowSolarPanel(true);
@@ -14,7 +16,7 @@ export default function Home() {
   return (
     <div className="mt-11 flex min-h-screen w-full flex-col items-center gap-y-12">
       <div className="grid min-h-screen w-full grid-cols-6 grid-rows-1 gap-3 text-white px-4 py-4">
-        <HomeContainer showSolarPanel={showSolarPanel} />
+        <HomeContainer showSolarPanel={showSolarPanel} showWindMill={showWindMill} showWindow={showWindow}/>
         <CustomizationContainer handleShowSolarPanel={handleShowSolarPanel} />
       </div>
     </div>

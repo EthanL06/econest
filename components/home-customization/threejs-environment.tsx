@@ -1,14 +1,18 @@
 import React from "react";
 import HomeModel from "./threejs/HomeModel";
 import SolarPanelModel from "./threejs/SolarPanelModel";
+import WindMillModel from "./threejs/WindMillModel";
+import WindowModel from "./threejs/WindowModel";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 
 type Props = {
   showSolarPanel: boolean;
+  showWindow: boolean;
+  showWindMill: boolean;
 };
    
-const ThreeJsEnvironment: React.FC<Props> = ({ showSolarPanel }) => {
+const ThreeJsEnvironment: React.FC<Props> = ({ showSolarPanel, showWindMill, showWindow }) => {
 
   return (
     <main className="pointer-events-none flex justify-center items-center h-screen">
@@ -18,6 +22,8 @@ const ThreeJsEnvironment: React.FC<Props> = ({ showSolarPanel }) => {
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <HomeModel />
+        {showWindMill && <WindMillModel/> }
+        {showWindow && <WindowModel/> }
         {showSolarPanel && <SolarPanelModel />}
       </Canvas>
     </main>
