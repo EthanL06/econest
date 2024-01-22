@@ -1,46 +1,44 @@
 // CustomizationContainer.tsx
 import React, { useState } from "react";
-import HomeSelectCard from "../ui/homeSelectCard";
+import SolarPanelCustomizationRow from "./customizeRow/SolarPanelCustomizationRow"; 
+import WindowCustomizationRow from "./customizeRow/WindowCustomizationRow";
+import WindmillCustomizationRow from "./customizeRow/WindmillCustomizationRow";
+import FinalizeRow from "./customizeRow/FinalizeRow";
 import AddressInput from "../landing/address-input";
 
 type Props = {
-  handleShowSolarPanel: () => void;
+  handleShowSolarPanel: (title: string) => void;
+  handleShowWindow: (title: string) => void;
+  handleShowWindmill: (title: string) => void;
+  showSolarPanel: string;
+  showWindow: string;
+  showWindMill: string;
 };
 
-const CustomizationContainer: React.FC<Props> = ({ handleShowSolarPanel }) => {
+const CustomizationContainer: React.FC<Props> = ({ handleShowSolarPanel, handleShowWindmill, handleShowWindow, showSolarPanel, showWindMill, showWindow }) => {
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
-
-  const handleCardClick = (title: string) => {
-    setSelectedCard(title);
-    handleShowSolarPanel();
-  };
+  const [page, setPage] = useState<number>(1);
+ 
 
   const handleNextClick = () => {
-    // Add logic for what should happen when "Next" is clicked
+      setPage(page + 1)
+  };
+
+  const handleBackClick = () => {
+      setPage(Math.max(page-1, 1))
   };
 
   return (
-    <div className="col-span-2 bg-slate-100 rounded-xl p-4 flex flex-col items-center">
+<div className="col-span-2 bg-slate-100 rounded-xl p-4 flex flex-col">
 
-
-      {/* <h3 className="text-gray-600 font-bold text-xl mb-2">Choose A Product</h3>
-      <p className="text-gray-700 text-base">Hello</p> */}
-
-      <div className="w-full">
-        {['Title 1', 'Title 2', 'Title 3'].map((title) => (
-          <HomeSelectCard
-            key={title}
-            img="/images/solar_panel_house.jpg"
-            title={title}
-            description={`${title} description`}
-            selected={selectedCard === title}
-            onClick={() => handleCardClick(title)}
-          />
-        ))}
-      </div>
+<p className="text-gray-700 text-base cursor-pointer self-start" onClick={handleBackClick}><u>&lt; back</u></p>
+      { page === 1 && <SolarPanelCustomizationRow handleShowSolarPanel={handleShowSolarPanel}/>}
+      { page === 2 && <WindowCustomizationRow handleShowWindow={handleShowWindow}/>}
+      { page === 3 && <WindmillCustomizationRow handleShowWindmill={handleShowWindmill}/>}
+      { page === 4 && <FinalizeRow showSolarPanel={showSolarPanel} showWindow={showWindow} showWindMill={showWindMill}/>}
 
       <button
-        className="w-4/5 bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-150 ease-in-out mx-auto mt-4"
+        className="w-5/6 bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transform transition duration-150 ease-in-out mx-auto mt-4"
         onClick={handleNextClick}
       >
         Next

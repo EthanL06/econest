@@ -2,9 +2,9 @@ import React from "react";
 import ThreeJsEnvironment from "./threejs-environment";
 
 type Props = {
-  showSolarPanel: boolean;
-  showWindow: boolean;
-  showWindMill: boolean;
+  showSolarPanel: string;
+  showWindow: string;
+  showWindMill: string;
 };
 
 const HomeContainer: React.FC<Props> = ({ showSolarPanel, showWindow, showWindMill }) => {
