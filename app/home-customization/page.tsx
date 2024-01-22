@@ -31,7 +31,7 @@ export default function Home() {
   }
 
   return (
-    <div className="my-11 flex max-h-screen w-full flex-col items-center gap-y-12">
+    <div className="my-11 flex max-h-screen w-full flex-col items-center gap-y-12 ">
       <div className="grid max-h-screen w-full grid-cols-6 grid-rows-1 gap-3 text-white px-4 py-4 overflow-hidden custom-scroll" 
       style={{
         overflow: 'auto',

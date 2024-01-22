@@ -3,6 +3,7 @@ import SolarPanelCustomizationRow from "./customizeRow/SolarPanelCustomizationRo
 import WindowCustomizationRow from "./customizeRow/WindowCustomizationRow";
 import WindmillCustomizationRow from "./customizeRow/WindmillCustomizationRow";
 import FinalizeRow from "./customizeRow/FinalizeRow";
+import FinalPrices from "./customizeRow/ending/FinalPrices";
 import AddressInput from "../landing/address-input";
 
 type CustomizationDetails = {
@@ -65,6 +66,9 @@ const CustomizationContainer: React.FC<Props> = ({
           showWindow={showWindow}
           showWindMill={showWindMill}
         />
+      )}
+      { page === 5 && (
+        <FinalPrices/>
       )}
 
       <button
