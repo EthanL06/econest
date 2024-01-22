@@ -3,6 +3,10 @@
 import React, { useState } from "react";
 
 import FinalizeRowPurchaseCard from "../../ui/customizationComponents/finalizeRowPurchaseCards";
+import FinalSolar from "./ending/FinalSolar";
+import FinalWindmill from "./ending/FinalWindmill";
+import FinalWindow from "./ending/finalWindow";
+
 
 type CustomizationDetails = {
   title: string;
@@ -22,16 +26,30 @@ const FinalizeRow: React.FC<Props> = ({
   showWindow,
   showWindMill,
 }) => {
-  const [selectedCard, setSelectedCard] = useState<string | null>(null);
+  const [selectedSolarCard, setSelectedSolarCard] = useState<string | null>(null);
+const [selectedWindowCard, setSelectedWindowCard] = useState<string | null>(null);
+const [selectedWindmillCard, setSelectedWindmillCard] = useState<string | null>(null);
+
+
   const [selectedPurchase, setSelectedPurchase] = useState("current");
 
   const handleButtonClick = (choice: string) => {
     setSelectedPurchase(choice);
   };
 
-  const handleCardClick = (cardTitle: string) => {
-    setSelectedCard(cardTitle);
+
+  const handleSolarCardClick = (cardTitle: string) => {
+    setSelectedSolarCard(cardTitle);
   };
+  
+  const handleWindowCardClick = (cardTitle: string) => {
+    setSelectedWindowCard(cardTitle);
+  };
+  
+  const handleWindmillCardClick = (cardTitle: string) => {
+    setSelectedWindmillCard(cardTitle);
+  };
+
 
   return (
     <div className="w-full p-4">
@@ -62,27 +80,26 @@ const FinalizeRow: React.FC<Props> = ({
         </button>
       </div>
 
-      <div className="mt-4 flex  flex-col justify-center ">
-        <FinalizeRowPurchaseCard
-          details={showSolarPanel}
-          needs="Current"
-          // solarRoof="65.38 kW Solar Roof"
-          // solarProduction="84,209 kWh /yr Solar Production"
-          // energyOffset="100% Energy Offset"
-          onClick={() => handleCardClick("Meet Current Needs")}
-          selected={selectedCard === "Meet Current Needs"}
-        />
+<FinalSolar
+  showSolarPanel={showSolarPanel}
+  handleCardClick={handleSolarCardClick}
+  selectedCard={selectedSolarCard}
+  selectedPurchase={selectedPurchase}
+/>
 
-        <FinalizeRowPurchaseCard
-          details={showSolarPanel}
-          needs="Future"
-          // solarRoof="65.38 kW Solar Roof"
-          // solarProduction="84,209 kWh /yr Solar Production"
-          // energyOffset="100% Energy Offset"
-          onClick={() => handleCardClick("Meet Future Needs")}
-          selected={selectedCard === "Meet Future Needs"}
-        />
-      </div>
+<FinalWindow
+  showWindow={showWindow}
+  handleCardClick={handleWindowCardClick}
+  selectedCard={selectedWindowCard}
+  selectedPurchase={selectedPurchase}
+/>
+
+<FinalWindmill
+  showWindmill={showWindMill}
+  handleCardClick={handleWindmillCardClick}
+  selectedCard={selectedWindmillCard}
+  selectedPurchase={selectedPurchase}
+/>
 
       <div className="mt-4">
         <p className="text-lg font-semibold">Total Cost: 10 bucks</p>
