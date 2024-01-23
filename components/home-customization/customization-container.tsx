@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+"use client"
+import React, { useState, useRef } from "react";
 import SolarPanelCustomizationRow from "./customizeRow/SolarPanelCustomizationRow";
 import WindowCustomizationRow from "./customizeRow/WindowCustomizationRow";
 import WindmillCustomizationRow from "./customizeRow/WindmillCustomizationRow";
@@ -32,9 +33,11 @@ const CustomizationContainer: React.FC<Props> = ({
 }) => {
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
   const [page, setPage] = useState<number>(1);
+  const containerRef = useRef<HTMLDivElement>(null); 
 
   const handleNextClick = () => {
     setPage(page + 1);
+    containerRef.current?.scrollTo(0, 0); 
   };
 
   const handleBackClick = () => {
@@ -42,7 +45,7 @@ const CustomizationContainer: React.FC<Props> = ({
   };
 
   return (
-    <div className="col-span-2 flex flex-col rounded-xl bg-slate-100 p-4 overflow-auto max-height-100">
+    <div ref={containerRef} className="col-span-2 flex flex-col rounded-xl bg-slate-100 p-4 overflow-auto max-height-100">
       <p
         className="cursor-pointer self-start text-base text-gray-700"
         onClick={handleBackClick}

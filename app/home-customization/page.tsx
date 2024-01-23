@@ -31,9 +31,10 @@ export default function Home() {
   }
 
   return (
-    <div className="my-11 flex max-h-screen w-full flex-col items-center gap-y-12 ">
-      <div className="grid max-h-screen w-full grid-cols-6 grid-rows-1 gap-3 text-white px-4 py-4 overflow-hidden custom-scroll" 
+    <div className="flex w-full flex-col items-center gap-y-12" style={{ height: 'calc(100vh )', overflow: 'hidden' }}>
+      <div className="grid w-full grid-cols-6 grid-rows-1 gap-3 text-white px-4 py-4" 
       style={{
+        maxHeight: 'calc(100vh)',
         overflow: 'auto',
         scrollbarWidth: 'none', 
         msOverflowStyle: 'none', 

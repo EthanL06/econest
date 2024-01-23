@@ -7,7 +7,7 @@ function WindowModel() {
   const { scene } = useGLTF(fileUrl);
   const initialX = -2.5;
   const targetX = -2.13;
-  const speed = 0.001;
+  const speed = 0.0005;
 
   const targetXs = [targetX, targetX, targetX, targetX, targetX, targetX]; // Three target X positions for three windows
 
