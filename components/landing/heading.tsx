@@ -13,7 +13,7 @@ const Heading = (props: Props) => {
   const baseDelay = 0.5;
 
   return (
-    <div className=" mt-16 flex w-full items-center justify-around gap-x-4">
+    <div className="flex w-full items-center justify-around gap-x-4">
       <div className="relative mr-auto hidden flex-1 -scale-x-100 justify-end lg:flex xl:justify-center">
         <motion.div
           initial={{ opacity: 0, x: 100 }}

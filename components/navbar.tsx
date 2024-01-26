@@ -3,22 +3,20 @@
 import React, { useEffect } from "react";
 import Logo from "./logo";
 import { Menu } from "lucide-react";
-import { useWindowScroll, useMeasure } from "@uidotdev/usehooks";
+import { useWindowScroll } from "@uidotdev/usehooks";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 type Props = {};
 
 const Navbar = (props: Props) => {
-  const [ref, { height }] = useMeasure();
   const [{ y }] = useWindowScroll();
 
   const ifScrollBelowNavbar = () => {
-    return y && height && y > height;
+    return y && y > 0;
   };
 
   return (
     <div
-      ref={ref}
       className={cn(
         "fixed left-0 right-0 top-0 z-[999999] mx-auto flex w-full items-center justify-between border-b border-transparent bg-transparent py-2  transition-all duration-300 ease-in-out sm:border sm:px-8 ",
         ifScrollBelowNavbar()
@@ -56,12 +54,8 @@ const Navbar = (props: Props) => {
       </Link>
 
       <div className="flex items-center gap-x-4">
-        <Link href="/articles">
-          <div className="cursor-pointer text-sm font-semibold">Articles</div>
-        </Link>
-
-        <Link href="/solutions">
-          <div className="cursor-pointer text-sm font-semibold">Solutions</div>
+        <Link href="/blogs">
+          <div className="cursor-pointer text-sm font-semibold">Blogs</div>
         </Link>
       </div>
     </div>

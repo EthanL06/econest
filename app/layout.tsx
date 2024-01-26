@@ -25,7 +25,8 @@ export default function RootLayout({
       >
         <MouseGradient />
         <Navbar />
-        {children}
+        <div className="mt-16 min-h-screen">{children}</div>
+
         <Footer />
         <TailwindIndicator />
         <Script
