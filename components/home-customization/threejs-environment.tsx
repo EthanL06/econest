@@ -119,5 +119,4 @@ const ThreeJsEnvironment: React.FC<Props> = ({ showSolarPanel, showWindMill, sho
  );
 };
 
-
 export default ThreeJsEnvironment;

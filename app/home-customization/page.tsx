@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import CustomizationContainer from "@/components/home-customization/customization-container";
 import HomeContainer from "@/components/home-customization/home-container";
 
+
 type CustomizationDetails = {
   title: string;
   imgUrl: string;
