@@ -47,7 +47,7 @@ const LogoWall = (props: Props) => {
                 className=" mx-8 inline-block h-[2rem] w-auto max-w-[10rem] sm:mx-12"
                 width={0}
                 height={0}
-                src={`/images/brands/${brand}.svg`}
+                src={`/images/${brand}.svg`}
               />
             </motion.div>
           ))}
@@ -64,7 +64,7 @@ const LogoWall = (props: Props) => {
               className="mx-8 inline-block h-[2rem] w-auto max-w-[10rem] sm:mx-12"
               width={0}
               height={0}
-              src={`/images/brands/${brand}.svg`}
+              src={`/images/${brand}.svg`}
             />
           ))}
         </div>

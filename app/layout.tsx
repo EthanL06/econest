@@ -23,8 +23,9 @@ export default function RootLayout({
       <body
         className={`${dm_sans.variable} max-w-screen-[1400px] relative mx-auto overflow-x-hidden font-sans text-black`}
       >
+        <MouseGradient />
        { typeof window !== "undefined" && window.location.href !== "home-customization"  && <Navbar /> } 
-        {children}
+        <div className="mt-16 min-h-screen">{children}</div>
         <Footer />
         <TailwindIndicator />
         <Script

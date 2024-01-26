@@ -6,10 +6,12 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const Solutions = (props: Props) => {
+  const router = useRouter();
   const cardsRef = useRef<Array<HTMLDivElement | null>>([]);
 
   const data = [
@@ -90,6 +92,9 @@ const Solutions = (props: Props) => {
       <div className="flex min-h-screen w-full grid-cols-3 grid-rows-2 flex-col gap-8 text-white lg:grid">
         {data.map((item, index) => (
           <motion.div
+            onClick={() => {
+              router.push(item.link);
+            }}
             whileHover={{
               scale: 1.05,
               transition: { duration: 0.3 },
@@ -153,9 +158,11 @@ const Solutions = (props: Props) => {
         ))}
       </div>
 
-      <Button className="bg-emerald-500 px-6 py-7 text-lg font-bold hover:bg-emerald-500/90">
-        View All
-      </Button>
+      <Link href="/blogs">
+        <Button className="bg-emerald-500 px-6 py-7 text-lg font-bold hover:bg-emerald-500/90">
+          View All
+        </Button>
+      </Link>
     </div>
   );
 };

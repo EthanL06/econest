@@ -202,9 +202,9 @@
   }
 
   #svg-underline path {
-    stroke-width: 1px;
+    strokewidth: 1px;
     stroke-dasharray: 120;
-    stroke-linecap: round;
+    strokelinecap: round;
     animation: dash-2 2s ease forwards 4.5s;
   }
 
