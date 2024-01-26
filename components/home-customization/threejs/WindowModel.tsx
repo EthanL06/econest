@@ -1,45 +1,48 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 
-function SolarPanelModel() {
-  const fileUrl = "/3dModels/solarpanel/scene.gltf";
+function WindowModel() {
+  const fileUrl = "/3dModels/window/scene.gltf"; // Update the file URL to point to your window model
   const { scene } = useGLTF(fileUrl);
-  const initialY = 3;
-  const targetY = 1.2;
-  const speed = 0.01;
-  
-  const targetYs = [1.2, 1.2, 1.35, 1.35];
+  const initialX = -2.5;
+  const targetX = -2.13;
+  const speed = 0.0005;
+
+  const targetXs = [targetX, targetX, targetX, targetX, targetX, targetX]; // Three target X positions for three windows
 
   const initialPositions = [
-    [0.9, initialY, -0.1],
-    [-1.5, initialY, -0.1],
-    [0.9, initialY, -1.5],
-    [-1.5, initialY, -1.5],
+    [initialX, 0.9, -0.1],
+    [initialX, 0.9, -0.7],
+    [initialX, 0.9, -1.07],
+    [initialX, 0.9, -1.76],
+    [initialX, 0.3, -0.1],
+    [initialX, 0.3, -0.7],
   ];
 
   const rotations = [
-    [-0.3, 0, 0],
-    [-0.3, 0, 0],
-    [0.1, 3.14, 0],
-    [0.1, 3.14, 0],
+    [0, -1.6, 0],
+    [0, 1.6, 0],   
+    [0, 1.6, 0],
+    [0, 1.6, 0],
+    [0, 1.6, 0],
+    [0, 1.6, 0],
   ];
 
   const meshes = useRef<(THREE.Mesh | null)[]>(initialPositions.map(() => null));
 
   useFrame(() => {
     meshes.current.forEach((mesh, index) => {
-      if (mesh && mesh.position.y > targetYs[index]) {
-        mesh.position.y -= speed;
-        if (mesh.position.y < targetYs[index]) {
-          mesh.position.y = targetYs[index];
+      if (mesh && mesh.position.x < targetXs[index]) {
+        mesh.position.x += speed;
+        if (mesh.position.x > targetXs[index]) {
+          mesh.position.x = targetXs[index];
         }
       }
     });
   });
 
   const clonedScenes = initialPositions.map(() => scene.clone());
-
   return (
     <>
       {clonedScenes.map((clonedScene, index) => (
@@ -47,7 +50,7 @@ function SolarPanelModel() {
           key={index}
             ref={(el: THREE.Mesh) => (meshes.current[index] = el)}
           position={initialPositions[index]}
-          scale={[0.2, 0.2, 0.2]}
+          scale={[0.002, 0.003, 0.002]}
           rotation={rotations[index]}
         >
           {Array.from(clonedScene.children).map((child, i) => (
@@ -59,4 +62,4 @@ function SolarPanelModel() {
   );
 }
 
-export default SolarPanelModel;
+export default WindowModel;

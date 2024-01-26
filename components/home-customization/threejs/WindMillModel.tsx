@@ -1,28 +1,24 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 
-function SolarPanelModel() {
-  const fileUrl = "/3dModels/solarpanel/scene.gltf";
+function WindMillModel() {
+  const fileUrl = "/3dModels/windmill/scene.gltf";
   const { scene } = useGLTF(fileUrl);
   const initialY = 3;
-  const targetY = 1.2;
+  const targetY = 0.226;
   const speed = 0.01;
-  
-  const targetYs = [1.2, 1.2, 1.35, 1.35];
+
+  const targetYs = [targetY, targetY]; 
 
   const initialPositions = [
-    [0.9, initialY, -0.1],
-    [-1.5, initialY, -0.1],
-    [0.9, initialY, -1.5],
-    [-1.5, initialY, -1.5],
+    [-2.5, initialY, -0.1],
+    [2, initialY, -0.1]  
   ];
 
   const rotations = [
-    [-0.3, 0, 0],
-    [-0.3, 0, 0],
-    [0.1, 3.14, 0],
-    [0.1, 3.14, 0],
+    [0, -1.6, 0],
+    [0, 1.6, 0]  
   ];
 
   const meshes = useRef<(THREE.Mesh | null)[]>(initialPositions.map(() => null));
@@ -47,7 +43,7 @@ function SolarPanelModel() {
           key={index}
             ref={(el: THREE.Mesh) => (meshes.current[index] = el)}
           position={initialPositions[index]}
-          scale={[0.2, 0.2, 0.2]}
+          scale={[0.001, 0.001, 0.001]}
           rotation={rotations[index]}
         >
           {Array.from(clonedScene.children).map((child, i) => (
@@ -59,4 +55,4 @@ function SolarPanelModel() {
   );
 }
 
-export default SolarPanelModel;
+export default WindMillModel;

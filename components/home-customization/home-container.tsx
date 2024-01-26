@@ -1,14 +1,24 @@
 import React from "react";
 import ThreeJsEnvironment from "./threejs-environment";
 
-type Props = {
-  showSolarPanel: boolean;
+type CustomizationDetails = {
+  title: string;
+  imgUrl: string;
+  price: string;
+  bulletPoints: [string, string];
 };
 
-const HomeContainer: React.FC<Props> = ({ showSolarPanel }) => {
+type Props = {
+  showSolarPanel: CustomizationDetails;
+  showWindow: CustomizationDetails;
+  showWindMill: CustomizationDetails;
+};
+
+
+const HomeContainer: React.FC<Props> = ({ showSolarPanel, showWindow, showWindMill }) => {
   return (
-    <div className="card col-span-5 pointer-events-none">
-      <ThreeJsEnvironment showSolarPanel={showSolarPanel} />
+    <div className="card col-span-4 pointer-events-none">
+      <ThreeJsEnvironment showSolarPanel={showSolarPanel} showWindMill={showWindMill} showWindow={showWindow} />
     </div>
   );
 };
