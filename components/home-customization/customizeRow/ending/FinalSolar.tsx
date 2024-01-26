@@ -49,4 +49,5 @@ const FinalSolar: React.FC<FinalSolarProps> = ({
   );
 };
 
+
 export default FinalSolar;

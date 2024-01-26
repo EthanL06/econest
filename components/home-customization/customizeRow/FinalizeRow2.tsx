@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-
-import FinalSolar from "./ending/FinalSolar";
+import FinalWindow from "./ending/finalWindow";
 import PurchaseTab from "../../ui/customizationComponents/PurchaseTab";
+
 
 type CustomizationDetails = {
   title: string;
@@ -13,21 +13,22 @@ type CustomizationDetails = {
 };
 
 type Props = {
-  showSolarPanel: CustomizationDetails;
+  showWindow: CustomizationDetails;
 };
 
 const FinalizeRow: React.FC<Props> = ({
-  showSolarPanel,
+  showWindow,
 }) => {
-  const [selectedSolarCard, setSelectedSolarCard] = useState<string | null>(
+
+  const [selectedWindowCard, setSelectedWindowCard] = useState<string | null>(
     null,
   );
 
   const [selectedPurchase, setSelectedPurchase] = useState("current");
 
 
-  const handleSolarCardClick = (cardTitle: string) => {
-    setSelectedSolarCard(cardTitle);
+  const handleWindowCardClick = (cardTitle: string) => {
+    setSelectedWindowCard(cardTitle);
   };
 
 
@@ -38,19 +39,20 @@ const FinalizeRow: React.FC<Props> = ({
         Summary of Your Customization
       </h3>
 
-        <PurchaseTab 
+      <PurchaseTab 
           selectedPurchase={selectedPurchase} 
-          setSelectedPurchase={setSelectedPurchase}/>
-
+          setSelectedPurchase={setSelectedPurchase}
+      />
 
       <div className="mt-4 gap-y-5">
-        <FinalSolar
-          showSolarPanel={showSolarPanel}
-          handleCardClick={handleSolarCardClick}
-          selectedCard={selectedSolarCard}
+
+        <FinalWindow
+          showWindow={showWindow}
+          handleCardClick={handleWindowCardClick}
+          selectedCard={selectedWindowCard}
           selectedPurchase={selectedPurchase}
         />
-
+   
       </div>
     </div>
   );

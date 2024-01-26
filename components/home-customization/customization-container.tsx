@@ -4,6 +4,8 @@ import SolarPanelCustomizationRow from "./customizeRow/SolarPanelCustomizationRo
 import WindowCustomizationRow from "./customizeRow/WindowCustomizationRow";
 import WindmillCustomizationRow from "./customizeRow/WindmillCustomizationRow";
 import FinalizeRow from "./customizeRow/FinalizeRow";
+import FinalizeRow2 from "./customizeRow/FinalizeRow2";
+import FinalizeRow3 from "./customizeRow/FinalizeRow3";
 import FinalPrices from "./customizeRow/ending/FinalPrices";
 import AddressInput from "../landing/address-input";
 
@@ -66,11 +68,19 @@ const CustomizationContainer: React.FC<Props> = ({
       {page === 4 && (
         <FinalizeRow
           showSolarPanel={showSolarPanel}
+        />
+      )}
+      {page === 5 && (
+        <FinalizeRow2
           showWindow={showWindow}
+        />
+      )}
+      {page === 6 && (
+        <FinalizeRow3
           showWindMill={showWindMill}
         />
       )}
-      { page === 5 && (
+      { page === 7 && (
         <FinalPrices/>
       )}
 
