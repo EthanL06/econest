@@ -103,8 +103,6 @@ const [selectedWindmillCard, setSelectedWindmillCard] = useState<string | null>(
 />
 
       </div>
-
-
     </div>
   );
 };

@@ -22,6 +22,7 @@ const FinalWindmill: React.FC<FinalWindmillProps> = ({
   selectedPurchase,
 }) => {
   return (
+
     <div className="mt-6 flex flex-col justify-center ">
         <h3 className="text-md font-bold text-gray-600">Residential Windmill</h3>
 <h1 className="text-2xl font-bold text-black">Harness Wind Energy</h1>

@@ -39,7 +39,6 @@ export default function Home() {
         overflow: 'hidden',
         scrollbarWidth: 'none', 
         msOverflowStyle: 'none', 
-       
       }}
         onWheel={(e) => {
           e.currentTarget.scrollBy({
