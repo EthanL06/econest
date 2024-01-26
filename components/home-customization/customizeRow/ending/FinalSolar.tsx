@@ -22,14 +22,10 @@ const FinalSolar: React.FC<FinalSolarProps> = ({
   selectedPurchase
 }) => {
   return (
-    <div className="mt-4 flex flex-col justify-center ">
+    <div className="mt-6 flex flex-col justify-center ">
         <h3 className="text-md font-bold text-gray-600">Solar Roof</h3>
         <h1 className="text-2xl font-bold text-black">Produce Clean Solar Energy</h1>
         <h3 className="text-md font-bold text-gray-600">Luxury roof with integrated solar and battery storage.</h3>
-
-
-
-
 
       <FinalizeRowPurchaseCard
         details={showSolarPanel}
