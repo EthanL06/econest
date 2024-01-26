@@ -22,7 +22,8 @@ const FinalWindow: React.FC<FinalWindowProps> = ({
   selectedPurchase,
 }) => {
   return (
-    <div className="mt-4 flex flex-col justify-center ">
+
+    <div className="mt-6 flex flex-col justify-center ">
 
 <h3 className="text-md font-bold text-gray-600">Energy Efficient Windows</h3>
 <h1 className="text-2xl font-bold text-black">Reduce Energy Costs</h1>

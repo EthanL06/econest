@@ -36,10 +36,9 @@ export default function Home() {
       <div className="grid w-full grid-cols-6 grid-rows-1 gap-3 text-white px-4 py-4" 
       style={{
         maxHeight: 'calc(100vh)',
-        overflow: 'auto',
+        overflow: 'hidden',
         scrollbarWidth: 'none', 
         msOverflowStyle: 'none', 
-        WebkitOverflowScrolling: 'touch', 
       }}
         onWheel={(e) => {
           e.currentTarget.scrollBy({

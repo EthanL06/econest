@@ -80,7 +80,8 @@ const [selectedWindmillCard, setSelectedWindmillCard] = useState<string | null>(
         </button>
       </div>
 
-<FinalSolar
+      <div className="mt-4 gap-y-5">
+      <FinalSolar
   showSolarPanel={showSolarPanel}
   handleCardClick={handleSolarCardClick}
   selectedCard={selectedSolarCard}
@@ -101,13 +102,7 @@ const [selectedWindmillCard, setSelectedWindmillCard] = useState<string | null>(
   selectedPurchase={selectedPurchase}
 />
 
-      <div className="mt-4">
-        <p className="text-lg font-semibold">Total Cost: 10 bucks</p>
-        <p className="text-lg">Estimated Improvement: not much</p>
       </div>
-      <button className="mt-6 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
-        Confirm Customization
-      </button>
     </div>
   );
 };
