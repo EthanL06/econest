@@ -58,14 +58,20 @@ const LogoWall = (props: Props) => {
           aria-hidden="true"
         >
           {[...brands].map((brand, index) => (
-            <Image
-              key={`${brand}-${index + brands.length}`}
-              alt={brand}
-              className="mx-8 inline-block h-[2rem] w-auto max-w-[10rem] sm:mx-12"
-              width={0}
-              height={0}
-              src={`/images/${brand}.svg`}
-            />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 + delay }}
+              key={`${brand}-${index}`}
+            >
+              <Image
+                alt={brand}
+                className=" mx-8 inline-block h-[2rem] w-auto max-w-[10rem] sm:mx-12"
+                width={0}
+                height={0}
+                src={`/images/${brand}.svg`}
+              />
+            </motion.div>
           ))}
         </div>
       </div>
