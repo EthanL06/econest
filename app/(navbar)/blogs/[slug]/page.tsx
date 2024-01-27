@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { TracingBeam } from "@/components/ui/tracing-beam";
 type Props = {
   params: {
     slug: string;
@@ -69,17 +70,19 @@ const Page = async ({ params }: Props) => {
         </BreadcrumbItem>
       </Breadcrumb>
 
-      <article className="prose prose-slate mx-auto max-w-3xl ">
-        <img
-          className="aspect-video rounded-lg"
-          src={blog?.image}
-          alt={blog?.name}
-        />
-        <div
-          className="mt-8"
-          dangerouslySetInnerHTML={{ __html: blog?.content || "" }}
-        ></div>
-      </article>
+      <TracingBeam>
+        <article className="prose prose-slate mx-auto max-w-3xl ">
+          <img
+            className="aspect-video rounded-lg"
+            src={blog?.image}
+            alt={blog?.name}
+          />
+          <div
+            className="mt-8"
+            dangerouslySetInnerHTML={{ __html: blog?.content || "" }}
+          ></div>
+        </article>
+      </TracingBeam>
     </div>
   );
 };
