@@ -1,7 +1,7 @@
 export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.
   return (
-    <div className="-mt-16 grid min-h-screen w-full place-items-center">
+    <div className="grid min-h-screen w-full place-items-center">
       <svg
         aria-hidden="true"
         className="h-8 w-8 animate-spin fill-primary text-gray-200"

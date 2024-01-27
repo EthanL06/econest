@@ -6,6 +6,7 @@ import { Menu } from "lucide-react";
 import { useWindowScroll } from "@uidotdev/usehooks";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Button } from "./ui/button";
 type Props = {};
 
 const Navbar = (props: Props) => {
@@ -56,6 +57,10 @@ const Navbar = (props: Props) => {
       <div className="flex items-center gap-x-4">
         <Link href="/blogs">
           <div className="cursor-pointer text-sm font-semibold">Blogs</div>
+        </Link>
+
+        <Link href="/home-customization">
+          <Button className="text-sm font-semibold">Build-A-Home</Button>
         </Link>
       </div>
     </div>
