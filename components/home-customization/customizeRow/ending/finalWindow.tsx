@@ -1,14 +1,6 @@
-import React from 'react';
-import FinalizeRowPurchaseCard from '../../../ui/customizationComponents/finalizeRowPurchaseCards';
-
-type CustomizationDetails = {
-  title: string;
-  imgUrl: string;
-  price: string;
-  bulletPoints: [string, string];
-  current: string;
-};
-
+import React from "react";
+import FinalizeRowPurchaseCard from "../../../ui/customizationComponents/finalizeRowPurchaseCards";
+import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
 type FinalWindowProps = {
   showWindow: CustomizationDetails;
   handleCardClick: (cardTitle: string) => void;
@@ -23,14 +15,15 @@ const FinalWindow: React.FC<FinalWindowProps> = ({
   selectedPurchase,
 }) => {
   return (
-
     <div className="mt-6 flex flex-col justify-center ">
+      <h3 className="text-md font-bold text-gray-600">
+        Energy Efficient Windows
+      </h3>
+      <h1 className="text-2xl font-bold text-black">Reduce Energy Costs</h1>
+      <h3 className="text-md font-bold text-gray-600">
+        High-quality windows designed for maximum insulation.
+      </h3>
 
-<h3 className="text-md font-bold text-gray-600">Energy Efficient Windows</h3>
-<h1 className="text-2xl font-bold text-black">Reduce Energy Costs</h1>
-<h3 className="text-md font-bold text-gray-600">High-quality windows designed for maximum insulation.</h3>
-
-        
       <FinalizeRowPurchaseCard
         details={showWindow}
         needs="Current"

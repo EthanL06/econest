@@ -2,7 +2,8 @@
 
 import useMousePosition from "@/hooks/useMousePosition";
 import { cn } from "@/lib/utils";
-import React from "react";
+import { usePathname } from "next/navigation";
+import React, { useEffect } from "react";
 
 type Props = {};
 
@@ -12,11 +13,13 @@ const MouseGradient = (props: Props) => {
     scrollPosition,
   } = useMousePosition();
 
+  const pathname = usePathname();
+
   return (
     <div
       className={cn(
-        "absolute left-0 top-0 -z-10 hidden h-full w-full lg:block",
-        x === 0 && y === 0 && "hidden",
+        "absolute left-0 top-0 -z-10 -mt-16 hidden h-full w-full lg:block",
+        (x === 0 && y === 0) || pathname !== "/" ? "!hidden" : "",
       )}
       style={{
         background: `radial-gradient(

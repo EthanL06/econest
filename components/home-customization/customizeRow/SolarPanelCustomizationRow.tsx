@@ -1,13 +1,6 @@
 import React, { useState } from "react";
 import HomeSelectCard from "../../ui/customizationComponents/homeSelectCard";
-
-type CustomizationDetails = {
-  title: string;
-  imgUrl: string;
-  price: string;
-  bulletPoints: [string, string];
-  current: string;
-};
+import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
 
 type Props = {
   handleShowSolarPanel: (details: CustomizationDetails) => void;
@@ -16,30 +9,35 @@ type Props = {
 
 const SolarPanelCustomizationRow: React.FC<Props> = ({
   handleShowSolarPanel,
-  showSolarPanel
+  showSolarPanel,
 }) => {
-
   const cardData = [
     {
       title: "Powerwall Only",
-      imgUrl:"/images/solar_panel_house.jpg",
+      imgUrl: "/images/solar_panel_house.jpg",
       price: "6,365",
-      bulletPoints: ["Energy backup for your home", ""] as [string, string], 
-      current: "current"
+      bulletPoints: ["Energy backup for your home", ""] as [string, string],
+      current: "current",
     },
     {
       title: "Solar Panels + Powerwall",
-      imgUrl:"/images/solar_panel_house.jpg",
+      imgUrl: "/images/solar_panel_house.jpg",
       price: "92,476",
-      bulletPoints: ["Panels for your existing roof with backup protection", ""] as [string, string], 
-      current: "current"
+      bulletPoints: [
+        "Panels for your existing roof with backup protection",
+        "",
+      ] as [string, string],
+      current: "current",
     },
     {
       title: "Solar Roof + Powerwall",
-      imgUrl:"/images/solar_panel_house.jpg",
+      imgUrl: "/images/solar_panel_house.jpg",
       price: "843,500",
-      bulletPoints: ["New luxury integrated solar roof with backup protection", ""] as [string, string],
-      current: "current"
+      bulletPoints: [
+        "New luxury integrated solar roof with backup protection",
+        "",
+      ] as [string, string],
+      current: "current",
     },
   ];
 
@@ -53,7 +51,8 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
         Harness Solar Energy
       </h3>
       <p className="m-4 text-base text-gray-700 ">
-        Maximize your home &apos; s energy efficiency with cutting-edge solar panels.
+        Maximize your home &apos; s energy efficiency with cutting-edge solar
+        panels.
       </p>
 
       {cardData.map((card) => (

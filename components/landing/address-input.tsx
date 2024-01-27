@@ -115,11 +115,11 @@ const Suggestion = ({
     const start = matchedText.offset;
     const end = matchedText.offset + matchedText.length;
     return (
-      <>
+      <div className="font-sans">
         {text.slice(0, start)}
         <span className="font-bold">{text.slice(start, end)}</span>
         {text.slice(end)}
-      </>
+      </div>
     );
   };
   return (

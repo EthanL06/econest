@@ -1,13 +1,6 @@
-import React from 'react';
-import FinalizeRowPurchaseCard from '../../../ui/customizationComponents/finalizeRowPurchaseCards';
-
-type CustomizationDetails = {
-  title: string;
-  imgUrl: string;
-  price: string;
-  bulletPoints: [string, string];
-  current: string;
-};
+import React from "react";
+import FinalizeRowPurchaseCard from "../../../ui/customizationComponents/finalizeRowPurchaseCards";
+import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
 
 type FinalWindmillProps = {
   showWindmill: CustomizationDetails;
@@ -23,11 +16,12 @@ const FinalWindmill: React.FC<FinalWindmillProps> = ({
   selectedPurchase,
 }) => {
   return (
-
     <div className="mt-6 flex flex-col justify-center ">
-        <h3 className="text-md font-bold text-gray-600">Residential Windmill</h3>
-<h1 className="text-2xl font-bold text-black">Harness Wind Energy</h1>
-<h3 className="text-md font-bold text-gray-600">Sustainable power with a modern windmill solution.</h3>
+      <h3 className="text-md font-bold text-gray-600">Residential Windmill</h3>
+      <h1 className="text-2xl font-bold text-black">Harness Wind Energy</h1>
+      <h3 className="text-md font-bold text-gray-600">
+        Sustainable power with a modern windmill solution.
+      </h3>
 
       <FinalizeRowPurchaseCard
         details={showWindmill}

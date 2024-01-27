@@ -3,33 +3,23 @@
 import React, { useState } from "react";
 import PurchaseTab from "../../ui/customizationComponents/PurchaseTab";
 import FinalWindmill from "./ending/FinalWindmill";
-
-type CustomizationDetails = {
-  title: string;
-  imgUrl: string;
-  price: string;
-  bulletPoints: [string, string];
-  current: string;
-};
+import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
 
 type Props = {
-    showWindMill: CustomizationDetails;
-    selectedWindmillCard: string | null;
-    setSelectedWindmillCard: React.Dispatch<React.SetStateAction<string | null>>;
-    selectedWidmillPurchase: string;
-    setSelectedWidmillPurchase: React.Dispatch<React.SetStateAction<string>>;
-   };
-   
-   const FinalizeRow3: React.FC<Props> = ({
-    showWindMill,
-    selectedWindmillCard,
-    setSelectedWindmillCard,
-    selectedWidmillPurchase,
-    setSelectedWidmillPurchase,
-   }) => {
- 
+  showWindMill: CustomizationDetails;
+  selectedWindmillCard: string | null;
+  setSelectedWindmillCard: React.Dispatch<React.SetStateAction<string | null>>;
+  selectedWidmillPurchase: string;
+  setSelectedWidmillPurchase: React.Dispatch<React.SetStateAction<string>>;
+};
 
-
+const FinalizeRow3: React.FC<Props> = ({
+  showWindMill,
+  selectedWindmillCard,
+  setSelectedWindmillCard,
+  selectedWidmillPurchase,
+  setSelectedWidmillPurchase,
+}) => {
   const handleWindmillCardClick = (cardTitle: string) => {
     setSelectedWindmillCard(cardTitle);
   };
@@ -40,13 +30,12 @@ type Props = {
         Summary of Your Customization
       </h3>
 
-      <PurchaseTab 
-          selectedPurchase={selectedWidmillPurchase} 
-          setSelectedPurchase={setSelectedWidmillPurchase}
+      <PurchaseTab
+        selectedPurchase={selectedWidmillPurchase}
+        setSelectedPurchase={setSelectedWidmillPurchase}
       />
 
       <div className="mt-4 gap-y-5">
-      
         <FinalWindmill
           showWindmill={showWindMill}
           handleCardClick={handleWindmillCardClick}
