@@ -7,15 +7,8 @@ import ForestModel from "./threejs/ForestModel";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import { useFrame, Canvas } from "@react-three/fiber";
 import Loader from "./loader";
+import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
 // window: https://sketchfab.com/3d-models/old-wooden-window-9cb47e9d4e8644efa4fa28c424253d79
-
-type CustomizationDetails = {
-  title: string;
-  imgUrl: string;
-  price: string;
-  bulletPoints: [string, string];
-  current: string;
-};
 
 type Props = {
   showSolarPanel: CustomizationDetails;

@@ -3,38 +3,26 @@
 import React, { useState } from "react";
 import FinalWindow from "./ending/finalWindow";
 import PurchaseTab from "../../ui/customizationComponents/PurchaseTab";
-
-type CustomizationDetails = {
-  title: string;
-  imgUrl: string;
-  price: string;
-  bulletPoints: [string, string];
-  current: string;
-};
+import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
 
 type Props = {
-    showWindow: CustomizationDetails;
-    selectedWindowCard: string | null;
-    setSelectedWindowCard: React.Dispatch<React.SetStateAction<string | null>>;
-    selectedWindowPurchase: string;
-    setSelectedWindowPurchase: React.Dispatch<React.SetStateAction<string>>;
-   };
+  showWindow: CustomizationDetails;
+  selectedWindowCard: string | null;
+  setSelectedWindowCard: React.Dispatch<React.SetStateAction<string | null>>;
+  selectedWindowPurchase: string;
+  setSelectedWindowPurchase: React.Dispatch<React.SetStateAction<string>>;
+};
 
-   const FinalizeRow2: React.FC<Props> = ({
-    showWindow,
-    selectedWindowCard,
-    setSelectedWindowCard,
-    selectedWindowPurchase,
-    setSelectedWindowPurchase,
-   }) => {
-
-
-
+const FinalizeRow2: React.FC<Props> = ({
+  showWindow,
+  selectedWindowCard,
+  setSelectedWindowCard,
+  selectedWindowPurchase,
+  setSelectedWindowPurchase,
+}) => {
   const handleWindowCardClick = (cardTitle: string) => {
     setSelectedWindowCard(cardTitle);
   };
-
-
 
   return (
     <div className="w-full p-4">
@@ -42,20 +30,18 @@ type Props = {
         Summary of Your Customization
       </h3>
 
-      <PurchaseTab 
-          selectedPurchase={selectedWindowPurchase} 
-          setSelectedPurchase={setSelectedWindowPurchase}
+      <PurchaseTab
+        selectedPurchase={selectedWindowPurchase}
+        setSelectedPurchase={setSelectedWindowPurchase}
       />
 
       <div className="mt-4 gap-y-5">
-
         <FinalWindow
           showWindow={showWindow}
           handleCardClick={handleWindowCardClick}
           selectedCard={selectedWindowCard}
           selectedPurchase={selectedWindowPurchase}
         />
-   
       </div>
     </div>
   );

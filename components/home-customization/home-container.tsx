@@ -1,13 +1,6 @@
 import React from "react";
 import ThreeJsEnvironment from "./threejs-environment";
-
-type CustomizationDetails = {
-  title: string;
-  imgUrl: string;
-  price: string;
-  bulletPoints: [string, string];
-  current: string;
-};
+import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
 
 type Props = {
   showSolarPanel: CustomizationDetails;

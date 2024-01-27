@@ -4,14 +4,7 @@ import React, { useState } from "react";
 
 import FinalSolar from "./ending/FinalSolar";
 import PurchaseTab from "../../ui/customizationComponents/PurchaseTab";
-
-type CustomizationDetails = {
-  title: string;
-  imgUrl: string;
-  price: string;
-  bulletPoints: [string, string];
-  current: string;
-};
+import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
 
 type Props = {
   showSolarPanel: CustomizationDetails;

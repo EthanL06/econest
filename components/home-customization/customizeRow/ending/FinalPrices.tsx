@@ -1,13 +1,6 @@
 "use client";
+import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
 import React, { useState } from "react";
-
-type CustomizationDetails = {
-  title: string;
-  imgUrl: string;
-  price: string;
-  bulletPoints: [string, string];
-  current: string;
-};
 
 type Props = {
   showSolarPanel: CustomizationDetails;
@@ -18,16 +11,13 @@ type Props = {
   selectedWidmillPurchase: string;
 };
 
-
 const Savings: React.FC<Props> = ({}) => {
   const [cashOrLoan, setCashOrLoan] = useState<string>("cash");
 
-  const getTotalMoney = ( card: CustomizationDetails, purchaseType: string) => {
-      let mult = 1;
-      if(purchaseType === "future") 
-        mult = 0.8;
-  }
-
+  const getTotalMoney = (card: CustomizationDetails, purchaseType: string) => {
+    let mult = 1;
+    if (purchaseType === "future") mult = 0.8;
+  };
 
   return (
     <div className="mt-4 flex flex-col justify-center ">
@@ -57,89 +47,89 @@ const Savings: React.FC<Props> = ({}) => {
         </button>
       </div>
 
+      <h1 className="mt-3 text-left text-xl font-bold text-black">
+        Your System
+      </h1>
 
-      <h1 className="text-xl font-bold text-black text-left mt-3">Your System</h1>
-
-      <h1 className="text-l font-bold text-gray-600 text-left mt-3">Solar Panels</h1>
-        <div className="flex flex-col items-center">
-        <div className="flex justify-between w-full">
-            <p className="text-gray-600">79.13 kW Solar Roof</p>
-            <p className="text-black">$1,085,100</p>
+      <h1 className="text-l mt-3 text-left font-bold text-gray-600">
+        Solar Panels
+      </h1>
+      <div className="flex flex-col items-center">
+        <div className="flex w-full justify-between">
+          <p className="text-gray-600">79.13 kW Solar Roof</p>
+          <p className="text-black">$1,085,100</p>
         </div>
-        <div className="flex justify-between w-full">
-            <p className="text-gray-600">Roof Tear Off</p>
-            <p className="text-black">$53,500</p>
+        <div className="flex w-full justify-between">
+          <p className="text-gray-600">Roof Tear Off</p>
+          <p className="text-black">$53,500</p>
         </div>
-        <div className="flex justify-between w-full">
-            <p className="text-gray-600">6 Powerwalls</p>
-            <p className="text-black">$54,600</p>
+        <div className="flex w-full justify-between">
+          <p className="text-gray-600">6 Powerwalls</p>
+          <p className="text-black">$54,600</p>
         </div>
-        <div className="flex justify-between w-full">
-            <p className="text-gray-600">Solar & Powerwall Discount</p>
-            <p className="text-black">-$10,500</p>
-        </div>
-
-        <div className="flex justify-between w-full">
-            <p className="text-black font-bold">Estimated Price</p>
-            <p className="text-black">{}</p>
-        </div>
+        <div className="flex w-full justify-between">
+          <p className="text-gray-600">Solar & Powerwall Discount</p>
+          <p className="text-black">-$10,500</p>
         </div>
 
+        <div className="flex w-full justify-between">
+          <p className="font-bold text-black">Estimated Price</p>
+          <p className="text-black">{}</p>
+        </div>
+      </div>
 
-        <h1 className="text-l font-bold text-gray-600 text-left mt-3">Windmill</h1>
-        <div className="flex flex-col items-center">
-        <div className="flex justify-between w-full">
-            <p className="text-gray-600">Residential Windmill</p>
-            <p className="text-black">$1,085,100</p>
-            </div>
-        <div className="flex justify-between w-full">
-            <p className="text-gray-600">Roof Tear Off</p>
-            <p className="text-black">$53,500</p>
+      <h1 className="text-l mt-3 text-left font-bold text-gray-600">
+        Windmill
+      </h1>
+      <div className="flex flex-col items-center">
+        <div className="flex w-full justify-between">
+          <p className="text-gray-600">Residential Windmill</p>
+          <p className="text-black">$1,085,100</p>
         </div>
-        <div className="flex justify-between w-full">
-            <p className="text-gray-600">6 Powerwalls</p>
-            <p className="text-black">$54,600</p>
+        <div className="flex w-full justify-between">
+          <p className="text-gray-600">Roof Tear Off</p>
+          <p className="text-black">$53,500</p>
         </div>
-        <div className="flex justify-between w-full">
-            <p className="text-gray-600">Solar & Powerwall Discount</p>
-            <p className="text-black">-$10,500</p>
+        <div className="flex w-full justify-between">
+          <p className="text-gray-600">6 Powerwalls</p>
+          <p className="text-black">$54,600</p>
         </div>
-
-        <div className="flex justify-between w-full">
-            <p className="text-black font-bold">Estimated Price</p>
-            <p className="text-black">$100,500</p>
-        </div>
-        </div>
-
-        <h1 className="text-l font-bold text-gray-600 text-left mt-3">Windows</h1>
-        <div className="flex flex-col items-center">
-        <div className="flex justify-between w-full">
-            <p className="text-gray-600">Residential Windmill</p>
-            <p className="text-black">$1,085,100</p>
-            </div>
-        <div className="flex justify-between w-full">
-            <p className="text-gray-600">Roof Tear Off</p>
-            <p className="text-black">$53,500</p>
-        </div>
-        <div className="flex justify-between w-full">
-            <p className="text-gray-600">6 Powerwalls</p>
-            <p className="text-black">$54,600</p>
-        </div>
-        <div className="flex justify-between w-full">
-            <p className="text-gray-600">Solar & Powerwall Discount</p>
-            <p className="text-black">-$10,500</p>
+        <div className="flex w-full justify-between">
+          <p className="text-gray-600">Solar & Powerwall Discount</p>
+          <p className="text-black">-$10,500</p>
         </div>
 
-        <div className="flex justify-between w-full">
-            <p className="text-black font-bold">Estimated Price</p>
-            <p className="text-black">$100,500</p>
+        <div className="flex w-full justify-between">
+          <p className="font-bold text-black">Estimated Price</p>
+          <p className="text-black">$100,500</p>
         </div>
+      </div>
+
+      <h1 className="text-l mt-3 text-left font-bold text-gray-600">Windows</h1>
+      <div className="flex flex-col items-center">
+        <div className="flex w-full justify-between">
+          <p className="text-gray-600">Residential Windmill</p>
+          <p className="text-black">$1,085,100</p>
+        </div>
+        <div className="flex w-full justify-between">
+          <p className="text-gray-600">Roof Tear Off</p>
+          <p className="text-black">$53,500</p>
+        </div>
+        <div className="flex w-full justify-between">
+          <p className="text-gray-600">6 Powerwalls</p>
+          <p className="text-black">$54,600</p>
+        </div>
+        <div className="flex w-full justify-between">
+          <p className="text-gray-600">Solar & Powerwall Discount</p>
+          <p className="text-black">-$10,500</p>
         </div>
 
-
-
-
-</div>
+        <div className="flex w-full justify-between">
+          <p className="font-bold text-black">Estimated Price</p>
+          <p className="text-black">$100,500</p>
+        </div>
+      </div>
+    </div>
   );
 };
 

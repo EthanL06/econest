@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 import HomeSelectCard from "../../ui/customizationComponents/homeSelectCard";
-
-type CustomizationDetails = {
-  title: string;
-  imgUrl: string;
-  price: string;
-  bulletPoints: [string, string];
-  current: string;
-};
-
+import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
 type Props = {
   handleShowWindmill: (details: CustomizationDetails) => void;
   showWindMill: CustomizationDetails;
@@ -16,33 +8,32 @@ type Props = {
 
 const SolarPanelCustomizationRow: React.FC<Props> = ({
   handleShowWindmill,
-  showWindMill
+  showWindMill,
 }) => {
-
   const cardData: CustomizationDetails[] = [
     {
       title: "Windmill Basic",
-      imgUrl:"/images/solar_panel_house.jpg",
+      imgUrl: "/images/solar_panel_house.jpg",
       // imgUrl: "/images/windmill_basic.jpg",
       price: "1,200",
       bulletPoints: ["Basic wind energy solution for small homes", ""],
-      current: "current"
+      current: "current",
     },
     {
       title: "Windmill Advanced",
-      imgUrl:"/images/solar_panel_house.jpg",
+      imgUrl: "/images/solar_panel_house.jpg",
       // imgUrl: "/images/windmill_advanced.jpg",
       price: "4,750",
       bulletPoints: ["Enhanced wind energy system with increased capacity", ""],
-      current: "current"
+      current: "current",
     },
     {
       title: "Windmill Premium",
-      imgUrl:"/images/solar_panel_house.jpg",
+      imgUrl: "/images/solar_panel_house.jpg",
       // imgUrl: "/images/windmill_premium.jpg",
       price: "9,300",
       bulletPoints: ["Premium wind energy setup with maximum efficiency", ""],
-      current: "current"
+      current: "current",
     },
   ];
 

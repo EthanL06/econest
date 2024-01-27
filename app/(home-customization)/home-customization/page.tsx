@@ -4,11 +4,12 @@ import React, { useState } from "react";
 import CustomizationContainer from "@/components/home-customization/customization-container";
 import HomeContainer from "@/components/home-customization/home-container";
 
-type CustomizationDetails = {
+export type CustomizationDetails = {
   title: string;
   imgUrl: string;
   price: string;
   bulletPoints: [string, string];
+  current: string;
 };
 
 function Home() {
@@ -17,18 +18,21 @@ function Home() {
     imgUrl: "",
     price: "",
     bulletPoints: ["", ""],
+    current: "",
   });
   const [showWindow, setShowWindow] = useState<CustomizationDetails>({
     title: "",
     imgUrl: "",
     price: "",
     bulletPoints: ["", ""],
+    current: "",
   });
   const [showWindMill, setShowWindMill] = useState<CustomizationDetails>({
     title: "",
     imgUrl: "",
     price: "",
     bulletPoints: ["", ""],
+    current: "",
   });
 
   const handleShowSolarPanel = (details: CustomizationDetails) => {
