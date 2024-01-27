@@ -9,22 +9,25 @@ type CustomizationDetails = {
   imgUrl: string;
   price: string;
   bulletPoints: [string, string];
+  current: string;
 };
 
 type Props = {
-  showWindMill: CustomizationDetails;
-};
-
-const FinalizeRow: React.FC<Props> = ({
-  showWindMill,
-}) => {
+    showWindMill: CustomizationDetails;
+    selectedWindmillCard: string | null;
+    setSelectedWindmillCard: React.Dispatch<React.SetStateAction<string | null>>;
+    selectedWidmillPurchase: string;
+    setSelectedWidmillPurchase: React.Dispatch<React.SetStateAction<string>>;
+   };
+   
+   const FinalizeRow3: React.FC<Props> = ({
+    showWindMill,
+    selectedWindmillCard,
+    setSelectedWindmillCard,
+    selectedWidmillPurchase,
+    setSelectedWidmillPurchase,
+   }) => {
  
-  const [selectedWindmillCard, setSelectedWindmillCard] = useState<
-    string | null
-  >(null);
-
-  const [selectedPurchase, setSelectedPurchase] = useState("current");
-
 
 
   const handleWindmillCardClick = (cardTitle: string) => {
@@ -38,8 +41,8 @@ const FinalizeRow: React.FC<Props> = ({
       </h3>
 
       <PurchaseTab 
-          selectedPurchase={selectedPurchase} 
-          setSelectedPurchase={setSelectedPurchase}
+          selectedPurchase={selectedWidmillPurchase} 
+          setSelectedPurchase={setSelectedWidmillPurchase}
       />
 
       <div className="mt-4 gap-y-5">
@@ -48,11 +51,11 @@ const FinalizeRow: React.FC<Props> = ({
           showWindmill={showWindMill}
           handleCardClick={handleWindmillCardClick}
           selectedCard={selectedWindmillCard}
-          selectedPurchase={selectedPurchase}
+          selectedPurchase={selectedWidmillPurchase}
         />
       </div>
     </div>
   );
 };
 
-export default FinalizeRow;
+export default FinalizeRow3;

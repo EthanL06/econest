@@ -5,6 +5,7 @@ type CustomizationDetails = {
     imgUrl: string;
     price: string;
     bulletPoints: [string, string];
+    current: string;
   };
   
   interface FinalizeRowPurchaseCardProps {
@@ -14,6 +15,7 @@ type CustomizationDetails = {
     onClick: (type: string) => void;
     selected: boolean;
   }
+
   const FinalizeRowPurchaseCard: React.FC<FinalizeRowPurchaseCardProps> = ({
     details,
     needs,

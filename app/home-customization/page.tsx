@@ -10,13 +10,14 @@ type CustomizationDetails = {
   imgUrl: string;
   price: string;
   bulletPoints: [string, string];
+  current: string;
 };
 
 
 export default function Home() {
-  const [showSolarPanel, setShowSolarPanel] = useState<CustomizationDetails>({ title: "", imgUrl: "", price: "", bulletPoints: ["", ""] });
-  const [showWindow, setShowWindow] = useState<CustomizationDetails>({ title: "", imgUrl: "", price: "", bulletPoints: ["", ""] });
-  const [showWindMill, setShowWindMill] = useState<CustomizationDetails>({ title: "", imgUrl: "", price: "", bulletPoints: ["", ""] });
+  const [showSolarPanel, setShowSolarPanel] = useState<CustomizationDetails>({ title: "", imgUrl: "", price: "", bulletPoints: ["", ""], current: "" });
+  const [showWindow, setShowWindow] = useState<CustomizationDetails>({ title: "", imgUrl: "", price: "", bulletPoints: ["", ""], current: ""  });
+  const [showWindMill, setShowWindMill] = useState<CustomizationDetails>({ title: "", imgUrl: "", price: "", bulletPoints: ["", ""], current: ""  });
 
 
   const handleShowSolarPanel = (details: CustomizationDetails) => {

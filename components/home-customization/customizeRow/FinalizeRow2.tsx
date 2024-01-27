@@ -4,27 +4,30 @@ import React, { useState } from "react";
 import FinalWindow from "./ending/finalWindow";
 import PurchaseTab from "../../ui/customizationComponents/PurchaseTab";
 
-
 type CustomizationDetails = {
   title: string;
   imgUrl: string;
   price: string;
   bulletPoints: [string, string];
+  current: string;
 };
 
 type Props = {
-  showWindow: CustomizationDetails;
-};
+    showWindow: CustomizationDetails;
+    selectedWindowCard: string | null;
+    setSelectedWindowCard: React.Dispatch<React.SetStateAction<string | null>>;
+    selectedWindowPurchase: string;
+    setSelectedWindowPurchase: React.Dispatch<React.SetStateAction<string>>;
+   };
 
-const FinalizeRow: React.FC<Props> = ({
-  showWindow,
-}) => {
+   const FinalizeRow2: React.FC<Props> = ({
+    showWindow,
+    selectedWindowCard,
+    setSelectedWindowCard,
+    selectedWindowPurchase,
+    setSelectedWindowPurchase,
+   }) => {
 
-  const [selectedWindowCard, setSelectedWindowCard] = useState<string | null>(
-    null,
-  );
-
-  const [selectedPurchase, setSelectedPurchase] = useState("current");
 
 
   const handleWindowCardClick = (cardTitle: string) => {
@@ -40,8 +43,8 @@ const FinalizeRow: React.FC<Props> = ({
       </h3>
 
       <PurchaseTab 
-          selectedPurchase={selectedPurchase} 
-          setSelectedPurchase={setSelectedPurchase}
+          selectedPurchase={selectedWindowPurchase} 
+          setSelectedPurchase={setSelectedWindowPurchase}
       />
 
       <div className="mt-4 gap-y-5">
@@ -50,7 +53,7 @@ const FinalizeRow: React.FC<Props> = ({
           showWindow={showWindow}
           handleCardClick={handleWindowCardClick}
           selectedCard={selectedWindowCard}
-          selectedPurchase={selectedPurchase}
+          selectedPurchase={selectedWindowPurchase}
         />
    
       </div>
@@ -58,4 +61,4 @@ const FinalizeRow: React.FC<Props> = ({
   );
 };
 
-export default FinalizeRow;
+export default FinalizeRow2;

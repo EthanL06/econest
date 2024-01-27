@@ -6,16 +6,18 @@ type CustomizationDetails = {
   imgUrl: string;
   price: string;
   bulletPoints: [string, string];
+  current: string;
 };
 
 type Props = {
   handleShowSolarPanel: (details: CustomizationDetails) => void;
+  showSolarPanel: CustomizationDetails;
 };
 
 const SolarPanelCustomizationRow: React.FC<Props> = ({
   handleShowSolarPanel,
+  showSolarPanel
 }) => {
-  const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
   const cardData = [
     {
@@ -23,23 +25,25 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
       imgUrl:"/images/solar_panel_house.jpg",
       price: "6,365",
       bulletPoints: ["Energy backup for your home", ""] as [string, string], 
+      current: "current"
     },
     {
       title: "Solar Panels + Powerwall",
       imgUrl:"/images/solar_panel_house.jpg",
       price: "92,476",
       bulletPoints: ["Panels for your existing roof with backup protection", ""] as [string, string], 
+      current: "current"
     },
     {
       title: "Solar Roof + Powerwall",
       imgUrl:"/images/solar_panel_house.jpg",
       price: "843,500",
       bulletPoints: ["New luxury integrated solar roof with backup protection", ""] as [string, string],
+      current: "current"
     },
   ];
 
   const handleCardClick = (card: CustomizationDetails) => {
-    setSelectedCard(card.title);
     handleShowSolarPanel(card);
   };
 
@@ -59,7 +63,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
           title={card.title}
           price={card.price}
           description={card.bulletPoints[0]}
-          selected={selectedCard === card.title}
+          selected={showSolarPanel.title === card.title}
           onClick={() => handleCardClick(card)}
         />
       ))}

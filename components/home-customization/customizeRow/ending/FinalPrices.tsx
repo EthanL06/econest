@@ -6,12 +6,29 @@ type CustomizationDetails = {
   imgUrl: string;
   price: string;
   bulletPoints: [string, string];
+  current: string;
 };
 
-type FinalWindmillProps = {};
+type Props = {
+  showSolarPanel: CustomizationDetails;
+  showWindow: CustomizationDetails;
+  showWindMill: CustomizationDetails;
+  selectedSolarPurchase: string;
+  selectedWindowPurchase: string;
+  selectedWidmillPurchase: string;
+};
 
-const Savings: React.FC<FinalWindmillProps> = ({}) => {
+
+const Savings: React.FC<Props> = ({}) => {
   const [cashOrLoan, setCashOrLoan] = useState<string>("cash");
+
+  const getTotalMoney = ( card: CustomizationDetails, purchaseType: string) => {
+      let mult = 1;
+      if(purchaseType === "future") 
+        mult = 0.8;
+  }
+
+
   return (
     <div className="mt-4 flex flex-col justify-center ">
       <h1 className="text-center text-6xl font-bold text-black">
@@ -64,7 +81,7 @@ const Savings: React.FC<FinalWindmillProps> = ({}) => {
 
         <div className="flex justify-between w-full">
             <p className="text-black font-bold">Estimated Price</p>
-            <p className="text-black">$100,500</p>
+            <p className="text-black">{}</p>
         </div>
         </div>
 
