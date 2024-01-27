@@ -6,6 +6,7 @@ type CustomizationDetails = {
   imgUrl: string;
   price: string;
   bulletPoints: [string, string];
+  current: string;
 };
 
 type FinalSolarProps = {
@@ -48,5 +49,6 @@ const FinalSolar: React.FC<FinalSolarProps> = ({
     </div>
   );
 };
+
 
 export default FinalSolar;

@@ -7,15 +7,16 @@ type CustomizationDetails = {
   imgUrl: string;
   price: string;
   bulletPoints: [string, string];
+  current: string;
 };
 
 type Props = {
   handleShowWindow: (details: CustomizationDetails) => void;
+  showWindow: CustomizationDetails;
 };
 
   
-const SolarPanelCustomizationRow: React.FC<Props> = ({ handleShowWindow }) => {
-  const [selectedCard, setSelectedCard] = useState<string | null>(null);
+const SolarPanelCustomizationRow: React.FC<Props> = ({ handleShowWindow, showWindow }) => {
 
   const cardData: CustomizationDetails[] = [
     {
@@ -24,6 +25,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({ handleShowWindow }) => {
       // imgUrl: "/images/window_basic.jpg",
       price: "1487",
       bulletPoints: ["Basic window fitting for energy efficiency", ""], 
+      current: "current"
     },
     {
       title: "Window Advanced",
@@ -31,6 +33,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({ handleShowWindow }) => {
       // imgUrl: "/images/window_advanced.jpg", 
       price: "3126",
       bulletPoints: ["Advanced windows with enhanced insulation", ""], 
+      current: "current"
     },
     {
       title: "Window Premium",
@@ -38,11 +41,11 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({ handleShowWindow }) => {
       // imgUrl: "/images/window_premium.jpg",
       price: "4470",
       bulletPoints: ["Premium windows for optimal energy savings and aesthetics", ""], 
+      current: "current"
     },
   ];
 
   const handleCardClick = (card: CustomizationDetails) => {
-    setSelectedCard(card.title);
     handleShowWindow(card);
   };
 
@@ -63,7 +66,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({ handleShowWindow }) => {
           title={card.title}
           price={card.price}
           description={card.bulletPoints[0]} 
-          selected={selectedCard === card.title}
+          selected={showWindow.title === card.title}
           onClick={() => handleCardClick(card)}
         />
       ))}

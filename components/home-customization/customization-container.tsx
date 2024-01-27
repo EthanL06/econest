@@ -4,6 +4,8 @@ import SolarPanelCustomizationRow from "./customizeRow/SolarPanelCustomizationRo
 import WindowCustomizationRow from "./customizeRow/WindowCustomizationRow";
 import WindmillCustomizationRow from "./customizeRow/WindmillCustomizationRow";
 import FinalizeRow from "./customizeRow/FinalizeRow";
+import FinalizeRow2 from "./customizeRow/FinalizeRow2";
+import FinalizeRow3 from "./customizeRow/FinalizeRow3";
 import FinalPrices from "./customizeRow/ending/FinalPrices";
 import AddressInput from "../landing/address-input";
 
@@ -12,6 +14,7 @@ type CustomizationDetails = {
   imgUrl: string;
   price: string;
   bulletPoints: [string, string];
+  current: string;
 };
 
 type Props = {
@@ -31,7 +34,18 @@ const CustomizationContainer: React.FC<Props> = ({
   showWindMill,
   showWindow,
 }) => {
-  const [selectedCard, setSelectedCard] = useState<string | null>(null);
+
+  
+  const [selectedSolarCard, setSelectedSolarCard] = useState<string | null>(null);
+  const [selectedWindmillCard, setSelectedWindmillCard] = useState<string | null>(null);
+  const [selectedWindowCard, setSelectedWindowCard] = useState<string | null>(null);
+
+
+ const [selectedWindowPurchase, setSelectedWindowPurchase] = useState("current");
+ const [selectedWidmillPurchase, setSelectedWidmillPurchase] = useState("current");
+ const [selectedSolarPurchase, setSelectedSolarPurchase] = useState("current");
+
+
   const [page, setPage] = useState<number>(1);
   const containerRef = useRef<HTMLDivElement>(null); 
 
@@ -54,24 +68,59 @@ const CustomizationContainer: React.FC<Props> = ({
       </p>
       {page === 1 && (
         <SolarPanelCustomizationRow
+          showSolarPanel={showSolarPanel}
           handleShowSolarPanel={handleShowSolarPanel}
         />
       )}
       {page === 2 && (
-        <WindowCustomizationRow handleShowWindow={handleShowWindow} />
+        <WindowCustomizationRow 
+          handleShowWindow={handleShowWindow} 
+          showWindow={showWindow}
+          />
       )}
       {page === 3 && (
-        <WindmillCustomizationRow handleShowWindmill={handleShowWindmill} />
+        <WindmillCustomizationRow 
+          handleShowWindmill={handleShowWindmill} 
+          showWindMill={showWindMill}
+          />
       )}
       {page === 4 && (
         <FinalizeRow
           showSolarPanel={showSolarPanel}
-          showWindow={showWindow}
-          showWindMill={showWindMill}
+          selectedSolarCard={selectedSolarCard}
+          setSelectedSolarCard={setSelectedSolarCard}
+          selectedSolarPurchase={selectedSolarPurchase}
+          setSelectedSolarPurchase={setSelectedSolarPurchase}
         />
       )}
-      { page === 5 && (
-        <FinalPrices/>
+      {page === 5 && (
+        <FinalizeRow2
+          showWindow={showWindow}
+          selectedWindowCard={selectedWindowCard}
+          setSelectedWindowCard={setSelectedWindowCard}
+          selectedWindowPurchase={selectedWindowPurchase}
+          setSelectedWindowPurchase={setSelectedWindowPurchase}
+        />
+      )}
+      {page === 6 && (
+        <FinalizeRow3
+          showWindMill={showWindMill}
+          selectedWindmillCard={selectedWindmillCard}
+          setSelectedWindmillCard={setSelectedWindmillCard}
+          selectedWidmillPurchase={selectedWidmillPurchase}
+          setSelectedWidmillPurchase={setSelectedWidmillPurchase}
+        />
+      )}
+      { page === 7 && (
+        <FinalPrices
+          showSolarPanel={showSolarPanel}
+          showWindow={showWindow}
+          showWindMill={showWindMill}
+          selectedWindowPurchase={selectedWindowPurchase}
+          selectedWidmillPurchase={selectedWidmillPurchase}
+          selectedSolarPurchase={selectedSolarPurchase}
+          
+        />
       )}
 
       <button

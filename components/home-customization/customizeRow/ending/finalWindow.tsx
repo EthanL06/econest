@@ -6,6 +6,7 @@ type CustomizationDetails = {
   imgUrl: string;
   price: string;
   bulletPoints: [string, string];
+  current: string;
 };
 
 type FinalWindowProps = {
