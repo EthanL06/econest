@@ -8,7 +8,7 @@ type Props = {};
 
 const About = (props: Props) => {
   return (
-    <div className=" flex w-full flex-col items-center justify-between gap-8 lg:flex-row">
+    <div className=" flex w-full flex-col justify-between gap-8 lg:flex-row">
       <div className="flex  flex-col gap-y-1">
         <div className="flex ">
           <div className="text-lg font-bold text-primary md:text-xl">
@@ -100,6 +100,7 @@ const About = (props: Props) => {
           </Button>
         </div>
       </div>
+
       <div className="relative hidden h-[20rem] w-full  max-w-2xl lg:block lg:max-w-[50%] ">
         <Image
           src="/images/solar_panel_house.jpg"
