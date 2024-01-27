@@ -14,11 +14,18 @@ type Props = {
   showWindMill: CustomizationDetails;
 };
 
-
-const HomeContainer: React.FC<Props> = ({ showSolarPanel, showWindow, showWindMill }) => {
+const HomeContainer: React.FC<Props> = ({
+  showSolarPanel,
+  showWindow,
+  showWindMill,
+}) => {
   return (
-    <div className="card col-span-4 pointer-events-none">
-      <ThreeJsEnvironment showSolarPanel={showSolarPanel} showWindMill={showWindMill} showWindow={showWindow} />
+    <div className="pointer-events-none col-span-4 overflow-hidden rounded-lg border-2 border-border">
+      <ThreeJsEnvironment
+        showSolarPanel={showSolarPanel}
+        showWindMill={showWindMill}
+        showWindow={showWindow}
+      />
     </div>
   );
 };
