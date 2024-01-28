@@ -9,6 +9,9 @@ import FinalizeRow3 from "./customizeRow/FinalizeRow3";
 import FinalPrices from "./customizeRow/ending/FinalPrices";
 import AddressInput from "../landing/address-input";
 import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
+import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
+import { Progress } from "../ui/progress";
 
 type Props = {
   handleShowSolarPanel: (details: CustomizationDetails) => void;
@@ -48,7 +51,10 @@ const CustomizationContainer: React.FC<Props> = ({
 
   const handleNextClick = () => {
     setPage(page + 1);
-    containerRef.current?.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const handleBackClick = () => {
@@ -58,14 +64,12 @@ const CustomizationContainer: React.FC<Props> = ({
   return (
     <div
       ref={containerRef}
-      className="max-height-100 col-span-2 flex flex-col overflow-auto rounded-xl bg-slate-100 p-4"
+      className="flex h-full w-[26rem] flex-col overflow-auto rounded-xl px-9"
     >
-      <p
-        className="cursor-pointer self-start text-base text-gray-700"
-        onClick={handleBackClick}
-      >
-        <u>&lt; back</u>
-      </p>
+      <div className="mb-4 mt-2">
+        <Progress className="h-[6px] w-full" max={7} value={page} />
+      </div>
+
       {page === 1 && (
         <SolarPanelCustomizationRow
           showSolarPanel={showSolarPanel}
@@ -122,12 +126,28 @@ const CustomizationContainer: React.FC<Props> = ({
         />
       )}
 
-      <button
-        className="focus:shadow-outline mx-auto mt-4 w-5/6 transform rounded bg-gray-200 px-4 py-2 font-bold text-black transition duration-150 ease-in-out hover:bg-gray-300 focus:outline-none"
-        onClick={handleNextClick}
-      >
-        Next
-      </button>
+      <div className="mt-4 flex items-center justify-between">
+        <Button
+          onClick={handleBackClick}
+          className={cn(
+            "text-base font-bold text-black",
+            page === 1 && "invisible",
+          )}
+          variant="ghost"
+          size={"lg"}
+        >
+          Previous
+        </Button>
+
+        <Button
+          onClick={handleNextClick}
+          className={cn("text-base font-bold", page === 7 && "invisible")}
+          variant="default"
+          size={"lg"}
+        >
+          Next
+        </Button>
+      </div>
     </div>
   );
 };

@@ -16,7 +16,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
       title: "Window Basic",
       imgUrl: "/images/solar_panel_house.jpg",
       // imgUrl: "/images/window_basic.jpg",
-      price: "1487",
+      price: "1,487",
       bulletPoints: ["Basic window fitting for energy efficiency", ""],
       current: "current",
     },
@@ -24,7 +24,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
       title: "Window Advanced",
       imgUrl: "/images/solar_panel_house.jpg",
       // imgUrl: "/images/window_advanced.jpg",
-      price: "3126",
+      price: "3,126",
       bulletPoints: ["Advanced windows with enhanced insulation", ""],
       current: "current",
     },
@@ -32,7 +32,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
       title: "Window Premium",
       imgUrl: "/images/solar_panel_house.jpg",
       // imgUrl: "/images/window_premium.jpg",
-      price: "4470",
+      price: "4,470",
       bulletPoints: [
         "Premium windows for optimal energy savings and aesthetics",
         "",
@@ -47,10 +47,8 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
 
   return (
     <div className="w-full">
-      <h3 className="m-4 mb-2 text-xl font-bold text-gray-600">
-        Eco-Friendly Windows
-      </h3>
-      <p className="m-4 text-base text-gray-700 ">
+      <h3 className="text-3xl font-bold text-black">Eco-Friendly Windows</h3>
+      <p className="mb-6 mt-1 text-pretty text-sm font-medium text-black/90">
         Improve insulation and reduce energy costs with sustainable window
         solutions.
       </p>

@@ -148,7 +148,7 @@ const ThreeJsEnvironment: React.FC<Props> = ({
   }, [showSolarPanel, showWindMill, showWindow]);
 
   return (
-    <main className="pointer-events-none flex h-screen items-center justify-center">
+    <main className="pointer-events-none flex h-full items-center justify-center">
       <Canvas className="h-xl w-xl hover:cursor-grab active:cursor-grabbing">
         <Suspense fallback={<Loader />}>
           <PerspectiveCamera

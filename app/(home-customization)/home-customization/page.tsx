@@ -48,22 +48,8 @@ function Home() {
   };
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center gap-y-12 overflow-hidden">
-      <div
-        className="grid w-full grid-cols-6 grid-rows-1 gap-3  text-white"
-        style={{
-          maxHeight: "calc(100vh)",
-          overflow: "hidden",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-        }}
-        onWheel={(e) => {
-          e.currentTarget.scrollBy({
-            top: e.deltaY < 0 ? -30 : 30,
-            behavior: "smooth",
-          });
-        }}
-      >
+    <div className="flex h-full w-full flex-col items-center gap-y-12">
+      <div className="relative flex min-h-screen w-full flex-col gap-3 text-white lg:flex-row">
         <HomeContainer
           showSolarPanel={showSolarPanel}
           showWindMill={showWindMill}
