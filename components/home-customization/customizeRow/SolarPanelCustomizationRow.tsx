@@ -47,12 +47,9 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
 
   return (
     <div className="w-full">
-      <h3 className="m-4 mb-2 text-xl font-bold text-gray-600">
-        Harness Solar Energy
-      </h3>
-      <p className="m-4 text-base text-gray-700 ">
-        Maximize your home &apos; s energy efficiency with cutting-edge solar
-        panels.
+      <h3 className="text-3xl font-bold text-black">Harness Solar Energy</h3>
+      <p className="mb-6 mt-1 text-pretty text-sm font-medium text-black/90">
+        Maximize energy efficiency with cutting-edge solar panels.
       </p>
 
       {cardData.map((card) => (

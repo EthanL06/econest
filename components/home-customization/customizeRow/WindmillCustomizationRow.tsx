@@ -43,10 +43,8 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
 
   return (
     <div className="w-full">
-      <h3 className="m-4 mb-2 text-xl font-bold text-gray-600">
-        Wind Power for Your Home
-      </h3>
-      <p className="m-4 text-base text-gray-700 ">
+      <h3 className="text-3xl font-bold text-black">Utilize The Wind</h3>
+      <p className="mb-6 mt-1 text-pretty text-sm font-medium text-black/90">
         Harness the power of the wind to generate clean, renewable energy.
       </p>
 

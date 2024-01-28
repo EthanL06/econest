@@ -27,9 +27,6 @@ const FinalSolar: React.FC<FinalSolarProps> = ({
 
       <FinalizeRowPurchaseCard
         details={showSolarPanel}
-        // solarRoof="65.38 kW Solar Roof"
-        // solarProduction="84,209 kWh /yr Solar Production"
-        // energyOffset="100% Energy Offset"
         selectedPurchase={selectedPurchase}
         needs="Current"
         onClick={() => handleCardClick("Meet Current Needs")}

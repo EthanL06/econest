@@ -14,7 +14,7 @@ const HomeContainer: React.FC<Props> = ({
   showWindMill,
 }) => {
   return (
-    <div className="pointer-events-none col-span-4 overflow-hidden rounded-lg border-2 border-border">
+    <div className="pointer-events-none aspect-video grow overflow-hidden rounded-2xl border border-border lg:sticky lg:top-12 lg:h-[calc(100vh-80px)]">
       <ThreeJsEnvironment
         showSolarPanel={showSolarPanel}
         showWindMill={showWindMill}
