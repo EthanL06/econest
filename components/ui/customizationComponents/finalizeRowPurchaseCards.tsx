@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
+import { CustomizationDetails } from "@/app/(home-customization)/build-a-home/page";
 
 interface FinalizeRowPurchaseCardProps {
   details: CustomizationDetails;

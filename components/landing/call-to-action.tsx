@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 type Props = {};
 
@@ -19,9 +20,11 @@ const CallToAction = (props: Props) => {
       <p className="mt-2 max-w-[60ch] text-balance text-center text-base text-white sm:text-lg md:text-xl">
         Learn how to live a more sustainable life
       </p>
-      <Button className="mt-8 px-6 py-8 text-lg font-bold ">
-        Discover Now!
-      </Button>
+      <Link href={"/build-a-home"}>
+        <Button className="mt-8 px-6 py-8 text-lg font-bold ">
+          Discover Now!
+        </Button>
+      </Link>
     </div>
   );
 };

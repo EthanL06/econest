@@ -1,6 +1,6 @@
 import React from "react";
 import FinalizeRowPurchaseCard from "../../../ui/customizationComponents/finalizeRowPurchaseCards";
-import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
+import { CustomizationDetails } from "@/app/(home-customization)/build-a-home/page";
 
 type FinalWindmillProps = {
   showWindmill: CustomizationDetails;

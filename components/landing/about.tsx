@@ -3,6 +3,7 @@ import { Separator } from "../ui/separator";
 import { CheckCircle, CheckCircle2, HomeIcon, TreesIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {};
 
@@ -48,8 +49,27 @@ const About = (props: Props) => {
               />
             </svg>
 
-            <div className="text-lg font-semibold text-emerald-900">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus,
+            <div className="text-pretty text-lg font-semibold text-emerald-900">
+              Advocates of green energy for a healthier planet
+            </div>
+          </div>
+
+          <div className="flex items-center gap-x-2 ">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="size-8 shrink-0 text-emerald-500"
+            >
+              <path
+                fillRule="evenodd"
+                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                clipRule="evenodd"
+              />
+            </svg>
+
+            <div className="text-pretty text-lg font-semibold text-emerald-900">
+              Guiding homeowners to eco-friendly, cost-saving choices.
             </div>
           </div>
 
@@ -68,36 +88,19 @@ const About = (props: Props) => {
             </svg>
 
             <div className="text-lg font-semibold text-emerald-900">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus,
-            </div>
-          </div>
-
-          <div className="flex items-center gap-x-2 ">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-8 shrink-0 text-emerald-500"
-            >
-              <path
-                fillRule="evenodd"
-                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
-                clipRule="evenodd"
-              />
-            </svg>
-
-            <div className="text-lg font-semibold text-emerald-900">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus,
+              Inspire eco-living for well-being and planet health.
             </div>
           </div>
         </div>
         <div>
-          <Button
-            size={"lg"}
-            className="mt-8 bg-emerald-500 px-6 py-8 text-lg font-bold hover:bg-emerald-500/90"
-          >
-            Learn More
-          </Button>
+          <Link href={"/about"}>
+            <Button
+              size={"lg"}
+              className="mt-8 bg-emerald-500 px-6 py-8 text-lg font-bold hover:bg-emerald-500/90"
+            >
+              Learn More
+            </Button>
+          </Link>
         </div>
       </div>
 

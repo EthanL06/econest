@@ -15,7 +15,7 @@ const Blogs = ({ data }: { data: Blog[] }) => {
 const BlogItem = ({ blog }: { blog: Blog }) => {
   return (
     <Link
-      href={"/blogs/" + blog.slug}
+      href={"/solutions/" + blog.slug}
       className="group mt-4 flex gap-x-5 rounded-lg p-4 transition-all duration-200 hover:bg-muted sm:p-6"
     >
       <div className="flex shrink-0 items-center justify-center">

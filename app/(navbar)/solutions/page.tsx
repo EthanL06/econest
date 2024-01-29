@@ -29,12 +29,12 @@ const Page = async (props: Props) => {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink as={Link} href="/blogs">
-            Blogs
+          <BreadcrumbLink as={Link} href="/solutions">
+            Solutions
           </BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
-      <h1 className="text-center text-2xl font-bold sm:text-3xl">Blogs</h1>
+      <h1 className="text-center text-2xl font-bold sm:text-3xl">Solutions</h1>
       <p className="text-center text-lg font-medium text-muted-foreground">
         Our solutions for sustainable living.
       </p>

@@ -1,6 +1,6 @@
 import React from "react";
 import ThreeJsEnvironment from "./threejs-environment";
-import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
+import { CustomizationDetails } from "@/app/(home-customization)/build-a-home/page";
 
 type Props = {
   showSolarPanel: CustomizationDetails;

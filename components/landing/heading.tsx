@@ -73,6 +73,12 @@ const Heading = (props: Props) => {
                 placeholder="Enter monthly electric bill"
                 pattern="[0-9]"
                 type="number"
+                min={0}
+                onInput={(event) => {
+                  if (!event.currentTarget.validity.valid) {
+                    event.currentTarget.value = "";
+                  }
+                }}
               >
                 <CircleDollarSign className="h-5 w-5" />
               </Input>

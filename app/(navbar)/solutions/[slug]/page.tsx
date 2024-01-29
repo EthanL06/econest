@@ -28,7 +28,7 @@ const Page = async ({ params }: Props) => {
     <div className="mx-auto max-w-3xl px-4 py-6 sm:px-8 ">
       <div className="flex">
         <Link
-          href={"/blogs"}
+          href={"/solutions"}
           className="group flex text-sm font-semibold leading-6 text-slate-700 hover:text-slate-900"
         >
           <svg
@@ -55,12 +55,12 @@ const Page = async ({ params }: Props) => {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem>
-          <BreadcrumbLink as={Link} href="/blogs">
-            Blogs
+          <BreadcrumbLink as={Link} href="/solutions">
+            Solutions
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink as={Link} href={`/blogs/${blog?.slug}`}>
+          <BreadcrumbLink as={Link} href={`/solutions/${blog?.slug}`}>
             {blog?.slug
               .replace(/-/g, " ")
               .replace(/\w\S*/g, (w) =>
