@@ -46,7 +46,7 @@ const Page = (props: Props) => {
             <p>
               Our mission is to create a more sustainable future by making
               eco-friendly living accessible and rewarding. We envision a world
-              where people embrace green solutions not just because it's the
+              where people embrace green solutions not just because it is the
               right thing to do, but because it benefits them financially and
               improves their quality of life.
             </p>
