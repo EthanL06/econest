@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HomeSelectCard from "../../ui/customizationComponents/homeSelectCard";
-import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
+import { CustomizationDetails } from "@/app/(home-customization)/build-a-home/page";
 type Props = {
   handleShowWindmill: (details: CustomizationDetails) => void;
   showWindMill: CustomizationDetails;
@@ -36,6 +36,10 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
       current: "current",
     },
   ];
+
+  useEffect(() => {
+    handleShowWindmill(cardData[0]);
+  }, []);
 
   const handleCardClick = (card: CustomizationDetails) => {
     handleShowWindmill(card);

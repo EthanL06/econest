@@ -8,7 +8,7 @@ import FinalizeRow2 from "./customizeRow/FinalizeRow2";
 import FinalizeRow3 from "./customizeRow/FinalizeRow3";
 import FinalPrices from "./customizeRow/ending/FinalPrices";
 import AddressInput from "../landing/address-input";
-import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
+import { CustomizationDetails } from "@/app/(home-customization)/build-a-home/page";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { Progress } from "../ui/progress";
@@ -59,12 +59,16 @@ const CustomizationContainer: React.FC<Props> = ({
 
   const handleBackClick = () => {
     setPage(Math.max(page - 1, 1));
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
     <div
       ref={containerRef}
-      className="flex h-full w-[26rem] flex-col overflow-auto rounded-xl px-9"
+      className="flex h-full w-full flex-col overflow-auto rounded-xl px-1 lg:w-[26rem] lg:px-9"
     >
       <div className="mb-4 mt-2">
         <Progress className="h-[6px] w-full" max={7} value={page} />

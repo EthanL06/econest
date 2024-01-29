@@ -21,7 +21,7 @@ const Solutions = (props: Props) => {
         "Installing solar panels allows you to generate clean, renewable electricity from sunlight to power your home.  High-efficiency solar modules can provide over 90% of a household's energy needs.",
       image:
         "https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/fl36293687126-image.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=cd947b996a2f2d8d8bdb050330dd4b90",
-      link: "/blogs/solar-panels",
+      link: "/solutions/solar-panels",
     },
     {
       name: "Wind Power",
@@ -29,14 +29,14 @@ const Solutions = (props: Props) => {
         "Wind power is a clean and renewable energy source that utilizes the natural force of the wind to generate electricity. By harnessing this abundant resource, homes can significantly reduce their reliance on non-renewable fossil fuels, contributing to a cleaner and greener environment.",
       image:
         "https://i2.pickpik.com/photos/735/816/924/pinwheel-energy-wind-power-environmental-technology-preview.jpg",
-      link: "/blogs/wind-power",
+      link: "/solutions/wind-power",
     },
     {
       name: "Green Roofs",
       description:
         "Green roofs provide eco-friendly insulation and stormwater management by covering buildingtops with hardy,  low-maintenance vegetation. A layered system of waterproofing membranes, drainage mats, lightweight soil mixtures, and native plants is installed",
       image: "https://live.staticflickr.com/65535/51255410824_d99f55f8a3_b.jpg",
-      link: "/blogs/green-roofs",
+      link: "/solutions/green-roofs",
     },
 
     {
@@ -44,14 +44,14 @@ const Solutions = (props: Props) => {
       description:
         "Replacing aging, inefficient windows with new double or triple-pane ENERGY STAR models can dramatically reduce energy loss and lower heating and cooling bills. Advanced glazing provides better insulation, preventing hot or cold outdoor air from entering the home",
       image: "https://live.staticflickr.com/3131/2825699407_517715f8be_b.jpg",
-      link: "/blogs/high-efficiency-windows",
+      link: "/solutions/high-efficiency-windows",
     },
     {
       name: "Smart Home Technology",
       description:
         "Smart Home Technology optimizes energy consumption by dynamically controlling lighting, HVAC, appliances, and other systems. Networked sensors monitor occupancy, temperature, humidity, and lighting needs in different zones",
       image: "https://live.staticflickr.com/3691/19636174774_6c2a8a167c_b.jpg",
-      link: "/blogs/smart-home-technology",
+      link: "/solutions/smart-home-technology",
     },
   ];
 
@@ -158,7 +158,7 @@ const Solutions = (props: Props) => {
         ))}
       </div>
 
-      <Link href="/blogs">
+      <Link href="/solutions">
         <Button className="bg-emerald-500 px-6 py-7 text-lg font-bold hover:bg-emerald-500/90">
           View All
         </Button>

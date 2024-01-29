@@ -1,5 +1,5 @@
 "use client";
-import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
+import { CustomizationDetails } from "@/app/(home-customization)/build-a-home/page";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import React, { useState } from "react";

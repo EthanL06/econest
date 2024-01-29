@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import FinalWindow from "./ending/finalWindow";
 import PurchaseTab from "../../ui/customizationComponents/PurchaseTab";
-import { CustomizationDetails } from "@/app/(home-customization)/home-customization/page";
+import { CustomizationDetails } from "@/app/(home-customization)/build-a-home/page";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -136,7 +136,7 @@ const FinalizeRow2: React.FC<Props> = ({
                   Meet Current Needs
                 </p>
                 <p className="text-lg font-medium text-black">
-                  ${showWindow.price + ".00"}{" "}
+                  ${parsePrice(showWindow.price, 1.36)}{" "}
                   <span className="text-sm text-black/60">est.</span>
                 </p>
 
@@ -162,7 +162,7 @@ const FinalizeRow2: React.FC<Props> = ({
                   Meet Future Needs
                 </p>
                 <p className="text-lg font-medium text-black">
-                  ${parsePrice(showWindow.price, 1.11)}{" "}
+                  ${parsePrice(showWindow.price, 1.11 * 1.36)}{" "}
                   <span className="text-sm text-black/60">est.</span>
                 </p>
 
