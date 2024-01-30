@@ -37,9 +37,9 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
     },
   ];
 
-  useEffect(() => {
-    handleShowWindmill(cardData[0]);
-  }, []);
+  // useEffect(() => {
+  //   handleShowWindmill(cardData[0]);
+  // }, []);
 
   const handleCardClick = (card: CustomizationDetails) => {
     handleShowWindmill(card);

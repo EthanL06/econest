@@ -43,18 +43,25 @@ const FinalizeRow: React.FC<Props> = ({
       </h1>
 
       <div>
-        <Tabs defaultValue="incentives" className="w-full">
+        <Tabs
+          onValueChange={(val) => {
+            setSelectedSolarPurchase(val);
+          }}
+          defaultValue={selectedSolarPurchase}
+          className="w-full"
+        >
           <TabsList className="mb-4 w-full px-6 py-9">
-            <TabsTrigger className="p-4" value="incentives">
+            <TabsTrigger className="p-4" value="current">
               Potential Incentives
             </TabsTrigger>
-            <TabsTrigger className="p-4" value="purchase">
+            <TabsTrigger className="p-4" value="future">
               Purchase Price
             </TabsTrigger>
           </TabsList>
+
           <TabsContent
             className="mt-0 flex flex-col text-black"
-            value="incentives"
+            value="current"
           >
             <p className="text-base font-medium">Solar Roof</p>
             <h2 className="text-[1.375rem] font-bold text-black">
@@ -65,7 +72,13 @@ const FinalizeRow: React.FC<Props> = ({
             </p>
 
             <form>
-              <label className=" flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer has-[:checked]:border-primary  has-[:checked]:shadow-md has-[:checked]:shadow-primary/25">
+              <label
+                className={`flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer ${
+                  selectedSolarCard === "current"
+                    ? "has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25"
+                    : ""
+                }`}
+              >
                 <p className="text-lg font-bold text-black">
                   Meet Current Needs
                 </p>
@@ -91,11 +104,20 @@ const FinalizeRow: React.FC<Props> = ({
                 <input
                   type="radio"
                   name="solarPanelSelection"
+                  value="current"
+                  checked={selectedSolarCard === "current"}
+                  onChange={() => setSelectedSolarCard("current")}
                   className="hidden"
                 />
               </label>
 
-              <label className=" mt-4 flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25">
+              <label
+                className={`mt-4 flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer ${
+                  selectedSolarCard === "future"
+                    ? "has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25"
+                    : ""
+                }`}
+              >
                 <p className="text-lg font-bold text-black">
                   Meet Future Needs
                 </p>
@@ -121,16 +143,16 @@ const FinalizeRow: React.FC<Props> = ({
                 <input
                   type="radio"
                   name="solarPanelSelection"
+                  value="future"
+                  checked={selectedSolarCard === "future"}
+                  onChange={() => setSelectedSolarCard("future")}
                   className="hidden"
                 />
               </label>
             </form>
           </TabsContent>
 
-          <TabsContent
-            className="mt-0 flex flex-col text-black"
-            value="purchase"
-          >
+          <TabsContent className="mt-0 flex flex-col text-black" value="future">
             <p className="text-base font-medium">Solar Roof</p>
             <h2 className="text-[1.375rem] font-bold text-black">
               Produce Clean Solar Energy
@@ -140,7 +162,13 @@ const FinalizeRow: React.FC<Props> = ({
             </p>
 
             <form>
-              <label className=" flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer has-[:checked]:border-primary  has-[:checked]:shadow-md has-[:checked]:shadow-primary/25">
+            <label
+                className={`flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer ${
+                  selectedSolarCard === "current"
+                    ? "has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25"
+                    : ""
+                }`}
+              >
                 <p className="text-lg font-bold text-black">
                   Meet Current Needs
                 </p>
@@ -166,11 +194,20 @@ const FinalizeRow: React.FC<Props> = ({
                 <input
                   type="radio"
                   name="solarPanelSelection"
+                  value="current"
+                  checked={selectedSolarCard === "current"}
+                  onChange={() => setSelectedSolarCard("current")}
                   className="hidden"
                 />
               </label>
 
-              <label className=" mt-4 flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25">
+              <label
+                className={`mt-4 flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer ${
+                  selectedSolarCard === "future"
+                    ? "has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25"
+                    : ""
+                }`}
+              >
                 <p className="text-lg font-bold text-black">
                   Meet Future Needs
                 </p>
@@ -196,6 +233,9 @@ const FinalizeRow: React.FC<Props> = ({
                 <input
                   type="radio"
                   name="solarPanelSelection"
+                  value="future"
+                  checked={selectedSolarCard === "future"}
+                  onChange={() => setSelectedSolarCard("future")}
                   className="hidden"
                 />
               </label>

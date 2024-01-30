@@ -20,6 +20,8 @@ type Props = {
   showSolarPanel: CustomizationDetails;
   showWindow: CustomizationDetails;
   showWindMill: CustomizationDetails;
+  page: number;
+  setPage: (number: number) => void;
 };
 
 const CustomizationContainer: React.FC<Props> = ({
@@ -29,7 +31,10 @@ const CustomizationContainer: React.FC<Props> = ({
   showSolarPanel,
   showWindMill,
   showWindow,
+  page,
+  setPage
 }) => {
+  
   const [selectedSolarCard, setSelectedSolarCard] = useState<string | null>(
     null,
   );
@@ -46,7 +51,6 @@ const CustomizationContainer: React.FC<Props> = ({
     useState("current");
   const [selectedSolarPurchase, setSelectedSolarPurchase] = useState("current");
 
-  const [page, setPage] = useState<number>(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleNextClick = () => {
