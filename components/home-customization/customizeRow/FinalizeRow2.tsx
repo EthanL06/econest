@@ -42,18 +42,21 @@ const FinalizeRow2: React.FC<Props> = ({
       </h1>
 
       <div>
-        <Tabs defaultValue="incentives" className="w-full">
+        <Tabs  onValueChange={(val) => {
+          setSelectedWindowPurchase(val)
+        }} defaultValue={selectedWindowPurchase} className="w-full">
           <TabsList className="mb-4 w-full px-6 py-9">
-            <TabsTrigger className="p-4" value="incentives">
+            <TabsTrigger className="p-4" value="current">
               Potential Incentives
             </TabsTrigger>
-            <TabsTrigger className="p-4" value="purchase">
+            <TabsTrigger className="p-4" value="future">
               Purchase Price
             </TabsTrigger>
           </TabsList>
+          
           <TabsContent
             className="mt-0 flex flex-col text-black"
-            value="incentives"
+            value="current"
           >
             <p className="text-base font-medium">Energy Efficient Windows</p>
             <h2 className="text-[1.375rem] font-bold text-black">
@@ -64,7 +67,12 @@ const FinalizeRow2: React.FC<Props> = ({
             </p>
 
             <form>
-              <label className=" flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer has-[:checked]:border-primary  has-[:checked]:shadow-md has-[:checked]:shadow-primary/25">
+              <label className={`flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer ${
+                selectedWindowCard === "current"
+                  ? "has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25"
+                  : ""
+              }`}
+              >
                 <p className="text-lg font-bold text-black">
                   Meet Current Needs
                 </p>
@@ -87,10 +95,22 @@ const FinalizeRow2: React.FC<Props> = ({
                   </li>
                 </ul>
 
-                <input type="radio" name="windowSelection" className="hidden" />
+                <input
+                  type="radio"
+                  name="windowSelection"
+                  value="current"
+                  checked={selectedWindowCard === "current"}
+                  onChange={() => setSelectedWindowCard("current")}
+                  className="hidden"
+                />
               </label>
 
-              <label className=" mt-4 flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25">
+              <label className={`mt-4 flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer ${
+                selectedWindowCard === "future"
+                  ? "has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25"
+                  : ""
+              }`}
+              >
                 <p className="text-lg font-bold text-black">
                   Meet Future Needs
                 </p>
@@ -113,14 +133,21 @@ const FinalizeRow2: React.FC<Props> = ({
                   </li>
                 </ul>
 
-                <input type="radio" name="windowSelection" className="hidden" />
+                <input
+                  type="radio"
+                  name="windowSelection"
+                  value="future"
+                  checked={selectedWindowCard === "future"}
+                  onChange={() => setSelectedWindowCard("future")}
+                  className="hidden"
+                />
               </label>
             </form>
           </TabsContent>
 
           <TabsContent
             className="mt-0 flex flex-col text-black"
-            value="purchase"
+            value="future"
           >
             <p className="text-base font-medium">Energy Efficient Windows</p>
             <h2 className="text-[1.375rem] font-bold text-black">
@@ -130,8 +157,13 @@ const FinalizeRow2: React.FC<Props> = ({
               High-quality windows designed for maximum insulation.
             </p>
 
+
             <form>
-              <label className=" flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer has-[:checked]:border-primary  has-[:checked]:shadow-md has-[:checked]:shadow-primary/25">
+            <label className={`flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer ${
+                selectedWindowCard === "current"
+                  ? "has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25"
+                  : ""
+              }`}>
                 <p className="text-lg font-bold text-black">
                   Meet Current Needs
                 </p>
@@ -154,10 +186,21 @@ const FinalizeRow2: React.FC<Props> = ({
                   </li>
                 </ul>
 
-                <input type="radio" name="windowSelection" className="hidden" />
+                <input
+                  type="radio"
+                  name="windowSelection"
+                  value="current"
+                  checked={selectedWindowCard === "current"}
+                  onChange={() => setSelectedWindowCard("current")}
+                  className="hidden"
+                />
               </label>
 
-              <label className=" mt-4 flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25">
+              <label className={`mt-4 flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer ${
+                selectedWindowCard === "future"
+                  ? "has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25"
+                  : ""
+              }`}>
                 <p className="text-lg font-bold text-black">
                   Meet Future Needs
                 </p>
@@ -180,7 +223,14 @@ const FinalizeRow2: React.FC<Props> = ({
                   </li>
                 </ul>
 
-                <input type="radio" name="windowSelection" className="hidden" />
+                <input
+                  type="radio"
+                  name="windowSelection"
+                  value="future"
+                  checked={selectedWindowCard === "future"}
+                  onChange={() => setSelectedWindowCard("future")}
+                  className="hidden"
+                />
               </label>
             </form>
           </TabsContent>

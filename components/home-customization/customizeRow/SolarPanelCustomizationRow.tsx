@@ -41,9 +41,10 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
     },
   ];
 
-  useEffect(() => {
-    handleShowSolarPanel(cardData[0]);
-  }, []);
+  // useEffect(() => {
+    
+  //   handleShowSolarPanel(cardData[0]);
+  // }, []);
 
   const handleCardClick = (card: CustomizationDetails) => {
     handleShowSolarPanel(card);

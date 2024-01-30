@@ -14,6 +14,7 @@ type Props = {
   showSolarPanel: CustomizationDetails;
   showWindow: CustomizationDetails;
   showWindMill: CustomizationDetails;
+  page:number;
 };
 
 interface CameraAnimatorProps {
@@ -31,6 +32,7 @@ const ThreeJsEnvironment: React.FC<Props> = ({
   showSolarPanel,
   showWindMill,
   showWindow,
+  page
 }) => {
   const [isWindMillVisible, setWindMillVisible] = useState(false);
   const [isWindowVisible, setWindowVisible] = useState(false);
@@ -52,24 +54,45 @@ const ThreeJsEnvironment: React.FC<Props> = ({
   const targetWindmillRotation = useMemo(() => [0, 0, 0], []);
 
   useEffect(() => {
-    if (isSolarPanelVisible) {
+    // if (isSolarPanelVisible) {
+    //   setCameraAnimation({
+    //     position: targetSolarPosition as [number, number, number],
+    //     rotation: targetSolarRotation as [number, number, number],
+    //   });
+    // }
+    // if (isWindowVisible) {
+    //   setCameraAnimation({
+    //     position: targetWindowPosition as [number, number, number],
+    //     rotation: targetWindowRotation as [number, number, number],
+    //   });
+    // }
+    // if (isWindMillVisible) {
+    //   setCameraAnimation({
+    //     position: targetWindmillPosition as [number, number, number],
+    //     rotation: targetWindmillRotation as [number, number, number],
+    //   });
+    // }
+
+    if (page>=1) {
       setCameraAnimation({
         position: targetSolarPosition as [number, number, number],
         rotation: targetSolarRotation as [number, number, number],
       });
     }
-    if (isWindowVisible) {
+    if (page>=2) {
       setCameraAnimation({
         position: targetWindowPosition as [number, number, number],
         rotation: targetWindowRotation as [number, number, number],
       });
     }
-    if (isWindMillVisible) {
+    if (page>=3) {
       setCameraAnimation({
         position: targetWindmillPosition as [number, number, number],
         rotation: targetWindmillRotation as [number, number, number],
       });
     }
+
+
   }, [
     isSolarPanelVisible,
     isWindowVisible,
@@ -80,6 +103,7 @@ const ThreeJsEnvironment: React.FC<Props> = ({
     targetWindmillRotation,
     targetWindowPosition,
     targetWindowRotation,
+    page
   ]);
 
   const CameraAnimator = ({
@@ -136,16 +160,26 @@ const ThreeJsEnvironment: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    if (showWindMill.title !== "") {
+    // if (showWindMill.title !== "") {
+    //   setWindMillVisible(true);
+    // }
+    // if (showWindow.title !== "") {
+    //   setWindowVisible(true);
+    // }
+    // if (showSolarPanel.title !== "") {
+    //   setSolarPanelVisible(true);
+    // }
+
+    if (page >= 3) {
       setWindMillVisible(true);
     }
-    if (showWindow.title !== "") {
+    if (page >= 2) {
       setWindowVisible(true);
     }
-    if (showSolarPanel.title !== "") {
+    if (page >= 1) {
       setSolarPanelVisible(true);
     }
-  }, [showSolarPanel, showWindMill, showWindow]);
+  }, [showSolarPanel, showWindMill, showWindow, page]);
 
   return (
     <main className="pointer-events-none flex h-full items-center justify-center">

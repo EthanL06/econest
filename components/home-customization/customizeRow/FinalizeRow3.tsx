@@ -42,19 +42,21 @@ const FinalizeRow3: React.FC<Props> = ({
       </h1>
 
       <div>
-        <Tabs defaultValue="incentives" className="w-full">
+        <Tabs onValueChange={(val) => {
+          setSelectedWidmillPurchase(val)
+        }} defaultValue={selectedWidmillPurchase}  className="w-full">
           <TabsList className="mb-4 w-full px-6 py-9">
-            <TabsTrigger className="p-4" value="incentives">
+            <TabsTrigger className="p-4" value="current">
               Potential Incentives
             </TabsTrigger>
-            <TabsTrigger className="p-4" value="purchase">
+            <TabsTrigger className="p-4" value="future">
               Purchase Price
             </TabsTrigger>
           </TabsList>
 
           <TabsContent
             className="mt-0 flex flex-col text-black"
-            value="incentives"
+            value="current"
           >
             <p className="text-base font-medium">Residential Windmill</p>
             <h2 className="text-[1.375rem] font-bold text-black">
@@ -70,7 +72,7 @@ const FinalizeRow3: React.FC<Props> = ({
                   Meet Current Needs
                 </p>
                 <p className="text-lg font-medium text-black">
-                  ${showWindMill.price + ".00"}{" "}
+                   ${showWindMill.price + ".00"}{" "}
                   <span className="text-sm text-black/60">est.</span>
                 </p>
 
@@ -91,6 +93,9 @@ const FinalizeRow3: React.FC<Props> = ({
                 <input
                   type="radio"
                   name="windMillSelection"
+                  value="current"
+                  checked={selectedWindmillCard === "current"}
+                  onChange={() => setSelectedWindmillCard("current")}
                   className="hidden"
                 />
               </label>
@@ -121,6 +126,9 @@ const FinalizeRow3: React.FC<Props> = ({
                 <input
                   type="radio"
                   name="windMillSelection"
+                  value="future"
+                  checked={selectedWindmillCard === "future"}
+                  onChange={() => setSelectedWindmillCard("future")}
                   className="hidden"
                 />
               </label>
@@ -129,7 +137,7 @@ const FinalizeRow3: React.FC<Props> = ({
 
           <TabsContent
             className="mt-0 flex flex-col text-black"
-            value="purchase"
+            value="future"
           >
             <p className="text-base font-medium">Residential Windmill</p>
             <h2 className="text-[1.375rem] font-bold text-black">
@@ -166,6 +174,9 @@ const FinalizeRow3: React.FC<Props> = ({
                 <input
                   type="radio"
                   name="windMillSelection"
+                  value="current"
+                  checked={selectedWindmillCard === "current"}
+                  onChange={() => setSelectedWindmillCard("current")}
                   className="hidden"
                 />
               </label>
@@ -196,6 +207,9 @@ const FinalizeRow3: React.FC<Props> = ({
                 <input
                   type="radio"
                   name="windMillSelection"
+                  value="future"
+                  checked={selectedWindmillCard === "future"}
+                  onChange={() => setSelectedWindmillCard("future")}
                   className="hidden"
                 />
               </label>
