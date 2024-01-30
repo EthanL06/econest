@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import React, { useState } from "react";
 
+
 type Props = {
   showSolarPanel: CustomizationDetails;
   showWindow: CustomizationDetails;
@@ -11,15 +12,15 @@ type Props = {
   selectedSolarPurchase: string;
   selectedWindowPurchase: string;
   selectedWidmillPurchase: string;
+  selectedSolarCard: string | null;
+  selectedWindowCard: string | null;
+  selectedWindmillCard: string | null;
 };
 
-const Savings: React.FC<Props> = ({}) => {
+const Savings: React.FC<Props> = (props) => {
   const [cashOrLoan, setCashOrLoan] = useState<string>("cash");
 
-  const getTotalMoney = (card: CustomizationDetails, purchaseType: string) => {
-    let mult = 1;
-    if (purchaseType === "future") mult = 0.8;
-  };
+  
 
   return (
     <div className="mt-4 flex flex-col justify-center ">
@@ -41,18 +42,37 @@ const Savings: React.FC<Props> = ({}) => {
         </TabsList>
 
         <TabsContent className="mt-0 flex flex-col text-black" value="cash">
-          <Summary />
+        <Summary {...props} />
         </TabsContent>
 
         <TabsContent className="mt-0 flex flex-col text-black" value="loan">
-          <Summary />
+        <Summary {...props} />
         </TabsContent>
       </Tabs>
     </div>
   );
 };
 
-const Summary = () => {
+const Summary = (props: Props) => {
+
+  const parsePrice = (price: string) => {
+    const cleanedPrice = price.replace(/[^\d.]/g, "");
+    let finalizePrice = parseFloat(cleanedPrice) ;
+    const roundedPrice = finalizePrice.toFixed(2);
+    return roundedPrice;
+  };
+
+  const getTotalMoney = (card: CustomizationDetails, purchaseType: string, cardType: string) => {
+    let mult = 1;
+    if (purchaseType === "future") {
+      mult *= 1.11;
+    }
+    if(cardType === "future") {
+      mult *= 1.36;
+    }
+    return parsePrice(card.price) * mult;
+  };
+
   return (
     <>
       <h2 className="text-[1.375rem] font-bold text-black">Your System</h2>
@@ -61,7 +81,7 @@ const Summary = () => {
       <div className="flex flex-col items-center text-sm text-black">
         <div className="flex w-full justify-between">
           <p className="font-medium">79.13 kW Solar Roof</p>
-          <p className="font-semibold">$1,085,100</p>
+          <p className="font-semibold">${getTotalMoney(props.showSolarPanel,props.selectedSolarPurchase, props.selectedSolarCard)}</p>
         </div>
 
         <div className="flex w-full justify-between">
