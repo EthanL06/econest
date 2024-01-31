@@ -28,7 +28,7 @@ const FinalizeRow3: React.FC<Props> = ({
 
   const parsePrice = (price: string, factor: number) => {
     const cleanedPrice = price.replace(/[^\d.]/g, "");
-    let finalizePrice = parseFloat(cleanedPrice) * 1.136;
+    let finalizePrice = parseFloat(cleanedPrice);
     finalizePrice *= factor;
     const roundedPrice = finalizePrice.toFixed(2);
     const formattedPrice = roundedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",");

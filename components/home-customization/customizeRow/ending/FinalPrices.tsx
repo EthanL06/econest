@@ -32,15 +32,6 @@ const Savings: React.FC<Props> = (props) => {
       </p>
 
       <Tabs defaultValue="cash" className="w-full">
-        <TabsList className="mb-4 w-full px-6 py-9">
-          <TabsTrigger className="w-full p-4" value="cash">
-            Cash
-          </TabsTrigger>
-          <TabsTrigger className="w-full p-4" value="loan">
-            Loan
-          </TabsTrigger>
-        </TabsList>
-
         <TabsContent className="mt-0 flex flex-col text-black" value="cash">
         <Summary {...props} />
         </TabsContent>
@@ -62,15 +53,20 @@ const Summary = (props: Props) => {
     return roundedPrice;
   };
 
-  const getTotalMoney = (card: CustomizationDetails, purchaseType: string, cardType: string) => {
+  const getTotalMoney = (card: CustomizationDetails, purchaseType: string, cardType: string, factor: number) => {
     let mult = 1;
-    if (purchaseType === "future") {
+    if (cardType === "future") {
       mult *= 1.11;
     }
-    if(cardType === "future") {
+    if(purchaseType === "future") {
       mult *= 1.36;
     }
-    return parsePrice(card.price) * mult;
+    const finalizePrice = Number(parsePrice(card.price)) * mult * factor;
+    const roundedPrice = finalizePrice.toFixed(2);
+    const formattedPrice = roundedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+
+    return formattedPrice;
   };
 
   return (
@@ -81,89 +77,89 @@ const Summary = (props: Props) => {
       <div className="flex flex-col items-center text-sm text-black">
         <div className="flex w-full justify-between">
           <p className="font-medium">79.13 kW Solar Roof</p>
-          <p className="font-semibold">${getTotalMoney(props.showSolarPanel,props.selectedSolarPurchase, props.selectedSolarCard)}</p>
+          <p className="font-semibold">${getTotalMoney(props.showSolarPanel, props.selectedSolarPurchase, props.selectedSolarCard || "", .5 || 1) }</p>
         </div>
 
         <div className="flex w-full justify-between">
           <p className="font-medium">Roof Tear Off</p>
-          <p className="font-semibold">$53,500</p>
+          <p className="font-semibold">${getTotalMoney(props.showSolarPanel, props.selectedSolarPurchase, props.selectedSolarCard || "", .2 || 1) }</p>
         </div>
 
         <div className="flex w-full justify-between">
           <p className="font-medium">6 Powerwalls</p>
-          <p className="font-semibold">$54,600</p>
+          <p className="font-semibold">${getTotalMoney(props.showSolarPanel, props.selectedSolarPurchase, props.selectedSolarCard || "", .3 || 1) }</p>
         </div>
 
         <div className="flex w-full justify-between">
-          <p className="font-medium">Solar & Powerwall Discount</p>
-          <p className="font-semibold text-red-500">-$10,500</p>
+          <p className="font-medium">Tax Rebate</p>
+          <p className="font-semibold text-red-500">-${getTotalMoney(props.showSolarPanel, props.selectedSolarPurchase, props.selectedSolarCard || "", .26 || 1) }</p>
         </div>
 
         <Separator className="my-2" />
 
         <div className="flex w-full justify-between">
           <p className="font-medium">Estimated Price</p>
-          <p className="font-semibold text-black">$100,500</p>
+          <p className="font-semibold text-black">${getTotalMoney(props.showSolarPanel, props.selectedSolarPurchase, props.selectedSolarCard || "", .74 || 1) }</p>
+        </div>
+      </div>
+
+      <h3 className="mt-3 text-left font-semibold text-black">Window</h3>
+      <div className="flex flex-col items-center text-sm text-black">
+        <div className="flex w-full justify-between">
+          <p className="font-medium">Insulated Window</p>
+          <p className="font-semibold">${getTotalMoney(props.showWindow, props.selectedWindowPurchase, props.selectedWindowCard || "", .5 || 1) }</p>
+        </div>
+
+        <div className="flex w-full justify-between">
+          <p className="font-medium">Window Installation</p>
+          <p className="font-semibold">${getTotalMoney(props.showWindow, props.selectedWindowPurchase, props.selectedWindowCard || "", .2 || 1) }</p>
+        </div>
+
+        <div className="flex w-full justify-between">
+          <p className="font-medium">Window Chargers</p>
+          <p className="font-semibold">${getTotalMoney(props.showWindow, props.selectedWindowPurchase, props.selectedWindowCard || "", .3 || 1) }</p>
+        </div>
+
+        <div className="flex w-full justify-between">
+          <p className="font-medium">Tax Rebate</p>
+          <p className="font-semibold text-red-500">-${getTotalMoney(props.showWindow, props.selectedWindowPurchase, props.selectedWindowCard || "", .26 || 1) }</p>
+        </div>
+
+        <Separator className="my-2" />
+
+        <div className="flex w-full justify-between">
+          <p className="font-medium">Estimated Price</p>
+          <p className="font-semibold text-black">${getTotalMoney(props.showWindow, props.selectedWindowPurchase, props.selectedWindowCard || "", .74 || 1) }</p>
         </div>
       </div>
 
       <h3 className="mt-3 text-left font-semibold text-black">Windmill</h3>
       <div className="flex flex-col items-center text-sm text-black">
         <div className="flex w-full justify-between">
-          <p className="font-medium">79.13 kW Solar Roof</p>
-          <p className="font-semibold">$1,085,100</p>
+          <p className="font-medium">Energy Efficient Windmill</p>
+          <p className="font-semibold">${getTotalMoney(props.showWindMill, props.selectedWidmillPurchase, props.selectedWindmillCard || "", .5 || 1) }</p>
         </div>
 
         <div className="flex w-full justify-between">
           <p className="font-medium">Roof Tear Off</p>
-          <p className="font-semibold">$53,500</p>
+          <p className="font-semibold">${getTotalMoney(props.showWindMill, props.selectedWidmillPurchase, props.selectedWindmillCard || "", .2 || 1) }</p>
         </div>
 
         <div className="flex w-full justify-between">
           <p className="font-medium">6 Powerwalls</p>
-          <p className="font-semibold">$54,600</p>
+          <p className="font-semibold">${getTotalMoney(props.showWindMill, props.selectedWidmillPurchase, props.selectedWindmillCard || "", .3 || 1) }</p>
         </div>
 
         <div className="flex w-full justify-between">
           <p className="font-medium">Solar & Powerwall Discount</p>
-          <p className="font-semibold text-red-500">-$10,500</p>
+          <p className="font-semibold text-red-500">-${getTotalMoney(props.showWindMill, props.selectedWidmillPurchase, props.selectedWindmillCard || "", .26 || 1) }</p>
         </div>
 
         <Separator className="my-2" />
 
         <div className="flex w-full justify-between">
           <p className="font-medium">Estimated Price</p>
-          <p className="font-semibold text-black">$100,500</p>
-        </div>
-      </div>
-
-      <h3 className="mt-3 text-left font-semibold text-black">Windows</h3>
-      <div className="flex flex-col items-center text-sm text-black">
-        <div className="flex w-full justify-between">
-          <p className="font-medium">79.13 kW Solar Roof</p>
-          <p className="font-semibold">$1,085,100</p>
-        </div>
-
-        <div className="flex w-full justify-between">
-          <p className="font-medium">Roof Tear Off</p>
-          <p className="font-semibold">$53,500</p>
-        </div>
-
-        <div className="flex w-full justify-between">
-          <p className="font-medium">6 Powerwalls</p>
-          <p className="font-semibold">$54,600</p>
-        </div>
-
-        <div className="flex w-full justify-between">
-          <p className="font-medium">Solar & Powerwall Discount</p>
-          <p className="font-semibold text-red-500">-$10,500</p>
-        </div>
-
-        <Separator className="my-2" />
-
-        <div className="flex w-full justify-between">
-          <p className="font-medium">Estimated Price</p>
-          <p className="font-semibold text-black">$100,500</p>
+          <p className="font-semibold text-black">${getTotalMoney(props.showWindMill, props.selectedWidmillPurchase, props.selectedWindmillCard || "", .74 || 1) }</p>
         </div>
       </div>
     </>
