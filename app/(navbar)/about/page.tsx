@@ -193,6 +193,81 @@ const Page = (props: Props) => {
               </Link>
               . Accessed 29 Jan. 2024.
             </p>
+
+            <p>
+              “Business people having meeting analysing financial data.”
+              YouTube, uploaded by Free Stock Footage, 19 Nov. 2023,{" "}
+              <Link href="https://www.youtube.com/watch?v=_57f6TohFsQ">
+                https://www.youtube.com/watch?v=_57f6TohFsQ
+              </Link>
+            </p>
+
+            <p>
+              “Saving money in locker animated video.” YouTube, uploaded by Free
+              Stock Footage, 19 Nov. 2023,{" "}
+              <Link href="https://www.youtube.com/watch?v=ArJ3jENMXUI">
+                https://www.youtube.com/watch?v=ArJ3jENMXUI
+              </Link>
+            </p>
+
+            <p>
+              “Solar Panels on the Red Roof of the House and Wind Turbines
+              Generators stock footage.” YouTube, uploaded by Free Stock
+              Footage, 21 Oct. 2022,{" "}
+              <Link href="https://www.youtube.com/watch?v=hyAqmSJtxoE">
+                https://www.youtube.com/watch?v=hyAqmSJtxoE
+              </Link>
+            </p>
+
+            <p>
+              “Solar Panels - Solar Cell Energy Farm - Solar Energy Stock
+              Footage” YouTube, uploaded by Dogie and Soni Art, 16 Sep. 2022,{" "}
+              <Link href="https://www.youtube.com/watch?v=_PMpOubmzqg">
+                https://www.youtube.com/watch?v=_PMpOubmzqg
+              </Link>
+            </p>
+
+            <p>
+              “Wind Mills Solar Farm I Generating Electricity I Energy Stock
+              Footage” YouTube, uploaded by Dogie and Soni Art, 27 Sep. 2022,{" "}
+              <Link href="https://www.youtube.com/watch?v=Cp5Wq9TXdFA">
+                https://www.youtube.com/watch?v=Cp5Wq9TXdFA
+              </Link>
+            </p>
+
+            <p>
+              “Real estate Agent Showing Family Spacious House.” YouTube,
+              uploaded by Free Stock Footage, 2 Dec. 2023,{" "}
+              <Link href="https://www.youtube.com/watch?v=JOh6UQfw2RQ">
+                https://www.youtube.com/watch?v=JOh6UQfw2RQ
+              </Link>
+            </p>
+
+            <p>
+              “Man, office and money rain celebration with phone, smile and
+              winning in online competition” YouTube, uploaded by Free Stock
+              Footage, 1 Dec. 2023,{" "}
+              <Link href="https://www.youtube.com/watch?v=aA7yggm5qD4">
+                https://www.youtube.com/watch?v=aA7yggm5qD4
+              </Link>
+            </p>
+
+            <p>
+              “Money rain, winning and winner man on phone bonus, profit or
+              online trading” YouTube, uploaded by Free Stock Footage, 1 Dec.
+              2023,{" "}
+              <Link href="https://www.youtube.com/watch?v=4c1D456__Vk">
+                https://www.youtube.com/watch?v=4c1D456__Vk
+              </Link>
+            </p>
+
+            <p>
+              “Men Installing a solar panel | Free Stock Video.” YouTube,
+              uploaded by Video Stocker, 17 Aug. 2020,{" "}
+              <Link href="https://www.youtube.com/watch?v=nck5t-Ba5jg">
+                https://www.youtube.com/watch?v=nck5t-Ba5jg
+              </Link>
+            </p>
           </article>
         </div>
       </div>
