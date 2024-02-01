@@ -22,7 +22,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
     {
       title: "Solar Panels + Powerwall",
       imgUrl: "/images/solar_panel_house.jpg",
-      price: "92,476",
+      price: "8,572",
       bulletPoints: [
         "Panels for your existing roof with backup protection",
         "",
@@ -32,7 +32,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
     {
       title: "Solar Roof + Powerwall",
       imgUrl: "/images/solar_panel_house.jpg",
-      price: "843,500",
+      price: "12,128",
       bulletPoints: [
         "New luxury integrated solar roof with backup protection",
         "",

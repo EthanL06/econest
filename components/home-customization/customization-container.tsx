@@ -36,13 +36,13 @@ const CustomizationContainer: React.FC<Props> = ({
 }) => {
   
   const [selectedSolarCard, setSelectedSolarCard] = useState<string | null>(
-    null,
+    "current",
   );
   const [selectedWindmillCard, setSelectedWindmillCard] = useState<
     string | null
-  >(null);
+  >( "current");
   const [selectedWindowCard, setSelectedWindowCard] = useState<string | null>(
-    null,
+    "current",
   );
 
   const [selectedWindowPurchase, setSelectedWindowPurchase] =
