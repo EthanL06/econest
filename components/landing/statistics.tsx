@@ -159,12 +159,15 @@ const Stat = ({
   children: React.ReactNode;
 }) => {
   return (
-    <div className="flex h-[95vh] items-center justify-center">
+    <div className="flex h-[80vh] items-center justify-center">
       <motion.div
         initial={{ opacity: 0, scale: 0 }}
         whileInView={{
           opacity: 1,
           scale: 1,
+        }}
+        viewport={{
+          amount: 0.5,
         }}
         transition={{ type: "spring", bounce: 0.5, duration: 1 }}
         className="flex flex-col items-center justify-center"

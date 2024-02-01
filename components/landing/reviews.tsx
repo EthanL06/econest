@@ -133,24 +133,48 @@ const Reviews = (props: Props) => {
   return (
     <div className="min-h-screen">
       <div className="flex w-full flex-col items-center text-center">
-        <div className=" mb-1 text-center text-xl font-black text-primary">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          viewport={{
+            once: true,
+            amount: 0.9,
+          }}
+          className=" mb-1 text-center text-xl font-black text-primary"
+        >
           From Our Customers
           <Separator className="h-[3px] rounded-full bg-primary" />
-        </div>
+        </motion.div>
 
-        <div className=" text-4xl font-bold text-emerald-900 sm:text-5xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          viewport={{
+            once: true,
+            amount: 0.9,
+          }}
+          className=" text-4xl font-bold text-emerald-900 sm:text-5xl"
+        >
           We Are Changing Lives
-        </div>
+        </motion.div>
 
-        <div className="mt-4 text-balance text-base font-medium leading-loose text-emerald-900">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          viewport={{
+            once: true,
+            amount: 0.9,
+          }}
+          className="mt-4 text-balance text-base font-medium leading-loose text-emerald-900"
+        >
           We&apos;ve proudly helped thousands of homeowners to switch to clean
           energy nationwide.
-        </div>
+        </motion.div>
       </div>
 
       <div className="z-10 mt-11 grid h-[80rem] max-h-[150vh] grid-cols-1 gap-8 [mask-image:_linear-gradient(to_bottom,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)] md:grid-cols-2 lg:grid-cols-3">
         <div className="relative flex  w-full flex-col overflow-y-hidden">
-          <div className="animate-infinite-scroll-y flex w-full flex-col">
+          <div className="flex w-full animate-infinite-scroll-y flex-col">
             {reviews.slice(0, 7).map((review, index) => (
               <Review
                 key={`${review.name}-${index}`}
@@ -172,7 +196,7 @@ const Reviews = (props: Props) => {
         </div>
 
         <div className="relative hidden flex-col overflow-y-hidden  md:flex">
-          <div className="animate-infinite-scroll-y flex flex-col">
+          <div className="flex animate-infinite-scroll-y flex-col">
             {reviews.slice(7, 11).map((review, index) => (
               <Review
                 key={`${review.name}-${index}`}
@@ -194,7 +218,7 @@ const Reviews = (props: Props) => {
         </div>
 
         <div className="relative  hidden flex-col  overflow-y-hidden lg:flex">
-          <div className="animate-infinite-scroll-y flex flex-col">
+          <div className="flex animate-infinite-scroll-y flex-col">
             {reviews.slice(12, reviews.length).map((review, index) => (
               <Review
                 key={`${review.name}-${index}`}

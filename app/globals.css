@@ -111,10 +111,6 @@
     background-attachment: fixed;
   }
 
-  .logos:hover > * {
-    animation-play-state: paused;
-  }
-
   @keyframes logo-wall {
     from {
       transform: translateX(0);

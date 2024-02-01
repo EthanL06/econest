@@ -79,14 +79,30 @@ const Solutions = (props: Props) => {
   return (
     <div className="flex min-h-screen w-full flex-col items-center gap-y-8">
       <div className="flex w-full flex-col items-center text-center">
-        <div className=" mb-1 text-center text-lg font-black text-primary sm:text-xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{
+            once: true,
+            amount: 0.9,
+          }}
+          className=" mb-1 text-center text-lg font-black text-primary sm:text-xl"
+        >
           Blogs for Sustainable Living
           <Separator className="h-[3px] rounded-full bg-primary" />
-        </div>
+        </motion.div>
 
-        <div className=" text-3xl font-bold text-emerald-900 sm:text-4xl md:text-5xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{
+            once: true,
+            amount: 0.9,
+          }}
+          className=" text-3xl font-bold text-emerald-900 sm:text-4xl md:text-5xl"
+        >
           Explore our Solutions
-        </div>
+        </motion.div>
       </div>
 
       <div className="flex min-h-screen w-full grid-cols-3 grid-rows-2 flex-col gap-8 text-white lg:grid">

@@ -4,7 +4,9 @@ import { Input } from "../ui/input";
 import { Home, MapPin } from "lucide-react";
 import usePlacesAutocomplete from "use-places-autocomplete";
 
-type Props = {};
+type Props = {
+  onAddressChange: (address: string) => void;
+};
 
 const AddressInput = (props: Props) => {
   const {
@@ -32,6 +34,7 @@ const AddressInput = (props: Props) => {
     };
   }) => {
     setValue(suggestion.description, false);
+    props.onAddressChange(suggestion.description);
     clearSuggestions();
   };
 

@@ -11,6 +11,7 @@ import MouseGradient from "@/components/mouse-gradient";
 import { Separator } from "@/components/ui/separator";
 import Reviews from "@/components/landing/reviews";
 import CallToAction from "@/components/landing/call-to-action";
+import Video from "@/components/landing/video";
 
 export default function Home() {
   return (
@@ -23,6 +24,8 @@ export default function Home() {
 
           <LogoWall />
         </div>
+
+        <Video />
 
         <WaveSeparator />
         <Statistics />

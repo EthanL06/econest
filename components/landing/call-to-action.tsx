@@ -1,12 +1,23 @@
+"use client";
+
 import React from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 type Props = {};
 
 const CallToAction = (props: Props) => {
   return (
-    <div className="relative flex w-full flex-col items-center justify-center rounded-xl px-4 py-8  shadow-2xl md:p-12 lg:p-24">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{
+        once: true,
+        amount: 0.9,
+      }}
+      className="relative flex w-full flex-col items-center justify-center rounded-xl px-4 py-8  shadow-2xl md:p-12 lg:p-24"
+    >
       <img
         src="https://images.squarespace-cdn.com/content/v1/5b7316fc50a54f6532b5b564/d316f19f-c121-4fd5-8cbf-eaeee8767591/Squarespace+-+Featured+Image.png"
         alt="background"
@@ -25,7 +36,7 @@ const CallToAction = (props: Props) => {
           Discover Now!
         </Button>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
