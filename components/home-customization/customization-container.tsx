@@ -34,7 +34,7 @@ const CustomizationContainer: React.FC<Props> = ({
   page,
   setPage
 }) => {
-
+  
   const [selectedSolarCard, setSelectedSolarCard] = useState<string | null>(
     null,
   );
