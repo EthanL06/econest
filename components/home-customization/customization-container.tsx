@@ -131,6 +131,9 @@ const CustomizationContainer: React.FC<Props> = ({
           selectedWindowPurchase={selectedWindowPurchase}
           selectedWidmillPurchase={selectedWidmillPurchase}
           selectedSolarPurchase={selectedSolarPurchase}
+          selectedSolarCard={selectedSolarCard}
+          selectedWindmillCard={selectedWindmillCard}
+          selectedWindowCard={selectedWindowCard}
         />
       )}
 
