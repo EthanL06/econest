@@ -6,11 +6,14 @@ import { Button } from "../ui/button";
 import { CircleDollarSign, Home, MapPin } from "lucide-react";
 import AddressInput from "./address-input";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 type Props = {};
 
 const Heading = (props: Props) => {
   const baseDelay = 0.5;
+  const [address, setAddress] = useState("");
+  const [bill, setBill] = useState(0);
 
   return (
     <div className="flex w-full items-center justify-around gap-x-4">
@@ -65,7 +68,11 @@ const Heading = (props: Props) => {
             className="flex w-full flex-col items-center  justify-center gap-3 rounded-lg border border-border bg-white p-4 shadow sm:flex-row "
           >
             <div className="w-full">
-              <AddressInput />
+              <AddressInput
+                onAddressChange={(address) => {
+                  setAddress(address);
+                }}
+              />
             </div>
 
             <div className="flex w-full gap-3">
@@ -77,12 +84,21 @@ const Heading = (props: Props) => {
                 onInput={(event) => {
                   if (!event.currentTarget.validity.valid) {
                     event.currentTarget.value = "";
+                  } else {
+                    setBill(parseInt(event.currentTarget.value));
                   }
                 }}
               >
                 <CircleDollarSign className="h-5 w-5" />
               </Input>
-              <Button className="font-bold">Discover</Button>
+              <Link
+                href={{
+                  pathname: "/build-a-home",
+                  query: { address: address, bill: bill },
+                }}
+              >
+                <Button className="font-bold">Discover</Button>
+              </Link>
             </div>
           </motion.div>
         </div>

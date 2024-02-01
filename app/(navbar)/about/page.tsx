@@ -5,6 +5,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 type Props = {};
 const Page = (props: Props) => {
@@ -32,7 +33,6 @@ const Page = (props: Props) => {
         <Separator className="mx-auto max-w-md" />
 
         <div className="mt-8">
-          {/* <Blogs data={data} /> */}
           <article className="prose prose-slate mx-auto max-w-3xl  px-6">
             <h3>Who Are We</h3>
             <p>
@@ -96,8 +96,103 @@ const Page = (props: Props) => {
             </p>
 
             <h3>Documents</h3>
-
+            <ul>
+              <li>
+                <Link href={"/documents/copyright.pdf"}>Copyright</Link>
+              </li>
+              <li>
+                <Link href={"/documents/POWL.pdf"}>Plan of Work Log</Link>
+              </li>
+            </ul>
             <h3>Sources</h3>
+            <p>
+              Coglan, Michael. Solar Panel. 1 Sept. 2013. Flickr,{" "}
+              <Link href="https://www.flickr.com/photos/mikecogh/9647603520">
+                https://www.flickr.com/photos/mikecogh/9647603520
+              </Link>
+              . Accessed 1 Jan. 2024.
+            </p>
+
+            <p>
+              “Eco-Friendly” Petit Architect, 27 July 2022,{" "}
+              <Link href="petitarchitect.com/blog/2022/6/8/eco-neighbourhood">
+                petitarchitect.com/blog/2022/6/8/eco-neighbourhood
+              </Link>
+              . Accessed 1 Jan. 2024
+            </p>
+
+            <p>
+              “Renewable Energy – Wind Energy Turbine Hub” 20 Oct. 2019,{" "}
+              <Link href="castingthefuture.com/castings-in-the-world/renewable-energy-wind-energy-turbine-hub">
+                castingthefuture.com/castings-in-the-world/renewable-energy-wind-energy-turbine-hub
+              </Link>
+              . Accessed 1 Jan. 2024.
+            </p>
+
+            <p>
+              “Solar panels on a cloudy day” NOAA SciJinks All About Weather,{" "}
+              <Link href="scijinks.gov/solar-energy-and-clouds">
+                scijinks.gov/solar-energy-and-clouds
+              </Link>
+              . Accessed 28 Jan. 2024.
+            </p>
+
+            <p>
+              “Green Roof at the WIPO Headquarters 1.jpg” Wikimedia Commons, 6
+              Aug. 2021,{" "}
+              <Link href="commons.wikimedia.org/wiki/File:Green_Roof_at_the_WIPO_Headquarters_1.jpg">
+                commons.wikimedia.org/wiki/File:Green_Roof_at_the_WIPO_Headquarters_1.jpg
+              </Link>
+              . Accessed 28 Jan. 2024.
+            </p>
+
+            <p>
+              Sommer, Lauren. “Smart windows” 28 Nov. 2011,{" "}
+              <Link href="www.npr.org/2011/11/28/142848063/tenergy-saving-possibilities-of-smart-windows">
+                www.npr.org/2011/11/28/142848063/tenergy-saving-possibilities-of-smart-windows
+              </Link>
+              . Accessed 28 Jan. 2024.
+            </p>
+
+            <p>
+              Tech, Multimedia. “Home Automation” Flickr, 3 Aug. 2015,{" "}
+              <Link href="www.flickr.com/photos/multimediatech/19636174774">
+                www.flickr.com/photos/multimediatech/19636174774
+              </Link>
+              . Accessed 28 Jan. 2024.
+            </p>
+
+            <p>
+              “soler panel” Sketchfab, 21 Sept. 2019,{" "}
+              <Link href="sketchfab.com/3d-models/soler-panel-setup-087f976a313f401da2d38f0df73905ff">
+                sketchfab.com/3d-models/soler-panel-setup-087f976a313f401da2d38f0df73905ff
+              </Link>
+              . Accessed 29 Jan. 2024.
+            </p>
+
+            <p>
+              “Windmill” Sketchfab, 24 Feb. 2017,{" "}
+              <Link href="sketchfab.com/3d-models/windmill-low-poly-ed577ce3d4db49a283924c2ec27e65e8">
+                sketchfab.com/3d-models/windmill-low-poly-ed577ce3d4db49a283924c2ec27e65e8
+              </Link>
+              . Accessed 29 Jan. 2024.
+            </p>
+
+            <p>
+              “Window” Sketchfab, 30 Apr. 2020,{" "}
+              <Link href="sketchfab.com/3d-models/old-wooden-window-9cb47e9d4e8644efa4fa28c424253d79">
+                sketchfab.com/3d-models/old-wooden-window-9cb47e9d4e8644efa4fa28c424253d79
+              </Link>
+              . Accessed 29 Jan. 2024.
+            </p>
+
+            <p>
+              “Modern Home” Sketchfab, 27 Feb. 2021,{" "}
+              <Link href="sketchfab.com/3d-models/modern-home-9ea150b9df1d48d2929ddc460b100e7e">
+                sketchfab.com/3d-models/modern-home-9ea150b9df1d48d2929ddc460b100e7e
+              </Link>
+              . Accessed 29 Jan. 2024.
+            </p>
           </article>
         </div>
       </div>
