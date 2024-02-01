@@ -193,7 +193,7 @@ const Page = (props: Props) => {
               </Link>
               . Accessed 29 Jan. 2024.
             </p>
-            
+
             <p>
               “Business people having meeting analysing financial data.”
               YouTube, uploaded by Free Stock Footage, 19 Nov. 2023,{" "}
@@ -266,6 +266,15 @@ const Page = (props: Props) => {
               uploaded by Video Stocker, 17 Aug. 2020,{" "}
               <Link href="https://www.youtube.com/watch?v=nck5t-Ba5jg">
                 https://www.youtube.com/watch?v=nck5t-Ba5jg
+              </Link>
+            </p>
+
+            <p>
+              “hand watering a young plant - tree planting Free Stock Footage HD
+              - no copyright video” YouTube, uploaded by Stock Footage Factory,
+              20 Dec. 2022,{" "}
+              <Link href="https://www.youtube.com/watch?v=34xD4FUUFAE">
+                https://www.youtube.com/watch?v=34xD4FUUFAE
               </Link>
             </p>
           </article>
