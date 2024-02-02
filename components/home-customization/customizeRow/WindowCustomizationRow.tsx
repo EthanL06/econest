@@ -14,7 +14,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
   const cardData: CustomizationDetails[] = [
     {
       title: "Window Basic",
-      imgUrl: "/images/solar_panel_house.jpg",
+      imgUrl: "/images/window/window-mid.jpeg",
       // imgUrl: "/images/window_basic.jpg",
       price: "1,487",
       bulletPoints: ["Basic window fitting for energy efficiency", ""],
@@ -22,7 +22,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
     },
     {
       title: "Window Advanced",
-      imgUrl: "/images/solar_panel_house.jpg",
+      imgUrl: "/images/window/window-low.jpeg",
       // imgUrl: "/images/window_advanced.jpg",
       price: "3,126",
       bulletPoints: ["Advanced windows with enhanced insulation", ""],
@@ -30,7 +30,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
     },
     {
       title: "Window Premium",
-      imgUrl: "/images/solar_panel_house.jpg",
+      imgUrl: "/images/window/window-high.jpeg",
       // imgUrl: "/images/window_premium.jpg",
       price: "4,470",
       bulletPoints: [
