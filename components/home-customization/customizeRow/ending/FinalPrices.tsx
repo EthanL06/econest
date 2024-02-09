@@ -141,17 +141,17 @@ const Summary = (props: Props) => {
         </div>
 
         <div className="flex w-full justify-between">
-          <p className="font-medium">Roof Tear Off</p>
+          <p className="font-medium">Installation</p>
           <p className="font-semibold">${getTotalMoney(props.showWindMill, props.selectedWidmillPurchase, props.selectedWindmillCard || "", .2 || 1) }</p>
         </div>
 
         <div className="flex w-full justify-between">
-          <p className="font-medium">6 Powerwalls</p>
+          <p className="font-medium"> Energy Converters</p>
           <p className="font-semibold">${getTotalMoney(props.showWindMill, props.selectedWidmillPurchase, props.selectedWindmillCard || "", .3 || 1) }</p>
         </div>
 
         <div className="flex w-full justify-between">
-          <p className="font-medium">Solar & Powerwall Discount</p>
+          <p className="font-medium">Tax Rebate</p>
           <p className="font-semibold text-red-500">-${getTotalMoney(props.showWindMill, props.selectedWidmillPurchase, props.selectedWindmillCard || "", .26 || 1) }</p>
         </div>
 
@@ -162,6 +162,11 @@ const Summary = (props: Props) => {
           <p className="font-semibold text-black">${getTotalMoney(props.showWindMill, props.selectedWidmillPurchase, props.selectedWindmillCard || "", .74 || 1) }</p>
         </div>
       </div>
+
+      {/* <div className="p-5 m-2 rounded-lg bg-gradient-to-r from-green-300 to-green-700 text-white text-center font-bold mt-4">
+          You Can Save 30% From Federal Tax Credit
+      </div> */}
+
     </>
   );
 };
