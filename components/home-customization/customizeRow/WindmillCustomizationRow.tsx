@@ -13,7 +13,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
   const cardData: CustomizationDetails[] = [
     {
       title: "Windmill Basic",
-      imgUrl: "/images/solar_panel_house.jpg",
+      imgUrl: "/images/windMill/windmill-low2.jpeg",
       // imgUrl: "/images/windmill_basic.jpg",
       price: "1,200",
       bulletPoints: ["Basic wind energy solution for small homes", ""],
@@ -21,7 +21,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
     },
     {
       title: "Windmill Advanced",
-      imgUrl: "/images/solar_panel_house.jpg",
+      imgUrl: "/images/windMill/windmill-mid2.png",
       // imgUrl: "/images/windmill_advanced.jpg",
       price: "4,750",
       bulletPoints: ["Enhanced wind energy system with increased capacity", ""],
@@ -29,7 +29,7 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
     },
     {
       title: "Windmill Premium",
-      imgUrl: "/images/solar_panel_house.jpg",
+      imgUrl: "/images/windMill/windmill-high.jpeg",
       // imgUrl: "/images/windmill_premium.jpg",
       price: "9,300",
       bulletPoints: ["Premium wind energy setup with maximum efficiency", ""],

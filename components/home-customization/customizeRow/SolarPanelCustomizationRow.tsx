@@ -14,15 +14,15 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
   const cardData = [
     {
       title: "Powerwall Only",
-      imgUrl: "/images/solar_panel_house.jpg",
+      imgUrl: "/images/solarPanel/solar-low.jpeg",
       price: "6,365",
       bulletPoints: ["Energy backup for your home", ""] as [string, string],
       current: "current",
     },
     {
       title: "Solar Panels + Powerwall",
-      imgUrl: "/images/solar_panel_house.jpg",
-      price: "92,476",
+      imgUrl: "/images/solarPanel/solar-mid.jpeg",
+      price: "8,572",
       bulletPoints: [
         "Panels for your existing roof with backup protection",
         "",
@@ -31,8 +31,8 @@ const SolarPanelCustomizationRow: React.FC<Props> = ({
     },
     {
       title: "Solar Roof + Powerwall",
-      imgUrl: "/images/solar_panel_house.jpg",
-      price: "843,500",
+      imgUrl: "/images/solarPanel/solar-roof.jpeg",
+      price: "12,128",
       bulletPoints: [
         "New luxury integrated solar roof with backup protection",
         "",
