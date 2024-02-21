@@ -1,7 +1,5 @@
 import React from "react";
 
-console.log("santi was here");
-
 type Props = {};
 
 const Circles = (props: Props) => {

@@ -1,4 +1,3 @@
-import Navbar from "@/components/navbar";
 import Heading from "@/components/landing/heading";
 import Circles from "@/components/landing/svgs/circles";
 import WaveSeparator from "@/components/landing/svgs/wave-separator";
@@ -6,9 +5,6 @@ import Statistics from "@/components/landing/statistics";
 import About from "@/components/landing/about";
 import Solutions from "@/components/landing/solutions";
 import LogoWall from "@/components/landing/logo-wall";
-import { ArrowDownCircle, ChevronDownCircle } from "lucide-react";
-import MouseGradient from "@/components/mouse-gradient";
-import { Separator } from "@/components/ui/separator";
 import Reviews from "@/components/landing/reviews";
 import CallToAction from "@/components/landing/call-to-action";
 import Video from "@/components/landing/video";
