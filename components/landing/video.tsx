@@ -8,18 +8,6 @@ type Props = {};
 const Video = (props: Props) => {
   return (
     <div className="mb-6 mt-6 flex flex-col items-center justify-center px-4 lg:mb-0">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{
-          once: true,
-          amount: 0.5,
-        }}
-        className="mb-4 text-pretty text-center text-3xl font-bold "
-      >
-        Learn more <span className="marker-underline">about us!</span>
-      </motion.div>
-
       <motion.iframe
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
