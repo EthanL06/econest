@@ -15,9 +15,9 @@ const Video = (props: Props) => {
           once: true,
           amount: 0.5,
         }}
-        className="mb-4 text-pretty text-center text-3xl font-bold"
+        className="mb-4 text-pretty text-center text-3xl font-bold "
       >
-        Learn more about us!
+        Learn more <span className="marker-underline">about us!</span>
       </motion.div>
 
       <motion.iframe

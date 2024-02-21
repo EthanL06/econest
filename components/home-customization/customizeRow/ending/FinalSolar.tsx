@@ -24,7 +24,6 @@ const FinalSolar: React.FC<FinalSolarProps> = ({
       <h3 className="text-md font-bold text-gray-600">
         Luxury roof with integrated solar and battery storage.
       </h3>
-
       <FinalizeRowPurchaseCard
         details={showSolarPanel}
         selectedPurchase={selectedPurchase}
@@ -32,7 +31,6 @@ const FinalSolar: React.FC<FinalSolarProps> = ({
         onClick={() => handleCardClick("Meet Current Needs")}
         selected={selectedCard === "Meet Current Needs"}
       />
-
       <FinalizeRowPurchaseCard
         details={showSolarPanel}
         needs="Future"
