@@ -4,5 +4,5 @@ export const quicksand = Quicksand({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-quicksand",
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
