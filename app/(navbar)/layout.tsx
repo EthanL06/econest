@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <div
-      className={`${quicksand.variable} max-w-screen-[1400px] relative mx-auto overflow-x-hidden font-sans text-black`}
+      className={`max-w-screen-[1400px] relative mx-auto overflow-x-hidden font-sans text-black`}
     >
       <MouseGradient />
       <Navbar />

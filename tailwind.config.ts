@@ -21,7 +21,6 @@ const config = {
     },
     fontFamily: {
       sans: ["var(--font-quicksand)", ...defaultTheme.fontFamily.sans],
-      serif: ["var(--font-playfair-display)", ...defaultTheme.fontFamily.serif],
     },
     extend: {
       colors: {
