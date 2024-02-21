@@ -99,7 +99,7 @@ const Heading = (props: Props) => {
                   if (address === "") {
                     alert("Please enter an address");
                     return;
-                  } else if (bill === 0) {
+                  } else if (bill === 0 || isNaN(bill)) {
                     alert("Please enter your monthly electric bill");
                     return;
                   }
