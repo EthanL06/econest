@@ -13,6 +13,7 @@ import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { Progress } from "../ui/progress";
 import HomeInput from "./home-input";
+import { toast } from "../ui/use-toast";
 
 type Props = {
   handleShowSolarPanel: (details: CustomizationDetails) => void;
@@ -61,12 +62,23 @@ const CustomizationContainer: React.FC<Props> = ({
       const bill = urlParams.get("bill");
 
       if (!address || address.trim() === "") {
-        alert("Please enter an address");
+        toast({
+          title: "An error occurred!",
+          description: "Please enter an address.",
+          variant: "destructive",
+          duration: 3000,
+        });
+
         return;
       }
 
       if (bill == "NaN" || !bill || parseInt(bill) === 0) {
-        alert("Please enter your monthly electric bill");
+        toast({
+          title: "An error occurred!",
+          description: "Please enter your monthly electric bill.",
+          variant: "destructive",
+          duration: 3000,
+        });
         return;
       }
     }
@@ -89,7 +101,7 @@ const CustomizationContainer: React.FC<Props> = ({
   return (
     <div
       ref={containerRef}
-      className="flex h-full max-h-screen w-full flex-col overflow-auto rounded-xl px-1 lg:w-[26rem] lg:px-9"
+      className="flex h-full w-full flex-col overflow-auto rounded-xl px-1 lg:w-[26rem] lg:px-9"
     >
       <div className="mb-4 mt-2">
         <Progress className="h-[6px] w-full" max={7} value={page} />

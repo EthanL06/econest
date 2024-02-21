@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { CircleDollarSign } from "lucide-react";
@@ -8,6 +8,7 @@ import AddressInput from "./address-input";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast } from "../ui/use-toast";
 
 type Props = {};
 
@@ -87,6 +88,7 @@ const Heading = (props: Props) => {
                   if (!event.currentTarget.validity.valid) {
                     event.currentTarget.value = "";
                   } else {
+                    console.log("Updating bill " + event.currentTarget.value);
                     setBill(parseInt(event.currentTarget.value));
                   }
                 }}
@@ -97,12 +99,24 @@ const Heading = (props: Props) => {
               <Button
                 onClick={() => {
                   if (address === "") {
-                    alert("Please enter an address");
+                    toast({
+                      title: "An error occurred!",
+                      description: "Please enter an address.",
+                      variant: "destructive",
+                      duration: 3000,
+                    });
                     return;
                   } else if (bill === 0 || isNaN(bill)) {
-                    alert("Please enter your monthly electric bill");
+                    toast({
+                      title: "An error occurred!",
+                      description: "Please enter your monthly electric bill.",
+                      variant: "destructive",
+                      duration: 3000,
+                    });
                     return;
                   }
+
+                  console.log(address, bill);
 
                   router.push(`/build-a-home?address=${address}&bill=${bill}`);
                 }}

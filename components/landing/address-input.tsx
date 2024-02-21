@@ -3,6 +3,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Input } from "../ui/input";
 import { MapPin } from "lucide-react";
 import usePlacesAutocomplete from "use-places-autocomplete";
+import { quicksand } from "@/lib/fonts";
 
 type Props = {
   onAddressChange: (address: string) => void;
@@ -74,9 +75,9 @@ const AddressInput = (props: Props) => {
           </PopoverTrigger>
           <PopoverContent
             style={{
-              fontFamily: "__Quicksand_17bebb, sans-serif",
+              fontFamily: quicksand.style.fontFamily,
             }}
-            className="flex w-[19rem] flex-col p-0"
+            className="flex w-[19rem] flex-col p-0 font-sans"
           >
             {data.slice(0, 3).map(
               (

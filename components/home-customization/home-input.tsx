@@ -8,9 +8,11 @@ type Props = {};
 const HomeInput = (props: Props) => {
   const [bill, setBill] = useState(0);
   const [address, setAddress] = useState("");
+  const [onFirstLoad, setOnFirstLoad] = useState(true);
 
   useEffect(() => {
     // Get url params
+
     const urlParams = new URLSearchParams(window.location.search);
     const address = urlParams.get("address");
     const bill = urlParams.get("bill");
@@ -22,14 +24,17 @@ const HomeInput = (props: Props) => {
     if (bill) {
       setBill(parseInt(bill));
     }
+
+    setOnFirstLoad(false);
   }, []);
 
   useEffect(() => {
+    if (onFirstLoad) return;
     const url = new URL(window.location.href);
     url.searchParams.set("address", address);
     url.searchParams.set("bill", bill.toString());
     window.history.replaceState({}, "", url.toString());
-  }, [address, bill]);
+  }, [address, bill, onFirstLoad]);
 
   return (
     <div className="w-full  text-black">

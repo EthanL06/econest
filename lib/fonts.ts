@@ -5,4 +5,5 @@ export const quicksand = Quicksand({
   display: "swap",
   variable: "--font-quicksand",
   weight: ["300", "400", "500", "600", "700"],
+  adjustFontFallback: false,
 });
