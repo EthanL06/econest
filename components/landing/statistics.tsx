@@ -134,7 +134,7 @@ const Statistics = (props: Props) => {
           </svg>
           <svg
             ref={svgUnderlineRef}
-            className=" hidden h-[15rem] w-full max-w-4xl -scale-y-100 sm:block"
+            className=" hidden h-[15rem] w-full max-w-4xl -scale-y-100"
             width="74"
             height="21"
             viewBox="0 0 74 21"

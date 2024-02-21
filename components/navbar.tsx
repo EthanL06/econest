@@ -52,7 +52,7 @@ const Navbar = (props: Props) => {
 
           <div
             className={cn(
-              "overflow-hidden text-xl  font-semibold transition-all duration-300 sm:text-2xl ",
+              "ransition-all overflow-hidden  text-xl font-bold duration-300 sm:text-2xl ",
               ifScrollBelowNavbar() ? "text-base sm:text-2xl " : " w-24",
             )}
           >
