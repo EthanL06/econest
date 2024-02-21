@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Input } from "../ui/input";
-import { Home, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import usePlacesAutocomplete from "use-places-autocomplete";
 
 type Props = {
   onAddressChange: (address: string) => void;
+  value?: string;
 };
 
 const AddressInput = (props: Props) => {
@@ -16,6 +17,12 @@ const AddressInput = (props: Props) => {
     setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({ debounce: 500 });
+
+  useEffect(() => {
+    if (props.value) {
+      setValue(props.value, false);
+    }
+  }, [props.value, setValue]);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(data);
@@ -48,6 +55,7 @@ const AddressInput = (props: Props) => {
         placeholder="Enter home address"
         type="text"
         autoComplete="off"
+        className="text-black"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +72,12 @@ const AddressInput = (props: Props) => {
           <PopoverTrigger asChild>
             <div className="invisible"></div>
           </PopoverTrigger>
-          <PopoverContent className="flex w-[19rem] flex-col p-0">
+          <PopoverContent
+            style={{
+              fontFamily: "__Quicksand_17bebb, sans-serif",
+            }}
+            className="flex w-[19rem] flex-col p-0"
+          >
             {data.slice(0, 3).map(
               (
                 suggestion: {
@@ -96,7 +109,6 @@ const AddressInput = (props: Props) => {
 
 const Suggestion = ({
   suggestion,
-  key,
   onSuggestionClick,
 }: {
   suggestion: {
@@ -110,7 +122,6 @@ const Suggestion = ({
       secondary_text: string;
     };
   };
-  key: number;
   onSuggestionClick: (suggestion: any) => void;
 }) => {
   const highlightMatchedText = (text: string) => {
@@ -118,16 +129,16 @@ const Suggestion = ({
     const start = matchedText.offset;
     const end = matchedText.offset + matchedText.length;
     return (
-      <div className="font-sans">
+      <div>
         {text.slice(0, start)}
         <span className="font-bold">{text.slice(start, end)}</span>
         {text.slice(end)}
       </div>
     );
   };
+
   return (
     <button
-      key={key}
       className="flex flex-col border-b p-4 transition-colors  hover:bg-gray-100"
       onClick={() => onSuggestionClick(suggestion)}
     >

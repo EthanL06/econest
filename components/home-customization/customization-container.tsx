@@ -12,6 +12,7 @@ import { CustomizationDetails } from "@/app/(home-customization)/build-a-home/pa
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { Progress } from "../ui/progress";
+import HomeInput from "./home-input";
 
 type Props = {
   handleShowSolarPanel: (details: CustomizationDetails) => void;
@@ -32,15 +33,14 @@ const CustomizationContainer: React.FC<Props> = ({
   showWindMill,
   showWindow,
   page,
-  setPage
+  setPage,
 }) => {
-  
   const [selectedSolarCard, setSelectedSolarCard] = useState<string | null>(
     "current",
   );
   const [selectedWindmillCard, setSelectedWindmillCard] = useState<
     string | null
-  >( "current");
+  >("current");
   const [selectedWindowCard, setSelectedWindowCard] = useState<string | null>(
     "current",
   );
@@ -54,6 +54,23 @@ const CustomizationContainer: React.FC<Props> = ({
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleNextClick = () => {
+    if (page === 0) {
+      // Check the url for the address and bill
+      const urlParams = new URLSearchParams(window.location.search);
+      const address = urlParams.get("address");
+      const bill = urlParams.get("bill");
+
+      if (!address || address.trim() === "") {
+        alert("Please enter an address");
+        return;
+      }
+
+      if (bill == "NaN" || !bill || parseInt(bill) === 0) {
+        alert("Please enter your monthly electric bill");
+        return;
+      }
+    }
+
     setPage(page + 1);
     window.scrollTo({
       top: 0,
@@ -62,7 +79,7 @@ const CustomizationContainer: React.FC<Props> = ({
   };
 
   const handleBackClick = () => {
-    setPage(Math.max(page - 1, 1));
+    setPage(Math.max(page - 1, 0));
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -72,11 +89,13 @@ const CustomizationContainer: React.FC<Props> = ({
   return (
     <div
       ref={containerRef}
-      className="flex h-full w-full flex-col overflow-auto rounded-xl px-1 lg:w-[26rem] lg:px-9"
+      className="flex h-full max-h-screen w-full flex-col overflow-auto rounded-xl px-1 lg:w-[26rem] lg:px-9"
     >
       <div className="mb-4 mt-2">
         <Progress className="h-[6px] w-full" max={7} value={page} />
       </div>
+
+      {page === 0 && <HomeInput />}
 
       {page === 1 && (
         <SolarPanelCustomizationRow
@@ -142,7 +161,7 @@ const CustomizationContainer: React.FC<Props> = ({
           onClick={handleBackClick}
           className={cn(
             "text-base font-bold text-black",
-            page === 1 && "invisible",
+            page === 0 && "invisible",
           )}
           variant="ghost"
           size={"lg"}

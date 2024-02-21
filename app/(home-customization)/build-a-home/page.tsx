@@ -13,33 +13,30 @@ export type CustomizationDetails = {
 };
 
 function Home() {
-
   const [showSolarPanel, setShowSolarPanel] = useState<CustomizationDetails>({
     title: "Powerwall Only",
-      imgUrl: "/images/solar_panel_house.jpg",
-      price: "6,365",
-      bulletPoints: ["Energy backup for your home", ""] as [string, string],
-      current: "current",
+    imgUrl: "/images/solar_panel_house.jpg",
+    price: "6,365",
+    bulletPoints: ["Energy backup for your home", ""] as [string, string],
+    current: "current",
   });
 
   const [showWindow, setShowWindow] = useState<CustomizationDetails>({
     title: "Window Basic",
-      imgUrl: "/images/solar_panel_house.jpg",
-      // imgUrl: "/images/window_basic.jpg",
-      price: "1,487",
-      bulletPoints: ["Basic window fitting for energy efficiency", ""],
-      current: "current",
+    imgUrl: "/images/solar_panel_house.jpg",
+    price: "1,487",
+    bulletPoints: ["Basic window fitting for energy efficiency", ""],
+    current: "current",
   });
   const [showWindMill, setShowWindMill] = useState<CustomizationDetails>({
     title: "Windmill Basic",
-      imgUrl: "/images/solar_panel_house.jpg",
-      // imgUrl: "/images/windmill_basic.jpg",
-      price: "1,200",
-      bulletPoints: ["Basic wind energy solution for small homes", ""],
-      current: "current",
+    imgUrl: "/images/solar_panel_house.jpg",
+    price: "1,200",
+    bulletPoints: ["Basic wind energy solution for small homes", ""],
+    current: "current",
   });
 
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(0);
 
   const handleShowSolarPanel = (details: CustomizationDetails) => {
     setShowSolarPanel(details);

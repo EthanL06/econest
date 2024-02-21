@@ -29,7 +29,7 @@ const FinalizeRow: React.FC<Props> = ({
 
   const parsePrice = (price: string, factor: number) => {
     const cleanedPrice = price.replace(/[^\d.]/g, "");
-    let finalizePrice = parseFloat(cleanedPrice) ;
+    let finalizePrice = parseFloat(cleanedPrice);
     finalizePrice *= factor;
     const roundedPrice = finalizePrice.toFixed(2);
     const formattedPrice = roundedPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -162,7 +162,7 @@ const FinalizeRow: React.FC<Props> = ({
             </p>
 
             <form>
-            <label
+              <label
                 className={`flex flex-col rounded border-2 border-border p-4 transition-all hover:cursor-pointer ${
                   selectedSolarCard === "current"
                     ? "has-[:checked]:border-primary has-[:checked]:shadow-md has-[:checked]:shadow-primary/25"
@@ -243,20 +243,6 @@ const FinalizeRow: React.FC<Props> = ({
           </TabsContent>
         </Tabs>
       </div>
-
-      {/* <PurchaseTab
-        selectedPurchase={selectedSolarPurchase}
-        setSelectedPurchase={setSelectedSolarPurchase}
-      />
-
-      <div className="mt-4 gap-y-5">
-        <FinalSolar
-          showSolarPanel={showSolarPanel}
-          handleCardClick={handleSolarCardClick}
-          selectedCard={selectedSolarCard}
-          selectedPurchase={selectedSolarPurchase}
-        />
-      </div> */}
     </div>
   );
 };

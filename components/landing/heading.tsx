@@ -3,15 +3,17 @@
 import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { CircleDollarSign, Home, MapPin } from "lucide-react";
+import { CircleDollarSign } from "lucide-react";
 import AddressInput from "./address-input";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const Heading = (props: Props) => {
   const baseDelay = 0.5;
+  const router = useRouter();
   const [address, setAddress] = useState("");
   const [bill, setBill] = useState(0);
 
@@ -91,14 +93,23 @@ const Heading = (props: Props) => {
               >
                 <CircleDollarSign className="h-5 w-5" />
               </Input>
-              <Link
-                href={{
-                  pathname: "/build-a-home",
-                  query: { address: address, bill: bill },
+
+              <Button
+                onClick={() => {
+                  if (address === "") {
+                    alert("Please enter an address");
+                    return;
+                  } else if (bill === 0 || isNaN(bill)) {
+                    alert("Please enter your monthly electric bill");
+                    return;
+                  }
+
+                  router.push(`/build-a-home?address=${address}&bill=${bill}`);
                 }}
+                className="font-bold"
               >
-                <Button className="font-bold">Discover</Button>
-              </Link>
+                Discover
+              </Button>
             </div>
           </motion.div>
         </div>
