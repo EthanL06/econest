@@ -26,7 +26,6 @@ const AddressInput = (props: Props) => {
   }, [props.value, setValue]);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(data);
     setValue(e.target.value);
   };
 
@@ -74,6 +73,8 @@ const AddressInput = (props: Props) => {
             <div className="invisible"></div>
           </PopoverTrigger>
           <PopoverContent
+            side="bottom"
+            avoidCollisions={false}
             style={{
               fontFamily: quicksand.style.fontFamily,
             }}

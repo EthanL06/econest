@@ -88,7 +88,6 @@ const Heading = (props: Props) => {
                   if (!event.currentTarget.validity.valid) {
                     event.currentTarget.value = "";
                   } else {
-                    console.log("Updating bill " + event.currentTarget.value);
                     setBill(parseInt(event.currentTarget.value));
                   }
                 }}
@@ -115,8 +114,6 @@ const Heading = (props: Props) => {
                     });
                     return;
                   }
-
-                  console.log(address, bill);
 
                   router.push(`/build-a-home?address=${address}&bill=${bill}`);
                 }}
