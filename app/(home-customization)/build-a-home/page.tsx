@@ -75,3 +75,60 @@ function Home() {
 }
 
 export default Home;
+
+
+
+// TESTING OUT THE BACKEND HERE. USER CREATED
+
+// "use client"
+
+// import React, { useState } from 'react';
+// import { db } from '../../../config/firebase';
+// import { doc, setDoc } from "firebase/firestore"; 
+
+// import User from '@/types/user'; 
+
+// const SignUpForm = () => {
+
+//   const handleSubmit = async (event: React.FormEvent) => {
+//     event.preventDefault();
+
+//     const defaultUser: User = {
+//       username: 'testuser',
+//       password: 'testpassword',
+//       name: 'Test User',
+//       email: 'testuser@example.com',
+//       profilePicture: 'https://example.com/default-profile-picture.jpg',
+//       ecoPoints:  0,
+//       ecoFriends: [],
+//       ecoCommunity: [],
+//       homeAddress: '123 Test Street, Test City, Test Country',
+//       electricalBill:  100,
+//       blogPosts: [],
+//       blogsRead: [],
+//       carbonFootprintInfo: {
+//         total:  0,
+//         transportation:  0,
+//         food:  0,
+//         housing:  0,
+//         goodsAndServices:  0,
+//         waste:  0,
+//       },
+//     };
+
+//     try {
+//       await setDoc(doc(db, "users", defaultUser.username), defaultUser);
+//       console.log('User added successfully');
+//     } catch (error) {
+//       console.error('Error adding user:', error);
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <button type="submit">Sign Up</button>
+//     </form>
+//   );
+// };
+
+// export default SignUpForm;
