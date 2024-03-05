@@ -1,12 +1,16 @@
+import EcoChat from './ecoChat'
+
 type User = {
-    username: string;
+    userID: string;
+    username: string ;
     password: string;
-    name: string;
+    name: string ;
     email: string;
     profilePicture: string;
     ecoPoints: number;
     ecoFriends: string[];
     ecoCommunity: string[];
+    ecoChats: EcoChat[];
     homeAddress: string;
     electricalBill: number;
     blogPosts: string[];
