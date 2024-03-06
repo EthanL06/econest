@@ -1,5 +1,6 @@
 import React from 'react';
 import Message from '@types/message';
+import Image from 'next/image';
 
 interface MessageProps {
  message: Message;
@@ -14,7 +15,8 @@ const Message: React.FC<MessageProps> = ({ message, isMe }) => {
 
 
  const messageAlignment = isMe ? 'justify-end' : 'justify-start';
- const messageBackground = isMe ? 'bg-blue-500 text-white' : 'bg-gray-200';
+ const messageBackground = isMe ? 'bg-green-600 text-white' : 'bg-gray-200';
+
 
  return (
     <div className={`flex ${messageAlignment} mb-4`}>
@@ -24,9 +26,9 @@ const Message: React.FC<MessageProps> = ({ message, isMe }) => {
       <div className={`max-w-xs flex-grow ${messageBackground} p-3 rounded-lg`}>
         <div className="text-sm">
           <p className="font-bold">{message.senderName}</p>
-          <p className="text-gray-600">{message.message}</p>
+          <p className="${ isMe ? 'text-white' : 'text-gray-600'}">{message.message}</p>
         </div>
-        <p className="text-xs text-gray-400">{convertTimeToEnglish(message.time)}</p>
+        <p className=" text-sm ${ isMe ? 'text-white' : 'text-gray-00'}">{convertTimeToEnglish(message.time)}</p>
       </div>
       {isMe && (
         <img src={message.senderProfilePicture} alt="Profile Picture" className="w-10 h-10 rounded-full ml-2" />

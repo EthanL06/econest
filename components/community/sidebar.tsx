@@ -25,6 +25,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user, setSelectedChat }) => {
     }
    }, [user]);
 
+   // this method adds friends. i have it here cuz i was lazy to make a UI for it but ill have to do that later
 //    useEffect(() => {
     
 //     if (user && IWANTTOKILLMYSELFWHYDOYOUDISPLAYTWICE < 1) {

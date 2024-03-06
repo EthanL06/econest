@@ -178,48 +178,42 @@ export async function sendMessage(chatId: string, messageContent: string, sender
     }
 }
 
-export async function fetchMoreMessages(chatId: string, lastMessageTime: string | null): Promise<Message[]> {
+// the limit thing isnt working and im lazy to optimize it so yeah i think ill just get rid of the slice part and hope they dont send too many messages to make it load slowly 
+export async function fetchMoreMessages(chatId: string, lastMessageTime: string | null, limit: number = 20): Promise<Message[]> {
     const chatDocRef = doc(db, "ecoChats", chatId);
     let messages: Message[] = [];
-
     try {
-        const chatDocSnapshot = await getDoc(chatDocRef);
-        if (chatDocSnapshot.exists()) {
-            const chatData = chatDocSnapshot.data() as EcoChat;
-            messages = chatData.chatMessages;
-
-            if (lastMessageTime) {
-                messages = messages.filter(message => message.time > lastMessageTime);
-            }
-
-            messages = messages.slice(-20);
-
-            messages.reverse();
-
-            for (let message of messages) {
-                const user = await getUserById(message.sender);
-                if (user) {
-                    message.senderName = user.name;
-                    message.senderProfilePicture = user.profilePicture;
-                }
-            }
-        }
+         const chatDocSnapshot = await getDoc(chatDocRef);
+         if (chatDocSnapshot.exists()) {
+             const chatData = chatDocSnapshot.data() as EcoChat;
+             messages = chatData.chatMessages;
+             messages = messages.slice(-limit);
+         }
     } catch (error) {
-        console.error("Error fetching more messages:", error);
-        throw error;
+         console.error("Error fetching more messages:", error);
+         throw error;
     }
-
+   
     return messages;
 }
 
 export function listenForNewMessages(chatId: string, onNewMessage: (message: Message) => void): () => void {
-    const messagesCollection = collection(db, "ecoChats", chatId, "chatMessages");
-    const q = query(messagesCollection, orderBy("time", "desc"), limit(20));
-   
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-       const messages = querySnapshot.docs.map((doc) => doc.data() as Message);
-       messages.forEach(onNewMessage);
+    const chatDocRef = doc(db, "ecoChats", chatId);
+    let lastMessageId = null as string | null;
+
+    const unsubscribe = onSnapshot(chatDocRef, (docSnapshot) => {
+        if (docSnapshot.exists()) {
+            const chatData = docSnapshot.data() as EcoChat;
+            const messages = chatData.chatMessages.map((messageData) => messageData as Message);
+
+            messages.forEach((newMessage) => {
+                if (lastMessageId === null || newMessage.messageId !== lastMessageId) {
+                    onNewMessage(newMessage);
+                    lastMessageId = newMessage.messageId;
+                }
+            });
+        }
     });
-   
-    return unsubscribe; 
+
+    return unsubscribe;
 }
