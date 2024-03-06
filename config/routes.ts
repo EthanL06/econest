@@ -12,7 +12,11 @@ import {
   getDocs,
   setDoc,
   addDoc,
-  updateDoc
+  updateDoc,
+  orderBy,
+  startAfter,
+  limit,
+  onSnapshot
 } from "firebase/firestore";
 import {
   getAuth,
@@ -22,6 +26,7 @@ import {
 } from "firebase/auth";
 import User from "@/types/user";
 import EcoChat from "@/types/ecoChat";
+import Message from "@/types/message";
 
 export async function getUserById(userID: string): Promise<User | null> {
   if (!userID) {
@@ -62,6 +67,7 @@ export async function fetchChats(user: User): Promise<EcoChat[]> {
        return [];
     }
 }
+
 
 export async function addFriend(
     currentUserID: string,
@@ -109,6 +115,7 @@ export async function addFriend(
     const createChatPromise = addDoc(ecoChatCollection, chatData)
        .then((docRef) => {
          console.log("EcoChat created with ID:", docRef.id);
+         // it isnt running this line and saving it for some reason. fix that later
          chatData.chatId = docRef.id;
          return Promise.all([
            updateDoc(currentUserDoc, {
@@ -141,4 +148,78 @@ export async function addFriend(
     ]).then(() => {
        console.log("All operations completed successfully");
     });
+}
+
+export async function sendMessage(chatId: string, messageContent: string, senderId: string): Promise<void> {
+    if (!chatId || !messageContent || !senderId) {
+       throw new Error("Chat ID, message content, and sender ID are required");
+    }
+
+    const sender = await getUserById(senderId);
+   
+    const chatDoc = doc(db, "ecoChats", chatId);
+    const messageData = {
+       messageId: Date.now().toString(), 
+       message: messageContent,
+       sender: senderId,
+       time: new Date().toISOString(), 
+       senderName: sender?.name,
+       senderProfilePicture: sender?.profilePicture
+    };
+   
+    try {
+       await updateDoc(chatDoc, {
+         chatMessages: arrayUnion(messageData),
+       });
+       console.log("Message sent successfully");
+    } catch (error) {
+       console.error("Error sending message:", error);
+       throw error;
+    }
+}
+
+export async function fetchMoreMessages(chatId: string, lastMessageTime: string | null): Promise<Message[]> {
+    const chatDocRef = doc(db, "ecoChats", chatId);
+    let messages: Message[] = [];
+
+    try {
+        const chatDocSnapshot = await getDoc(chatDocRef);
+        if (chatDocSnapshot.exists()) {
+            const chatData = chatDocSnapshot.data() as EcoChat;
+            messages = chatData.chatMessages;
+
+            if (lastMessageTime) {
+                messages = messages.filter(message => message.time > lastMessageTime);
+            }
+
+            messages = messages.slice(-20);
+
+            messages.reverse();
+
+            for (let message of messages) {
+                const user = await getUserById(message.sender);
+                if (user) {
+                    message.senderName = user.name;
+                    message.senderProfilePicture = user.profilePicture;
+                }
+            }
+        }
+    } catch (error) {
+        console.error("Error fetching more messages:", error);
+        throw error;
+    }
+
+    return messages;
+}
+
+export function listenForNewMessages(chatId: string, onNewMessage: (message: Message) => void): () => void {
+    const messagesCollection = collection(db, "ecoChats", chatId, "chatMessages");
+    const q = query(messagesCollection, orderBy("time", "desc"), limit(20));
+   
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+       const messages = querySnapshot.docs.map((doc) => doc.data() as Message);
+       messages.forEach(onNewMessage);
+    });
+   
+    return unsubscribe; 
 }

@@ -7,9 +7,10 @@ import { fetchChats, addFriend } from '@config/routes'
 
 interface SidebarProps {
     user: User;
-   }
+    setSelectedChat: (chat: EcoChat | null) => void; 
+}
 
-const Sidebar: React.FC<SidebarProps> = ({ user }) => {
+const Sidebar: React.FC<SidebarProps> = ({ user, setSelectedChat }) => {
  const [chats, setChats] = useState<EcoChat[]>([]);
  let IWANTTOKILLMYSELFWHYDOYOUDISPLAYTWICE = 0;
 
@@ -29,7 +30,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
 //     if (user && IWANTTOKILLMYSELFWHYDOYOUDISPLAYTWICE < 1) {
 //         IWANTTOKILLMYSELFWHYDOYOUDISPLAYTWICE++;
 //         let currentUserID = "53BK7w3TTfUjIaHXezpaGBIersX2"; 
-//         let friendID = "cLylZoeq65hIilcvYcnrWDG5sro2";
+//         let friendID = "I6vrpUZeKzQgtHWnDjOh3arwEGs2";
 //        addFriend(currentUserID, friendID).then(() => {
 //          console.log(user)
 //        }).catch((error) => {
@@ -77,8 +78,8 @@ const Sidebar: React.FC<SidebarProps> = ({ user }) => {
     </div>
     <div className="flex flex-col overflow-y-auto">
       {chats.map((chat, index) => (
-        <SidebarItem key={index} user={user} chat={chat} />
-      ))}
+          <SidebarItem key={index} user={user} chat={chat} setSelectedChat={setSelectedChat} /> 
+          ))}
     </div>
  </div>
 </div>

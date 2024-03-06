@@ -7,6 +7,8 @@ type EcoChat = {
       message: string;
       sender: string;
       time: string;
+      senderName: string;
+      senderProfilePicture: string;
     }[];
   };
 
