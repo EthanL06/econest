@@ -51,7 +51,7 @@ function Home() {
   };
 
   return (
-    <div className="flex h-full w-full flex-col items-center gap-y-12">
+    <div className="flex h-full min-h-[calc(100vh-54px)] w-full flex-col items-center gap-y-12">
       <div className="relative flex min-h-screen w-full flex-col gap-3 text-white lg:flex-row">
         <HomeContainer
           showSolarPanel={showSolarPanel}
@@ -76,17 +76,15 @@ function Home() {
 
 export default Home;
 
-
-
 // TESTING OUT THE BACKEND HERE. USER CREATED
 
 // "use client"
 
 // import React, { useState } from 'react';
 // import { db } from '../../../config/firebase';
-// import { doc, setDoc } from "firebase/firestore"; 
+// import { doc, setDoc } from "firebase/firestore";
 
-// import User from '@/types/user'; 
+// import User from '@/types/user';
 
 // const SignUpForm = () => {
 
