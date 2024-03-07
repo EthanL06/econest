@@ -1,6 +1,6 @@
 import React from 'react';
-import Message from '@types/message';
 import Image from 'next/image';
+import Message from "@/types/message";
 
 interface MessageProps {
  message: Message;

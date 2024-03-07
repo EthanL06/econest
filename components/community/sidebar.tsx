@@ -40,30 +40,6 @@ const Sidebar: React.FC<SidebarProps> = ({ user, setSelectedChat }) => {
 //     }
 //    }, []);
 
- const ecoChats: EcoChat[] = [
-    {
-       chatId: "chat1",
-       chatName: "EcoFriends",
-       chatMembers: ["user1", "user2"],
-       chatMessages: [
-         {
-           messageId: "msg1",
-           message: "Hello, how are you?",
-           sender: "user1",
-           time: "2023-04-01T10:00:00Z",
-         },
-         {
-           messageId: "msg2",
-           message: "I'm good, thanks! How about you?",
-           sender: "user2",
-           time: "2023-04-01T10:05:00Z",
-         },
-         // Add more messages as needed
-       ],
-    },
-    // Add more chats as needed
-   ];
-
  return (
 
 <div className="flex flex-col w-full md:w-64 md:flex-shrink-0 h-screen rounded-lg border border-gray-300 bg-white">
