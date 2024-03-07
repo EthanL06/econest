@@ -15,7 +15,7 @@ const Video = (props: Props) => {
           once: true,
           amount: 0.5,
         }}
-        className="aspect-video w-full rounded-xl  border-[3px] border-primary shadow-2xl shadow-primary/60 lg:w-[60rem]"
+        className="aspect-video w-full rounded-xl  border-2 border-border shadow-2xl shadow-primary/60 lg:w-[60rem]"
         src="https://www.youtube.com/embed/mzEJhd8PVwA?si=e5S1VtEjU0ObDcxi"
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
