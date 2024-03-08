@@ -72,7 +72,7 @@ const Summary = (props: Props) => {
   const totalPrice = () => {
       let totalMoney = Number(getTotalMoney(props.showWindMill, props.selectedWidmillPurchase, props.selectedWindowCard || "", .74 || 1)) + getTotalMoney(props.showWindow, props.selectedWindowPurchase, props.selectedWindowCard || "", .74 || 1) + getTotalMoney(props.showSolarPanel, props.selectedSolarPurchase, props.selectedSolarCard || "", .74 || 1);
 
-      return totalMoney;
+      return totalMoney.toFixed(2);
   }
 
   return (

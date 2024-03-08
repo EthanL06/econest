@@ -4,9 +4,8 @@ import { db } from '@config/firebase';
 import { doc, getDoc } from "firebase/firestore";  
 import User from '@/types/user';  
 import EcoChat from "@/types/ecoChat";
-
-import Sidebar from '@/components/community/sidebar';
-import ChatPage from '@/components/community/chatPage';
+import ChatContainer from "@/components/community/chat/chatContainer"
+import ForumContainer from "@/components/community/forum/forumContainer"
 import { getUserById } from '@config/routes';
 
 const Community = () => {
@@ -22,10 +21,12 @@ const Community = () => {
     }
  }, [userID]);
 
+
  return (
-    <div className="flex gap-2">
-      {userData && <Sidebar user={userData} setSelectedChat={setSelectedChat} /> }
-      {userData && <ChatPage user={userData} selectedChat={selectedChat} /> }
+    <div className="">
+        {/* <ChatContainer user={userData}/> */}
+        <ForumContainer user={userData}/>
+
     </div>
  );
 };

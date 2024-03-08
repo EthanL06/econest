@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import MessageComponent from "./chat/messageComponent";
+import MessageComponent from "./messageComponent";
 import User from "@/types/user";
 import EcoChat from "@/types/ecoChat";
 import Message from "@/types/message";
@@ -27,6 +27,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ user, selectedChat }) => {
   // works
   useEffect(() => {
     if (selectedChat) {
+      console.log(selectedChat)
       const pastTimestamp = null;
       console.log("fetching messages");
       fetchMoreMessages(selectedChat.chatId, pastTimestamp).then(

@@ -19,13 +19,13 @@ const HomeContainer: React.FC<Props> = ({
 }) => {
   return (
     <div className="pointer-events-none aspect-video grow overflow-hidden rounded-2xl border border-border lg:sticky lg:top-12 lg:h-[calc(100vh-80px)] w-full">
-      <SavingStats/>
-      {/* <ThreeJsEnvironment
+      {/* <SavingStats/> */}
+      <ThreeJsEnvironment
         showSolarPanel={showSolarPanel}
         showWindMill={showWindMill}
         showWindow={showWindow}
         page={page}
-      /> */}
+      />
     </div>
   );
 };
