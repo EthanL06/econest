@@ -4,6 +4,7 @@ import { db } from '@config/firebase';
 import { doc, getDoc } from "firebase/firestore";  
 import User from '@/types/user';  
 import EcoChat from "@/types/ecoChat";
+import Forum from "@/types/forum";
 import ChatContainer from "@/components/community/chat/chatContainer"
 import ForumContainer from "@/components/community/forum/forumContainer"
 import ForumPage from "@/components/community/forumPage/forum"
@@ -27,7 +28,7 @@ const Community = () => {
     <div className="">
         {/* <ChatContainer user={userData}/> */}
         { !selectedForum && <ForumContainer user={userData} setSelectedForum={setSelectedForum}/> }
-       { selectedForum && <ForumPage forum={selectedForum}/> }
+       { selectedForum && <ForumPage user={userData} forum={selectedForum}/> }
     </div>
   );
 };

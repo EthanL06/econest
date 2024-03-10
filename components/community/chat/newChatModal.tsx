@@ -6,7 +6,7 @@ import { createNewChat } from "@config/routes";
 interface NewChatModalProps {
   friends: User[];
   onClose: () => void;
-  user: User;
+  user: User | null;
 }
 
 const NewChatModal: React.FC<NewChatModalProps> = ({ friends, onClose, user }) => {

@@ -5,7 +5,7 @@ import EcoChat from '@/types/ecoChat';
 import { getUserById } from '@config/routes'; 
 
 interface SidebarItemProps {
-    user: User;
+    user: User | null;
     chat: EcoChat;
     selectedChat: EcoChat | null;
     setSelectedChat: (chat: EcoChat | null) => void; 
@@ -15,11 +15,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ user, chat, selectedChat, set
     const [friend, setFriend] = useState<User | null>(null);
 
     useEffect(() => {
-        const friendID = chat.chatMembers[0] === user.userID ? chat.chatMembers[1] : chat.chatMembers[0];
+        const friendID = chat.chatMembers[0] === user?.userID ? chat.chatMembers[1] : chat.chatMembers[0];
         if (friendID) {
             getUserById(friendID).then(setFriend);
         }
-    }, [chat, user.userID]);
+    }, [chat, user?.userID]);
 
     const handleClick = () => {
         setSelectedChat(chat); 

@@ -5,8 +5,8 @@ type ForumComment = {
     forumCommentAuthor: string;
     forumCommentDate: string;
     forumCommentContent: string;
-    forumCommentLikes: number;
-    forumCommentDislikes: number;
+    forumCommentLikes: string[];
+    forumCommentDislikes: string[];
 }
 
 export default ForumComment;

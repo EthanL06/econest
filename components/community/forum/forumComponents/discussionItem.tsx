@@ -1,13 +1,15 @@
 import React from "react";
 import Forum from "@/types/forum";
 import Image from "next/image";
-
+import AddForumCommentForm from "../../forumPage/addForumCommentForm";
+import User from "@/types/user";
 interface DiscussionItemProps {
+ user: User | null;
  discussion: Forum;
  setSelectedForum: (forim: Forum | null) => void;
 }
 
-const DiscussionItem: React.FC<DiscussionItemProps> = ({ discussion, setSelectedForum }) => {
+const DiscussionItem: React.FC<DiscussionItemProps> = ({ user, discussion, setSelectedForum }) => {
 
   const handleClick = () => {
     setSelectedForum(discussion); 
@@ -15,11 +17,6 @@ const DiscussionItem: React.FC<DiscussionItemProps> = ({ discussion, setSelected
 
  return (
     <div className="flex flex-col md:flex-row items-center p-4 border-b border-gray-200 hover:bg-gray-100 cursor-pointer" onClick={handleClick}>
-      <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
-        <img src={discussion.forumImage} alt={discussion.forumTitle} className="w-20 h-20 rounded-full" />
-const DiscussionItem: React.FC<DiscussionItemProps> = ({ discussion }) => {
-  return (
-    <div className="flex flex-col items-center gap-x-2 border-b border-gray-200 p-4 sm:flex-row">
       <div className="mb-4 w-full flex-shrink-0 sm:w-auto md:mb-0 md:mr-4">
         <Image
           src={discussion.forumImage}
@@ -59,6 +56,7 @@ const DiscussionItem: React.FC<DiscussionItemProps> = ({ discussion }) => {
           •<p className="text-gray-500">{discussion.forumDate}</p>
         </div>
       </div>
+          
     </div>
   );
 };

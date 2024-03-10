@@ -10,7 +10,7 @@ import ChatPage from '@/components/community/chat/chatPage';
 
 
 interface ChatContainerProps {
-    user: User;
+    user: User | null;
   }
 
   const ChatContainer: React.FC<ChatContainerProps> = ({ user }) => {

@@ -12,7 +12,7 @@ import {
 import { MailIcon } from "@heroicons/react/outline";
 
 interface ChatPageProps {
-  user: User;
+  user: User | null;
   selectedChat: EcoChat | null;
 }
 
@@ -103,14 +103,15 @@ const ChatPage: React.FC<ChatPageProps> = ({ user, selectedChat }) => {
          const messageData = {
            messageId: Date.now().toString(),
            message: messageText,
-           sender: user.userID,
+           sender: user?.userID,
            time: new Date().toISOString(),
-           senderName: user.name,
-           senderProfilePicture: user.profilePicture,
+           senderName: user?.name,
+           senderProfilePicture: user?.profilePicture,
          };
-   
-         await sendMessage(selectedChat.chatId, messageText, user.userID);
-         console.log("Message sent successfully", messages)
+         if(user) {
+          await sendMessage(selectedChat.chatId, messageText, user.userID);
+          console.log("Message sent successfully", messages)
+         }
   
          setMessageText("");
        } catch (error) {
@@ -143,7 +144,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ user, selectedChat }) => {
       <MessageComponent
         key={index}
         message={message}
-        isMe={message.sender === user.userID}
+        isMe={message.sender === user?.userID}
       />
     ))}
 </div>

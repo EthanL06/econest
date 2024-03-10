@@ -26,8 +26,8 @@ const Discussions: React.FC<DiscussionsProps> = ({ user , setSelectedForum}) => 
 //         "forumImage": "https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg",
 //         "forumDate": "2023-04-01",
 //         "forumViews": "100",
-//         "forumLikes": 50,
-//         "forumDislikes": 10,
+//         "forumLikes": [],
+//         "forumDislikes": [],
 //         "forumComments": [],
 //         "forumTags": ["tag1", "tag2", "tag3"]
 //        };
@@ -43,6 +43,8 @@ const Discussions: React.FC<DiscussionsProps> = ({ user , setSelectedForum}) => 
 
 //     addForumToDatabase();
 //  }, []); 
+
+
 
 
  useEffect(() => {
@@ -61,7 +63,7 @@ const Discussions: React.FC<DiscussionsProps> = ({ user , setSelectedForum}) => 
  return (
     <div>
       {discussions.map((discussion) => (
-        <DiscussionItem key={discussion.forumId} discussion={discussion} setSelectedForum={setSelectedForum}/>
+        <DiscussionItem key={discussion.forumId} user={user} discussion={discussion} setSelectedForum={setSelectedForum}/>
       ))}
     </div>
  );

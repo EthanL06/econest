@@ -7,7 +7,7 @@ import { fetchChats, addFriend, fetchFriends } from "@config/routes";
 import NewChatModal from "./newChatModal";
 
 interface SidebarProps {
- user: User;
+ user: User | null;
  selectedChat: EcoChat | null;
  setSelectedChat: (chat: EcoChat | null) => void;
 }

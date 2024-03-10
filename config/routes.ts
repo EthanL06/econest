@@ -17,6 +17,7 @@ import {
   startAfter,
   limit,
   onSnapshot,
+  arrayRemove
 } from "firebase/firestore";
 import {
   getAuth,
@@ -28,6 +29,7 @@ import User from "@/types/user";
 import EcoChat from "@/types/ecoChat";
 import Message from "@/types/message";
 import Forum from "@/types/forum";
+import ForumComment from "@/types/forumComment";
 
 //GENERAL ROUTES BELOW
 
@@ -373,3 +375,100 @@ export async function fetchLeaderboard(): Promise<User[]> {
     return [];
   }
 }
+
+
+export async function addForumComment(comment: ForumComment): Promise<void> {
+  if (!comment) {
+     throw new Error("Comment data is required");
+  }
+ 
+  const forumsCollection = collection(db, "forums");
+  const forumDocRef = doc(forumsCollection, comment.forumId);
+  try {
+     const forumDocSnap = await getDoc(forumDocRef);
+     if (!forumDocSnap.exists()) {
+       throw new Error("Forum document does not exist");
+     }
+ 
+     const newComment = {
+       forumId: comment.forumId,
+       forumCommenterId: comment.forumCommenterId,
+       forumCommentId: Date.now().toString(),
+       forumCommentAuthor: comment.forumCommentAuthor,
+       forumCommentDate:  new Date().toISOString(),
+       forumCommentContent: comment.forumCommentContent,
+       forumCommentLikes: [],
+       forumCommentDislikes: [],
+     };
+ 
+     await updateDoc(forumDocRef, {
+       forumComments: arrayUnion(newComment),
+     });
+ 
+     console.log("Comment added successfully under the forum with ID:", comment.forumId);
+  } catch (error) {
+     console.error("Error adding comment:", error);
+     throw error;
+  }
+ }
+
+
+ export async function updateCommentLikesDislikes(
+  forumId: string,
+  commentId: string,
+  userId: string, 
+  updateType: 'like' | 'dislike'
+ ): Promise<void> {
+  if (!forumId || !commentId || !userId || !updateType) {
+     throw new Error("Forum ID, comment ID, user ID, and update type are required");
+  }
+ 
+  const forumsCollection = collection(db, "forums");
+  const forumDocRef = doc(forumsCollection, forumId);
+ 
+  try {
+     const forumDocSnap = await getDoc(forumDocRef);
+     if (!forumDocSnap.exists()) {
+       throw new Error("Forum document does not exist");
+     }
+ 
+     const forumData = forumDocSnap.data();
+     const comments: ForumComment[] = forumData.forumComments;
+     const commentIndex = comments.findIndex(comment => comment.forumCommentId === commentId);
+ 
+     if (commentIndex === -1) {
+       throw new Error("Comment not found in forum");
+     }
+ 
+     const comment = comments[commentIndex];
+ 
+     comment.forumCommentLikes = Array.isArray(comment.forumCommentLikes) ? comment.forumCommentLikes : [];
+     comment.forumCommentDislikes = Array.isArray(comment.forumCommentDislikes) ? comment.forumCommentDislikes : [];
+ 
+     if (updateType === 'like') {
+       if (comment.forumCommentLikes.includes(userId)) {
+         comment.forumCommentLikes = comment.forumCommentLikes.filter(id => id !== userId);
+       } else {
+         comment.forumCommentLikes.push(userId);
+       }
+     } else if (updateType === 'dislike') {
+       if (comment.forumCommentDislikes.includes(userId)) {
+         comment.forumCommentDislikes = comment.forumCommentDislikes.filter(id => id !== userId);
+       } else {
+         comment.forumCommentDislikes.push(userId);
+       }
+     }
+ 
+     const updatedComments = [...comments];
+     updatedComments[commentIndex] = comment;
+ 
+     await updateDoc(forumDocRef, {
+       forumComments: updatedComments,
+     });
+ 
+     console.log(`Comment likes/dislikes updated successfully for comment with ID: ${commentId}`);
+  } catch (error) {
+     console.error("Error updating comment likes/dislikes:", error);
+     throw error;
+  }
+ }

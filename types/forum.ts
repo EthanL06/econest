@@ -1,3 +1,5 @@
+import User from './user';
+import ForumComment from './forumComment'
 type Forum = {
     forumId: string;
     forumTitle: string;
@@ -6,17 +8,9 @@ type Forum = {
     forumImage: string;
     forumDate: string;
     forumViews: string;
-    forumLikes: number;
-    forumDislikes: number;
-    forumComments: {
-      forumId: string;
-      forumCommentId: string;
-      forumCommentAuthor: string;
-      forumCommentDate: string;
-      forumCommentContent: string;
-      forumCommentLikes: number;
-      forumCommentDislikes: number;
-    }[];
+    forumLikes: string[];
+    forumDislikes: string[];
+    forumComments: ForumComment[];
     forumTags: string[];
   };
 
