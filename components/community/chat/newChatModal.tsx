@@ -35,14 +35,16 @@ const NewChatModal: React.FC<NewChatModalProps> = ({ friends, onClose, user }) =
   };
 
   const createChat = () => {
+    if(user) {
       createNewChat(user, selectedFriends)
-        .then(() => {
-          console.log("Chat created successfully");
-          onClose();
-        })
-        .catch((error) => {
-          console.error("Failed to create chat:", error);
-        });
+      .then(() => {
+        console.log("Chat created successfully");
+        onClose();
+      })
+      .catch((error) => {
+        console.error("Failed to create chat:", error);
+      });
+    } 
     };
 
     const filteredFriends = friends.filter(friend => friend.name.toLowerCase().includes(searchQuery.toLowerCase()));

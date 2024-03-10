@@ -7,9 +7,10 @@ import Forum from '@/types/forum';
 interface AddForumCommentProps {
     user: User | null;
     forum: Forum | null;
+    onAddComment: (comment: ForumComment) => void;
 }
 
-const AddForumCommentForm: React.FC<AddForumCommentProps> = ({ user, forum }) => {
+const AddForumCommentForm: React.FC<AddForumCommentProps> = ({ user, forum, onAddComment }) => {
     const [comment, setComment] = useState<ForumComment>({
         forumId: forum?.forumId || '', 
         forumCommenterId: user?.userID || '', 
@@ -31,12 +32,12 @@ const AddForumCommentForm: React.FC<AddForumCommentProps> = ({ user, forum }) =>
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         try {
-           console.log(forum?.forumId)
-            await addForumComment(comment);
+            const newComment = await addForumComment(comment);
             setComment({
                 ...comment,
                 forumCommentContent: '',
             });
+            onAddComment(newComment); 
         } catch (error) {
             console.error('Error adding comment:', error);
         }

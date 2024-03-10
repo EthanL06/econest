@@ -140,7 +140,11 @@ export async function addFriend(
       console.log("EcoChat created with ID:", docRef.id);
       // it isnt running this line and saving it for some reason. fix that later
       chatData.chatId = docRef.id;
+      
       return Promise.all([
+        updateDoc(doc(ecoChatCollection, docRef.id), {
+          chatId: docRef.id,
+        }),
         updateDoc(currentUserDoc, {
           ecoChats: arrayUnion(docRef.id),
         })
@@ -377,7 +381,7 @@ export async function fetchLeaderboard(): Promise<User[]> {
 }
 
 
-export async function addForumComment(comment: ForumComment): Promise<void> {
+export async function addForumComment(comment: ForumComment): Promise<ForumComment> {
   if (!comment) {
      throw new Error("Comment data is required");
   }
@@ -404,16 +408,16 @@ export async function addForumComment(comment: ForumComment): Promise<void> {
      await updateDoc(forumDocRef, {
        forumComments: arrayUnion(newComment),
      });
- 
      console.log("Comment added successfully under the forum with ID:", comment.forumId);
+
+     return(newComment)
   } catch (error) {
      console.error("Error adding comment:", error);
      throw error;
   }
- }
+}
 
-
- export async function updateCommentLikesDislikes(
+export async function updateCommentLikesDislikes(
   forumId: string,
   commentId: string,
   userId: string, 
@@ -471,4 +475,4 @@ export async function addForumComment(comment: ForumComment): Promise<void> {
      console.error("Error updating comment likes/dislikes:", error);
      throw error;
   }
- }
+}

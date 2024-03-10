@@ -11,7 +11,33 @@ const popularTags = [
   "Eco-Friendly",
   "Home Customization",
   "Green Living",
-];
+  "Renewable Energy",
+  "Recycling",
+  "Organic Farming",
+  "Water Conservation",
+  "Energy Efficiency",
+  "Solar Power",
+  "Wind Power",
+  "Hydro Power",
+  "Geothermal Energy",
+  "Biofuel",
+  "Composting",
+  "Permaculture",
+  "Zero Waste",
+  "Carbon Offsetting",
+  "Sustainable Fashion",
+  "Sustainable Tourism",
+  "Sustainable Agriculture",
+  "Sustainable Cities",
+  "Sustainable Business",
+  "Sustainable Food",
+  "Sustainable Water",
+  "Sustainable Energy",
+  "Sustainable Transportation",
+  "Sustainable Housing",
+  "Sustainable Communities",
+
+ ];
 
 const LeftSidebar: React.FC = () => {
   return (
