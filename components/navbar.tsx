@@ -145,7 +145,6 @@ const Navbar = (props: Props) => {
           <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
         </Link>
 
-
         <Link
           onClick={() => {
             setShowMobileMenu(false);
@@ -167,25 +166,17 @@ const Navbar = (props: Props) => {
           About
           <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
         </Link>
-
-        {/* <Link
-          className="group flex w-full justify-between border-b border-border bg-primary p-4 text-left text-2xl font-semibold text-white transition-colors hover:bg-primary/90"
-          href={"/home-customization"}
-        >
-          Build-A-Home
-          <ChevronRight className="relative left-0 h-6 w-6 stroke-[3]  text-white transition-all duration-200 ease-in-out group-hover:left-1" />
-        </Link> */}
       </motion.div>
 
       <div className="hidden items-center gap-x-6 sm:flex">
         <Link href="/solutions">
           <div className="cursor-pointer text-sm font-semibold">Solutions</div>
         </Link>
-        <Link href="/about">
-          <div className="cursor-pointer text-sm font-semibold">About</div>
-        </Link>
         <Link href="/community">
           <div className="cursor-pointer text-sm font-semibold">Community</div>
+        </Link>
+        <Link href="/about">
+          <div className="cursor-pointer text-sm font-semibold">About</div>
         </Link>
         <Link href="/build-a-home">
           <Button className="text-sm font-semibold">Build-A-Home</Button>

@@ -76,18 +76,21 @@ function Home() {
 
 export default Home;
 
-
-
 // TESTING OUT THE BACKEND HERE. USER CREATED
 
 // "use client"
-// import React, { useState } from 'react';
-// import { db } from '../../../config/firebase';
-// import app from '../../../config/firebase';
-// import { doc, setDoc } from "firebase/firestore";  
-// import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
-// import User from '@/types/user';  
-// import EcoChat from '@/types/ecoChat';
+// import React, { useState } from "react";
+// import { db } from "../../../config/firebase";
+// import app from "../../../config/firebase";
+// import { doc, setDoc } from "firebase/firestore";
+// import {
+//   getAuth,
+//   signInWithPopup,
+//   GoogleAuthProvider,
+//   signInWithRedirect,
+// } from "firebase/auth";
+// import User from "@/types/user";
+// import EcoChat from "@/types/ecoChat";
 
 // const SignUpForm = () => {
 //   const [error, setError] = useState(null);
@@ -96,63 +99,62 @@ export default Home;
 //     event.preventDefault();
 
 //     const provider = new GoogleAuthProvider();
-//     provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+//     provider.addScope("https://www.googleapis.com/auth/contacts.readonly");
 
 //     const auth = getAuth();
-//     auth.languageCode = 'it';
-    
-// signInWithPopup(auth, provider)
-//   .then((result) => {
+//     auth.languageCode = "it";
 
-//     const credential = GoogleAuthProvider.credentialFromResult(result);
-//     const token = credential ? credential.accessToken : null;
-//     const user = result.user;
+//     signInWithPopup(auth, provider)
+//       .then((result) => {
+//         const credential = GoogleAuthProvider.credentialFromResult(result);
+//         const token = credential ? credential.accessToken : null;
+//         const user = result.user;
 
-//     const defaultUser: User = {
-//       userID: user.uid,
-//       username: user.email ?? 'default@email.com',
-//       password: 'testpassword',
-//       name: user.displayName ?? 'Default Name',
-//       email: user.email ?? 'default@email.com',
-//       profilePicture: user.photoURL ?? 'default/path/to/profilePicture.jpg',
-//       ecoPoints:   0,
-//       ecoFriends: [],
-//       ecoCommunity: [],
-//       ecoChats: [],
-//       homeAddress: '123 Test Street, Test City, Test Country',
-//       electricalBill:   100,
-//       blogPosts: [],
-//       blogsRead: [],
-//       carbonFootprintInfo: {
-//         total:   0,
-//         transportation:   0,
-//         food:   0,
-//         housing:   0,
-//         goodsAndServices:   0,
-//         waste:   0,
-//       },
-//     };
+//         const defaultUser: User = {
+//           userID: user.uid,
+//           username: user.email ?? "default@email.com",
+//           password: "testpassword",
+//           name: user.displayName ?? "Default Name",
+//           email: user.email ?? "default@email.com",
+//           profilePicture: user.photoURL ?? "default/path/to/profilePicture.jpg",
+//           ecoPoints: 0,
+//           ecoFriends: [],
+//           ecoCommunity: [],
+//           ecoChats: [],
+//           homeAddress: "123 Test Street, Test City, Test Country",
+//           electricalBill: 100,
+//           blogPosts: [],
+//           blogsRead: [],
+//           carbonFootprintInfo: {
+//             total: 0,
+//             transportation: 0,
+//             food: 0,
+//             housing: 0,
+//             goodsAndServices: 0,
+//             waste: 0,
+//           },
+//         };
 
-//     try {
-//       setDoc(doc(db, "users", defaultUser.userID), defaultUser).then(() => {
-//         localStorage.setItem('userID', user.uid);
-//         console.log('User added successfully');
+//         try {
+//           setDoc(doc(db, "users", defaultUser.userID), defaultUser).then(() => {
+//             localStorage.setItem("userID", user.uid);
+//             console.log("User added successfully");
+//           });
+//         } catch (error) {
+//           console.error("Error adding user:", error);
+//         }
+//       })
+//       .catch((error) => {
+//         // // Handle Errors here.
+//         // const errorCode = error.code;
+//         // const errorMessage = error.message;
+//         // // The email of the user's account used.
+//         // const email = error.customData.email;
+//         // // The AuthCredential type that was used.
+//         // const credential = GoogleAuthProvider.credentialFromError(error);
+//         // // ...
+//         console.log(error);
 //       });
-//     } catch (error) {
-//       console.error('Error adding user:', error);
-//     }
-      
-//   }).catch((error) => {
-//     // // Handle Errors here.
-//     // const errorCode = error.code;
-//     // const errorMessage = error.message;
-//     // // The email of the user's account used.
-//     // const email = error.customData.email;
-//     // // The AuthCredential type that was used.
-//     // const credential = GoogleAuthProvider.credentialFromError(error);
-//     // // ...
-//     console.log(error)
-//   });
 //   };
 
 //   return (

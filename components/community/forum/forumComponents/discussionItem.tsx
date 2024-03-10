@@ -1,35 +1,55 @@
-import React from 'react';
+import React from "react";
 import Forum from "@/types/forum";
-import Image from 'next/image';
+import Image from "next/image";
 
 interface DiscussionItemProps {
- discussion: Forum;
+  discussion: Forum;
 }
 
 const DiscussionItem: React.FC<DiscussionItemProps> = ({ discussion }) => {
- return (
-    <div className="flex flex-col md:flex-row items-center p-4 border-b border-gray-200">
-      <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-4">
-        <img src={discussion.forumImage} alt={discussion.forumTitle} className="w-20 h-20 rounded-full" />
-      </div>
-      <div className="flex-wrap gap-2 mt-4 md:mt-0">
-      <h2 className="text-lg font-semibold">{discussion.forumTitle}</h2>
-      <p className="text-gray-600">{discussion.forumDescription}</p>
-
-      <div className="flex flex-row gap-3 mt-2 md:mt-2">
-      {discussion.forumTags.map((tag, index) => (
-          <button key={index} className="bg-gray-200 text-gray-700 rounded-sm px-2 py-1 text-sm">{tag}</button>
-        ))} 
-        <p className="text-gray-500">Written By: {discussion.forumAuthor}</p>
-        <p className="text-gray-500">{discussion.forumViews} Views</p>
-        <p className="text-gray-500">{discussion.forumComments.length} Comments</p>
+  return (
+    <div className="flex flex-col items-center gap-x-2 border-b border-gray-200 p-4 sm:flex-row">
+      <div className="mb-4 w-full flex-shrink-0 sm:w-auto md:mb-0 md:mr-4">
+        <Image
+          src={discussion.forumImage}
+          alt={discussion.forumTitle}
+          width={200}
+          height={200}
+          placeholder="blur"
+          blurDataURL="data:image/webp;base64,UklGRkIDAABXRUJQVlA4WAoAAAAgAAAARAEAtQAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggVAEAALAUAJ0BKkUBtgA+7Xa3VqmnJSOgKAEwHYlpbt5QA25jr3PkAWlsnIe+2TkPfbZaZv2vS38VWYuInNBCLmUEI9eSPEIYruahLQJdeRJA+7Rt+cwvscmRF+jMiWGOHoqwX6QGAjvxa8CMWgCBnpaE21UAYwGl6WbhO13EeHHGhLAR4PeUrAyPeZ5bPk0u6Fim7CM51Y8QhdMu6Flns7jXqiWyFkkoJnxdHNcVCtxIgAD+7XEDHg7D7bdnUxJHZqBQI1Nm7hAr7F77T6PzKewwpzMk5iQiC813JJyVsqQQc7yiMDEj/ovkH5754qdA5StVFHrHdZoQKS2R3AErOzGyCqB+5jDgJ5XXJ9hz3XvNn/Xd+jxrnWLOA8McuNLlVF0pNrY62t654c5gIkfvvwURzKizTuug5GxqbI0BIQE6eRjz5l99W5MUln5mF5HRBu3gW9RAAAA="
+          className="aspect-video rounded-lg sm:size-20"
+        />
       </div>
 
-      <p className="text-gray-500 mt-1">{discussion.forumDate}</p>
-     
+      <div className="mt-4 w-full flex-wrap gap-2 sm:w-auto md:mt-0">
+        <h2 className="text-lg font-bold">{discussion.forumTitle}</h2>
+        <p className="text-sm font-black text-gray-600 text-primary">
+          {discussion.forumAuthor}
+        </p>
+        <p className=" text-sm font-medium text-gray-600">
+          {discussion.forumDescription}
+        </p>
+
+        <div className="mb-2 mt-1 flex flex-row flex-wrap items-center gap-3">
+          {discussion.forumTags.map((tag, index) => (
+            <div key={index}>
+              <button className="shrink-0 rounded-sm bg-gray-200 px-2 py-1 text-xs text-gray-700">
+                {tag}
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-1 text-xs">
+          <p className=" text-gray-500">{discussion.forumViews} Views</p>•
+          <p className="text-gray-500">
+            {discussion.forumComments.length} Comments
+          </p>
+          •<p className="text-gray-500">{discussion.forumDate}</p>
+        </div>
       </div>
     </div>
- );
+  );
 };
 
 export default DiscussionItem;

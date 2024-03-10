@@ -1,38 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const DiscussionNav: React.FC = () => {
- const [activeTab, setActiveTab] = useState('Discussions');
+  const [activeTab, setActiveTab] = useState("Discussions");
 
- const handleClick = (tab: string) => {
+  const handleClick = (tab: string) => {
     setActiveTab(tab);
- };
+  };
 
- return (
-    <div className="p-4">
+  return (
+    <div className="sm:p-4">
       <div className="flex justify-between">
-        <div className="flex space-x-4 text-2xl	">
+        <div className="flex flex-wrap gap-2 text-2xl sm:gap-4	">
           <button
-            onClick={() => handleClick('Discussions')}
-            className={`text-gray-500  ${activeTab === 'Discussions' ? 'underline ' : ''}`}
+            onClick={() => handleClick("Discussions")}
+            className={`text-gray-500  ${
+              activeTab === "Discussions" ? "underline " : ""
+            }`}
           >
             Discussions
           </button>
           <button
-            onClick={() => handleClick('Trending')}
-            className={`text-gray-500  ${activeTab === 'Trending' ? 'underline ' : ''}`}
+            onClick={() => handleClick("Trending")}
+            className={`text-gray-500  ${
+              activeTab === "Trending" ? "underline " : ""
+            }`}
           >
             Trending
           </button>
           <button
-            onClick={() => handleClick('Announced')}
-            className={`text-gray-500  ${activeTab === 'Announced' ? 'underline 0' : ''}`}
+            onClick={() => handleClick("Announced")}
+            className={`text-gray-500  ${
+              activeTab === "Announced" ? "0 underline" : ""
+            }`}
           >
             Announced
           </button>
         </div>
       </div>
     </div>
- );
+  );
 };
 
 export default DiscussionNav;
