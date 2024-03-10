@@ -9,9 +9,10 @@ import { fetchForums, addForum } from "@config/routes";
 
 interface DiscussionsProps {
     user: User | null;
+    setSelectedForum: (forim: Forum | null) => void;
 }
 
-const Discussions: React.FC<DiscussionsProps> = ({ user }) => {
+const Discussions: React.FC<DiscussionsProps> = ({ user , setSelectedForum}) => {
  const [discussions, setDiscussions] = useState<Forum[]>([]);
 
  // this is here cuz im lazy. it makes a forum and adds it to the db
@@ -60,7 +61,7 @@ const Discussions: React.FC<DiscussionsProps> = ({ user }) => {
  return (
     <div>
       {discussions.map((discussion) => (
-        <DiscussionItem key={discussion.forumId} discussion={discussion} />
+        <DiscussionItem key={discussion.forumId} discussion={discussion} setSelectedForum={setSelectedForum}/>
       ))}
     </div>
  );
