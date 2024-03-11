@@ -3,7 +3,7 @@ import User from "@/types/user";
 import { getUserById } from "@config/routes";
 import Image from "next/image";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
-
+import  { addFriend } from "@config/routes";
 type UserProfileProps = {
  userId: string;
  showModal: boolean;
@@ -23,8 +23,19 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId, showModal, setShowMod
  }, [userId]);
 
  const handleAddFriend = async () => {
-    console.log("Adding friend...");
-    setShowModal(false);
+  const currentUserID = localStorage.getItem('userID');
+  if (!currentUserID) {
+     console.error('Current user ID not found in local storage');
+     return;
+  }
+ 
+  try {
+     await addFriend(currentUserID, userId); 
+     console.log('Friend added successfully');
+     setShowModal(false);
+  } catch (error) {
+     console.error('Error adding friend:', error);
+  }
  };
 
  const truncateName = (name: string | undefined) => {

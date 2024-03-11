@@ -181,6 +181,33 @@ export async function addFriend(
   });
 }
 
+
+export async function addPoints(user: string, points: number): Promise<void> {
+  if (!user || points === 0) {
+    throw new Error("User object and points are required");
+  }
+
+  const userDocRef = doc(db, "users", user);
+  const userDocSnap = await getDoc(userDocRef);
+
+  if (!userDocSnap.exists()) {
+    throw new Error("User document does not exist");
+  }
+
+  const userData = userDocSnap.data() as User;
+  const updatedPoints = userData.ecoPoints + points;
+
+  try {
+    await updateDoc(userDocRef, {
+      ecoPoints: updatedPoints,
+    });
+    console.log("Points added successfully");
+  } catch (error) {
+    console.error("Error adding points:", error);
+    throw error;
+  }
+}
+
 // CHAT ROUTES BELOW
 
 // works
@@ -380,7 +407,6 @@ export async function fetchLeaderboard(): Promise<User[]> {
   }
 }
 
-
 export async function addForumComment(comment: ForumComment): Promise<ForumComment> {
   if (!comment) {
      throw new Error("Comment data is required");
@@ -409,6 +435,8 @@ export async function addForumComment(comment: ForumComment): Promise<ForumComme
        forumComments: arrayUnion(newComment),
      });
      console.log("Comment added successfully under the forum with ID:", comment.forumId);
+
+     addPoints(comment.forumCommenterId, 10);
 
      return(newComment)
   } catch (error) {
@@ -469,6 +497,8 @@ export async function updateCommentLikesDislikes(
      await updateDoc(forumDocRef, {
        forumComments: updatedComments,
      });
+
+     addPoints(userId, 10);
  
      console.log(`Comment likes/dislikes updated successfully for comment with ID: ${commentId}`);
   } catch (error) {

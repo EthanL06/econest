@@ -43,6 +43,8 @@ const AddForumCommentForm: React.FC<AddForumCommentProps> = ({ user, forum, onAd
         }
     };
 
+
+
     return (
         <div className=" p-4 rounded-lg border mt-4">
             <div className="flex items-center mb-4">

@@ -10,7 +10,7 @@ interface MessageProps {
 const Message: React.FC<MessageProps> = ({ message, isMe }) => {
  function convertTimeToEnglish(time: string) {
     const date = new Date(time);
-    return date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+    return date.toLocaleString('en-US', { month: '2-digit', day: '2-digit', hour: 'numeric', minute: 'numeric', hour12: true });
  }
 
 

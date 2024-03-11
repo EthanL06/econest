@@ -14,6 +14,13 @@ const DiscussionItem: React.FC<DiscussionItemProps> = ({ user, discussion, setSe
   const handleClick = () => {
     setSelectedForum(discussion); 
 };
+function convertTimeToEnglish(time: string) {
+  const date = new Date(time);
+  return date.toLocaleString("en-US", {
+    month: "numeric",
+    day: "numeric",
+  });
+}
 
  return (
     <div className="flex flex-col md:flex-row items-center p-4 border-b border-gray-200 hover:bg-gray-100 cursor-pointer" onClick={handleClick}>
@@ -53,7 +60,7 @@ const DiscussionItem: React.FC<DiscussionItemProps> = ({ user, discussion, setSe
           <p className="text-gray-500">
             {discussion.forumComments.length} Comments
           </p>
-          •<p className="text-gray-500">{discussion.forumDate}</p>
+          •<p className="text-gray-500">{convertTimeToEnglish(discussion.forumDate)}</p>
         </div>
       </div>
           

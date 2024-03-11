@@ -34,62 +34,63 @@ const ForumComment: React.FC<ForumCommentProps> = ({ user, comment }) => {
     };
 
     fetchUser();
-  }, [comment.forumCommenterId]);
+ }, [comment.forumCommenterId]);
 
-  const handleLike = async () => {
-    try {
-      if (user) {
-        await updateCommentLikesDislikes(
-          comment.forumId,
-          comment.forumCommentId,
-          user.userID,
-          "like",
-        );
+  
+const handleLike = async () => {
+  try {
+    if (user) {
+      const newLikes = localComment.forumCommentLikes.includes(user.userID)
+        ? localComment.forumCommentLikes.filter((id) => id !== user.userID)
+        : [...localComment.forumCommentLikes, user.userID];
 
-        setLocalComment({
-          ...localComment,
-          forumCommentLikes: localComment.forumCommentLikes.includes(
-            user.userID,
-          )
-            ? localComment.forumCommentLikes.filter((id) => id !== user.userID)
-            : [...localComment.forumCommentLikes, user.userID],
-        });
-        setUserLiked(localComment.forumCommentLikes.includes(user.userID));
-      }
-        
+      await updateCommentLikesDislikes(
+        comment.forumId,
+        comment.forumCommentId,
+        user.userID,
+       "like",
+      );
 
-    } catch (error) {
-      console.error("Error updating likes:", error);
+      setLocalComment({
+        ...localComment,
+        forumCommentLikes: newLikes,
+      });
+      setUserLiked(newLikes.includes(user.userID));
+      console.log("updating it")
     }
-  };
+  } catch (error) {
+    console.error("Error updating likes:", error);
+  }
+};
 
-  const handleDislike = async () => {
-    try {
-      if (user) {
-        await updateCommentLikesDislikes(
-          comment.forumId,
-          comment.forumCommentId,
-          user.userID,
-          "dislike",
-        );
-        setLocalComment({
-          ...localComment,
-          forumCommentDislikes: localComment.forumCommentDislikes.includes(
-            user.userID,
-          )
-            ? localComment.forumCommentDislikes.filter(
-                (id) => id !== user.userID,
-              )
-            : [...localComment.forumCommentDislikes, user.userID],
-        });
-        setUserDisliked(localComment.forumCommentDislikes.includes(user.userID));
-      }
-      
+const handleDislike = async () => {
+  try {
+    if (user) {
+      const newDislikes = localComment.forumCommentDislikes.includes(user.userID)
+        ? localComment.forumCommentDislikes.filter((id) => id !== user.userID)
+        : [...localComment.forumCommentDislikes, user.userID];
 
-    } catch (error) {
-      console.error("Error updating dislikes:", error);
+      await updateCommentLikesDislikes(
+        comment.forumId,
+        comment.forumCommentId,
+        user.userID,
+        "dislike",
+      );
+
+      setLocalComment({
+        ...localComment,
+        forumCommentDislikes: newDislikes,
+      });
+      setUserDisliked(newDislikes.includes(user.userID));
     }
-  };
+  } catch (error) {
+    console.error("Error updating dislikes:", error);
+  }
+};
+
+function convertNewlinesToBreaks(text: string): JSX.Element {
+  return <div dangerouslySetInnerHTML={{ __html: text.replace(/\n/g, '<br />') }} />;
+}
 
 
   return (
@@ -123,20 +124,19 @@ const ForumComment: React.FC<ForumCommentProps> = ({ user, comment }) => {
               </p>
             </div>
           </div>
-          <p>{localComment.forumCommentContent}</p>
+          {convertNewlinesToBreaks(localComment.forumCommentContent)}
           <div className="mt-4 flex items-center">
             <button
-              onClick={handleLike}
-              className={`flex items-center gap-3 rounded-lg border border-gray-300 px-3 py-1  ${userLiked ? 'bg-green-600 text-white hover:bg-green-700' : 'hover:bg-gray-100'}`}
+                onClick={handleLike}
+                className={`flex items-center gap-3 rounded-lg border border-gray-300 px-3 py-1 ${userLiked ? 'bg-green-600 text-white hover:bg-green-700' : 'hover:bg-gray-100'}`}
             >
-              <ThumbsUp size={16} /> {localComment.forumCommentLikes.length} Likes
+                <ThumbsUp size={16} /> {localComment.forumCommentLikes.length} Likes
             </button>
             <button
-              onClick={handleDislike}
-              className={`flex items-center gap-3 rounded-lg border border-gray-300 px-3 py-1 ml-2 ${userDisliked ? 'bg-green-600 text-white hover:bg-green-700' : 'hover:bg-gray-100'}`}
+                onClick={handleDislike}
+                className={`flex items-center gap-3 rounded-lg border border-gray-300 px-3 py-1 ml-2 ${userDisliked ? 'bg-green-600 text-white hover:bg-green-700' : 'hover:bg-gray-100'}`}
             >
-              <ThumbsDown size={16} /> {localComment.forumCommentDislikes.length}{" "}
-              Dislikes
+                <ThumbsDown size={16} /> {localComment.forumCommentDislikes.length} Dislikes
             </button>
           </div>
         </div>
