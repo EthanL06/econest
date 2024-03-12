@@ -208,6 +208,8 @@ export async function addPoints(user: string, points: number): Promise<void> {
   }
 }
 
+
+
 // CHAT ROUTES BELOW
 
 // works

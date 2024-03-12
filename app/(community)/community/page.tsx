@@ -8,6 +8,7 @@ import Forum from "@/types/forum";
 import ChatContainer from "@/components/community/chat/chatContainer"
 import ForumContainer from "@/components/community/forum/forumContainer"
 import ForumPage from "@/components/community/forumPage/forum"
+import EcoChallengeContainer from "@/components/community/ecoChallenges/ecoChallengeContainer"
 import { getUserById } from '@config/routes';
 
 const Community = () => {
@@ -27,8 +28,10 @@ const Community = () => {
   return (
     <div className="">
         {/* <ChatContainer user={userData}/> */}
-        { !selectedForum && <ForumContainer user={userData} setSelectedForum={setSelectedForum}/> }
-       { selectedForum && <ForumPage user={userData} forum={selectedForum}/> }
+        {/* { !selectedForum && <ForumContainer user={userData} setSelectedForum={setSelectedForum}/> }
+       { selectedForum && <ForumPage user={userData} forum={selectedForum}/> } */}
+
+       <EcoChallengeContainer/>
     </div>
   );
 };
