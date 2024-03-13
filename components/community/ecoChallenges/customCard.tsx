@@ -1,45 +1,86 @@
-
-import React from 'react';
-import { Leaf } from 'lucide-react'; 
+import React, { useState } from "react";
+import { Leaf } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type Challenge = {
- id: string;
- image: string;
- title: string;
- name: string;
- date: string;
- description: string;
- ecoPoints: number;
+  id: string;
+  image: string;
+  title: string;
+  name: string;
+  date: string;
+  description: string;
+  ecoPoints: number;
 };
 
 type CustomCardProps = {
- challenge: Challenge;
+  challenge: Challenge;
 };
 
 const CustomCard: React.FC<CustomCardProps> = ({ challenge }) => {
- return (
-    <div className="rounded-lg border bg-card shadow-sm hover:bg-gray-200" >
-      <img src={challenge.image} alt={challenge.title} className="w-full h-48 object-cover rounded-lg " />
-      <div className="p-4">
-      <h3 className="text-xl font-semibold leading-none tracking-tight mb-2">{challenge.title}</h3>
-      <div className="flex space-x-3 mb-4">
-        <div className="flex items-center space-x-2">
-          <span className="text-sm text-gray-500" >{challenge.name}</span>
-        </div>
-        <div className="bg-green-500 rounded-lg px-1 ">
-            <span className="text-xs text-white">{challenge.date}</span>
-        </div>
-      </div>
-      <p className="text-sm text-muted-foreground mb-4">{challenge.description}</p>
-      <div className="flex ">
-        <Leaf size={18} />
-        <span className="ml-2 text-sm">{challenge.ecoPoints} Eco Points</span>
-      </div>
+  const [showMore, setShowMore] = useState(false);
 
+  const displayDescription = (description: string) => {
+    if (description.length > 100) {
+      return (
+        <>
+          {challenge.description.slice(0, 110)}...{" "}
+          <Button
+            onClick={() => setShowMore(!showMore)}
+            className="h-auto p-0"
+            variant={"link"}
+          >
+            Read More
+          </Button>
+        </>
+      );
+    }
+    return description;
+  };
+
+  return (
+    <div className="flex h-full flex-col rounded-lg border bg-card shadow-sm hover:bg-gray-200">
+      <img
+        src={challenge.image}
+        alt={challenge.title}
+        className="h-48 w-full rounded-lg object-cover "
+      />
+
+      <div className="flex grow flex-col p-4">
+        <h3 className="mb-2 text-xl font-semibold leading-none tracking-tight">
+          {challenge.title}
+        </h3>
+        <div className=" flex items-center space-x-1">
+          <div className="flex items-center space-x-2">
+            <span className="text-sm font-semibold text-gray-500">
+              {challenge.name}
+            </span>
+          </div>
+
+          <div className="flex items-center justify-center">•</div>
+
+          <div className="flex items-center justify-center font-medium">
+            <span className="text-sm font-medium text-gray-500">
+              {challenge.date}
+            </span>
+          </div>
+        </div>
+        <p className="mb-4  mt-2 grow text-pretty text-sm text-muted-foreground">
+          {showMore
+            ? challenge.description
+            : displayDescription(challenge.description)}
+        </p>
+        <div className="flex w-full justify-between">
+          <div className="flex items-center">
+            <Leaf className="text-primary" size={18} />
+            <span className="ml-2 text-sm font-semibold">
+              {challenge.ecoPoints} Eco Points
+            </span>
+          </div>
+          <Button className="px-4 py-2 text-sm font-bold">Claim</Button>
+        </div>
       </div>
-     
     </div>
- );
+  );
 };
 
 export default CustomCard;
