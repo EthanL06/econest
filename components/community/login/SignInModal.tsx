@@ -91,11 +91,16 @@ const SignIn = ({
     auth.languageCode = "en";
 
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(async (result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential ? credential.accessToken : null;
         const user = result.user;
 
+        const userRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userRef);
+
+        if(!userDoc.exists()) {
+      
         const defaultUser: User = {
           userID: user.uid,
           username: user.email ?? "default@email.com",
@@ -143,6 +148,17 @@ const SignIn = ({
 
           console.error("Error adding user:", error);
         }
+
+      } else {
+        localStorage.setItem("userID", user.uid);
+        router.push(redirect);
+        toast({
+          title: `Sign in successful!`,
+          description: "Welcome to ecoNest!",
+          variant: "success",
+          duration: 3000,
+        });
+      }
       })
       .catch((error) => {
         toast({

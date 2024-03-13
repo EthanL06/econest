@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { addSolutionToReadList, getUserById } from "@config/routes";
 
 type Challenge = {
   href: string;
@@ -22,10 +23,43 @@ type CustomCardProps = {
 const SolutionCard: React.FC<CustomCardProps> = ({ challenge }) => {
   const router = useRouter();
   const [showMore, setShowMore] = React.useState(false);
+  const [readSolutions, setReadSolutions] = useState<string[]>([]);
 
-  const handleClick = () => {
-    router.push("/solutions/" + challenge.href);
+  useEffect(() => {
+    const fetchReadSolutions = async () => {
+      const userID = localStorage.getItem("userID");
+      if (userID) {
+        try {
+          const user = await getUserById(userID);
+          if (user) {
+            setReadSolutions(user.blogPosts || []);
+          }
+        } catch (error) {
+          console.error("Error fetching user:", error);
+        }
+      }
+    };
+
+    fetchReadSolutions();
+ }, []);
+
+
+  const handleClick = async () => {
+    try {
+      const userID = localStorage.getItem("userID");
+      const challengeID = challenge.href;
+      const points = challenge.ecoPoints;
+      if (userID)
+        await addSolutionToReadList(userID, challengeID, points);
+      console.log("Solution read claimed successfully");
+    } catch (error) {
+      console.error("Error claiming solution read:", error);
+    } finally {
+      router.push("/solutions/" + challenge.href);
+    }
+   
   };
+
 
   const displayDescription = (description: string) => {
     if (description.length > 100) {
@@ -45,8 +79,11 @@ const SolutionCard: React.FC<CustomCardProps> = ({ challenge }) => {
     return description;
   };
 
+  const isSolutionRead = readSolutions.includes(challenge.href);
+
+
   return (
-    <div className="flex h-full flex-col rounded-lg border bg-card shadow-sm hover:bg-gray-200">
+    <div className="flex h-full flex-col rounded-lg border bg-card shadow-sm hover:bg-gray-200 ">
       <img
         src={challenge.image}
         alt={challenge.name}
@@ -83,7 +120,13 @@ const SolutionCard: React.FC<CustomCardProps> = ({ challenge }) => {
               {challenge.ecoPoints} Eco Points
             </span>
           </div>
-          <Button onClick={handleClick} className="px-4 py-2 text-sm font-bold">
+          <Button
+            className={`px-4 py-2 text-sm font-bold z-20 ${
+              isSolutionRead ? "cursor-not-allowed bg-gray-500 " : ""
+            }`}
+            onClick={isSolutionRead ? undefined : handleClick}
+            disabled={isSolutionRead}
+          >
             Read
           </Button>
         </div>

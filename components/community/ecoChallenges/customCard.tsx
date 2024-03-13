@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import { Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import { addChallengeToUserClaimedList, getUserById } from "@config/routes";
 type Challenge = {
   id: string;
   image: string;
@@ -18,6 +19,44 @@ type CustomCardProps = {
 
 const CustomCard: React.FC<CustomCardProps> = ({ challenge }) => {
   const [showMore, setShowMore] = useState(false);
+
+  const [claimedChallenges, setClaimedChallenges] = useState<string[]>([]);
+  const [isClaiming, setIsClaiming] = useState(false);
+
+  useEffect(() => {
+    const fetchClaimedChallenges = async () => {
+       const userID = localStorage.getItem("userID");
+       if (userID) {
+         try {
+           const user = await getUserById(userID);
+           if (user) {
+             setClaimedChallenges(user.blogsRead || []);
+           }
+         } catch (error) {
+           console.error("Error fetching user:", error);
+         }
+       }
+    };
+   
+    fetchClaimedChallenges();
+   }, []);
+
+  const runDidChallenge = async () => {
+    setIsClaiming(true);
+    try {
+      const userID = localStorage.getItem("userID");
+      const challengeID = challenge.id;
+      const points = challenge.ecoPoints;
+      if (userID)
+        await addChallengeToUserClaimedList(userID, challengeID, points);
+      console.log("Challenge claimed successfully");
+      setClaimedChallenges([...claimedChallenges, challengeID]);
+    } catch (error) {
+      console.error("Error claiming challenge:", error);
+    } finally {
+      setIsClaiming(false);
+    }
+  };
 
   const displayDescription = (description: string) => {
     if (description.length > 100) {
@@ -36,6 +75,8 @@ const CustomCard: React.FC<CustomCardProps> = ({ challenge }) => {
     }
     return description;
   };
+
+  const isChallengeClaimed = claimedChallenges.includes(challenge.id);
 
   return (
     <div className="flex h-full flex-col rounded-lg border bg-card shadow-sm hover:bg-gray-200">
@@ -76,7 +117,19 @@ const CustomCard: React.FC<CustomCardProps> = ({ challenge }) => {
               {challenge.ecoPoints} Eco Points
             </span>
           </div>
-          <Button className="px-4 py-2 text-sm font-bold">Claim</Button>
+          <Button
+            className={`px-4 py-2 text-sm font-bold z-20 ${
+              isChallengeClaimed ? "cursor-not-allowed bg-gray-500 " : ""
+            }`}
+            onClick={isChallengeClaimed ? undefined : runDidChallenge}
+            disabled={isChallengeClaimed || isClaiming}
+          >
+            {isClaiming
+              ? "Claiming..."
+              : isChallengeClaimed
+                ? "Claimed"
+                : "Claim"}
+          </Button>
         </div>
       </div>
     </div>

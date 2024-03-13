@@ -508,3 +508,73 @@ export async function updateCommentLikesDislikes(
      throw error;
   }
 }
+
+
+// ECO CHALLENGES
+
+export async function addChallengeToUserClaimedList(userID: string, challengeID: string, points: number): Promise<void> {
+  if (!userID || !challengeID) {
+     throw new Error("User ID and challenge are required");
+  }
+ 
+  const usersCollection = collection(db, "users");
+  const userDocRef = doc(usersCollection, userID);
+  try {
+     const userDocSnap = await getDoc(userDocRef);
+     if (!userDocSnap.exists()) {
+       throw new Error("User document does not exist");
+     }
+ 
+     const userData = userDocSnap.data() as User;
+     const claimedChallenges = userData.blogsRead || [];
+ 
+     if (claimedChallenges.includes(challengeID)) {
+       throw new Error("Challenge is already claimed by the user");
+     }
+ 
+     await updateDoc(userDocRef, {
+        blogsRead: arrayUnion(challengeID),
+     });
+     console.log("Challenge added successfully to user's claimed list");
+     
+      addPoints(userID, points);
+  } catch (error) {
+     console.error("Error adding challenge to user's claimed list:", error);
+     throw error;
+  }
+ }
+
+ export async function addSolutionToReadList(userID: string, solutionID: string, points: number): Promise<void> {
+  if (!userID || !solutionID) {
+     throw new Error("User ID and challenge are required");
+  }
+ 
+  const usersCollection = collection(db, "users");
+  const userDocRef = doc(usersCollection, userID);
+  try {
+     const userDocSnap = await getDoc(userDocRef);
+     if (!userDocSnap.exists()) {
+       throw new Error("User document does not exist");
+     }
+ 
+     const userData = userDocSnap.data() as User;
+     const claimedChallenges = userData.blogPosts || [];
+ 
+     if (claimedChallenges.includes(solutionID)) {
+       throw new Error("Challenge is already claimed by the user");
+     }
+ 
+     await updateDoc(userDocRef, {
+      blogPosts: arrayUnion(solutionID),
+     });
+     console.log("Challenge added successfully to user's claimed list");
+     
+      addPoints(userID, points);
+  } catch (error) {
+     console.error("Error adding challenge to user's claimed list:", error);
+     throw error;
+  }
+ }
+
+
+
