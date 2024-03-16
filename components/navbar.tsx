@@ -27,7 +27,7 @@ const Navbar = (props: Props) => {
       className={cn(
         "fixed left-0 right-0 top-0 z-[999999] mx-auto flex w-full items-center justify-between border-b border-transparent bg-transparent py-2  transition-all duration-300 ease-in-out sm:border sm:px-8 ",
         ifScrollBelowNavbar()
-          ? "  border-border bg-white/95 px-4 sm:my-2 sm:w-[32rem] sm:rounded-full sm:bg-white sm:px-6 sm:py-3 sm:shadow"
+          ? "  border-border bg-white/95 px-4 sm:my-2 sm:w-[38rem] sm:rounded-full sm:bg-white sm:px-6 sm:py-3 sm:shadow"
           : " px-4 sm:py-4",
       )}
     >
@@ -139,6 +139,17 @@ const Navbar = (props: Props) => {
             setShowMobileMenu(false);
           }}
           className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
+          href={"/community"}
+        >
+          Community
+          <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
+        </Link>
+
+        <Link
+          onClick={() => {
+            setShowMobileMenu(false);
+          }}
+          className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
           href={"/build-a-home"}
         >
           Build-A-Home
@@ -160,6 +171,9 @@ const Navbar = (props: Props) => {
       <div className="hidden items-center gap-x-6 sm:flex">
         <Link href="/solutions">
           <div className="cursor-pointer text-sm font-semibold">Solutions</div>
+        </Link>
+        <Link href="/community">
+          <div className="cursor-pointer text-sm font-semibold">Community</div>
         </Link>
         <Link href="/about">
           <div className="cursor-pointer text-sm font-semibold">About</div>
