@@ -91,7 +91,7 @@ const Navbar = (props: Props) => {
         }}
         animate={showMobileMenu ? "visible" : "hidden"}
         className={cn(
-          "fixed bottom-0 left-0 right-0 top-0 z-[999999] float-right flex h-full w-full flex-col items-center overflow-hidden bg-white/95 px-4 sm:hidden",
+          "fixed bottom-0 left-0 right-0 top-0 z-[999999] float-right flex h-full w-full flex-col items-center overflow-hidden bg-white px-4 sm:hidden",
           !showMobileMenu ? "pointer-events-none" : "",
         )}
       >
@@ -152,7 +152,7 @@ const Navbar = (props: Props) => {
           className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
           href={"/build-a-home"}
         >
-          Build A Home
+          Build-A-Home
           <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
         </Link>
 
@@ -160,7 +160,7 @@ const Navbar = (props: Props) => {
           onClick={() => {
             setShowMobileMenu(false);
           }}
-          className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
+          className="group flex w-full items-center justify-between gap-x-2 border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
           href={"/about"}
         >
           About

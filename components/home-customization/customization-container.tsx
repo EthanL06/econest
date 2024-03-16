@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { Progress } from "../ui/progress";
 import HomeInput from "./home-input";
 import { toast } from "../ui/use-toast";
+import Link from "next/link";
 
 type Props = {
   handleShowSolarPanel: (details: CustomizationDetails) => void;
@@ -183,12 +184,25 @@ const CustomizationContainer: React.FC<Props> = ({
 
         <Button
           onClick={handleNextClick}
-          className={cn("text-base font-bold", page === 7 && "invisible")}
+          className={cn("text-base font-bold", page === 7 && "hidden")}
           variant="default"
           size={"lg"}
         >
           Next
         </Button>
+
+        <Link
+          className={cn("hidden", page === 7 && "block")}
+          href={"/purchase"}
+        >
+          <Button
+            className={cn("text-base font-bold")}
+            variant="default"
+            size={"lg"}
+          >
+            Purchase
+          </Button>
+        </Link>
       </div>
     </div>
   );

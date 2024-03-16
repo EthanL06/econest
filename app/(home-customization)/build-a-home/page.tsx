@@ -51,7 +51,7 @@ function Home() {
   };
 
   return (
-    <div className="flex h-full w-full flex-col items-center gap-y-12">
+    <div className="flex h-full min-h-[calc(100vh-54px)] w-full flex-col items-center gap-y-12">
       <div className="relative flex min-h-screen w-full flex-col gap-3 text-white lg:flex-row">
         <HomeContainer
           showSolarPanel={showSolarPanel}
@@ -94,6 +94,7 @@ export default Home;
 
 // const SignUpForm = () => {
 //   const [error, setError] = useState(null);
+
 
 //   const handleSubmit = async (event: React.FormEvent) => {
 //     event.preventDefault();

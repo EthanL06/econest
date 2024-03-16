@@ -155,6 +155,12 @@ const Page = (props: Props) => {
             </p>
 
             <p>
+              ”Company Logos”. BrandFetch,{" "}
+              <Link href="https://brandfetch.com">brandfetch.com</Link>.
+              Accessed 28 Jan. 2024.
+            </p>
+
+            <p>
               Tech, Multimedia. “Home Automation” Flickr, 3 Aug. 2015,{" "}
               <Link href="www.flickr.com/photos/multimediatech/19636174774">
                 www.flickr.com/photos/multimediatech/19636174774
@@ -193,7 +199,7 @@ const Page = (props: Props) => {
               </Link>
               . Accessed 29 Jan. 2024.
             </p>
-            
+
             <p>
               “Business people having meeting analysing financial data.”
               YouTube, uploaded by Free Stock Footage, 19 Nov. 2023,{" "}
