@@ -12,6 +12,8 @@ type UserProfileProps = {
 
 const UserProfile: React.FC<UserProfileProps> = ({ userId, showModal, setShowModal }) => {
  const [user, setUser] = useState<User | null>(null);
+ const [isFriend, setIsFriend] = useState<boolean>(false);
+
 
  useEffect(() => {
     const fetchUser = async () => {
@@ -22,21 +24,42 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId, showModal, setShowMod
     fetchUser();
  }, [userId]);
 
- const handleAddFriend = async () => {
-  const currentUserID = localStorage.getItem('userID');
+ useEffect(() => {
+  const checkIfFriend = async () => {
+    const currentUserID = localStorage.getItem("userID");
+    if (!currentUserID) {
+      console.error("Current user ID not found in local storage");
+      return;
+    }
+    const currentUser = await getUserById(currentUserID);
+    if(currentUser) {
+      const friends = currentUser.ecoFriends;
+      setIsFriend(friends.includes(userId));
+    }
+  };
+
+  checkIfFriend();
+}, [user]);
+
+const handleAddFriend = async () => {
+  const currentUserID = localStorage.getItem("userID");
   if (!currentUserID) {
-     console.error('Current user ID not found in local storage');
-     return;
+    console.error("Current user ID not found in local storage");
+    return;
   }
- 
+
   try {
-     await addFriend(currentUserID, userId); 
-     console.log('Friend added successfully');
-     setShowModal(false);
+    await addFriend(currentUserID, userId);
+    console.log("Friend added successfully");
+    setIsFriend(true); 
   } catch (error) {
-     console.error('Error adding friend:', error);
+    console.error("Error adding friend:", error);
   }
- };
+};
+
+const goToChatPage = () => {
+window.location.href = "/chat"
+}
 
  const truncateName = (name: string | undefined) => {
     if (name) {
@@ -66,7 +89,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId, showModal, setShowMod
               />
             )}
 
-            <div>
+            <div className="w-full">
               <h3 className="text-lg leading-6 font-medium text-gray-900">
                 {truncateName(user?.name)}
               </h3>
@@ -87,10 +110,10 @@ const UserProfile: React.FC<UserProfileProps> = ({ userId, showModal, setShowMod
         <div className="p-4 flex justify-between">
           <button
             type="button"
-            className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm"
-            onClick={handleAddFriend}
+            className={`w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm ${isFriend ? 'bg-green-700 hover:bg-green-600' : ''}`}
+            onClick={isFriend ? goToChatPage : handleAddFriend}
           >
-            Add as Friend
+           {isFriend ? 'Chat Now' : 'Add Friend'}
           </button>
           <button
             type="button"

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import User from "@/types/user";
 import Image from "next/image";
+import UserProfile from '@/components/ui/userProfile'
 
 interface LeaderboardSidebarItemProps {
   user: User;
@@ -9,8 +10,14 @@ interface LeaderboardSidebarItemProps {
 const LeaderboardSidebarItem: React.FC<LeaderboardSidebarItemProps> = ({
   user,
 }) => {
+
+  const [showModal, setShowModal] = useState(false);
+
+
   return (
-    <li className="mt-2 flex cursor-pointer items-center justify-between border-b border-gray-200 p-2 hover:bg-gray-100">
+
+    <>
+    <li className="mt-2 relative flex cursor-pointer items-center justify-between border-b border-gray-200 p-2 hover:bg-gray-100" onClick={() => setShowModal(true)}>
       {/* <img src={user.profilePicture} alt={user.name} className="w-10 h-10 rounded-full mr-4" /> */}
       <Image
         src={user.profilePicture}
@@ -24,6 +31,14 @@ const LeaderboardSidebarItem: React.FC<LeaderboardSidebarItemProps> = ({
       <div className="text-sm font-medium text-gray-900">{user.name}</div>
       <div className="text-sm text-gray-500">EcoPoints: {user.ecoPoints}</div>
     </li>
+
+    {showModal && (
+      <div className="z-10 top-0 left-0"> 
+        <UserProfile userId={user.userID} showModal={showModal} setShowModal={setShowModal} />
+      </div>
+    )}
+
+</>
   );
 };
 
