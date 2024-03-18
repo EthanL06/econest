@@ -19,10 +19,10 @@ interface ChatContainerProps {
 
 
  return (
-    <div className="flex gap-2">
-      {user && <Sidebar user={user} setSelectedChat={setSelectedChat} selectedChat={selectedChat} /> }
-      {user && <ChatPage user={user} selectedChat={selectedChat} /> }
-    </div>
+  <div className="flex gap-2 h-full">
+  {user && <Sidebar user={user} setSelectedChat={setSelectedChat} selectedChat={selectedChat} /> }
+  {user && <ChatPage user={user} selectedChat={selectedChat} /> }
+</div>
  );
 };
 

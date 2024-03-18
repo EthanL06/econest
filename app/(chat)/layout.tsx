@@ -19,16 +19,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+ }: {
   children: React.ReactNode;
-}) {
+ }) {
   return (
-    <div
-      className={`${quicksand.variable} max-w-screen-[1400px] relative mx-auto flex flex-col px-8 py-2 font-sans text-black sm:px-8 sm:py-4`}
-    >
-      <CommunityNavbar />
-      <div className="mt-4 h-dvh">{children}</div>
-      <TailwindIndicator />
-    </div>
+     <div
+       className={`${quicksand.variable} max-w-screen-[1400px] relative mx-auto flex flex-col px-8 py-2 font-sans text-black sm:px-8 sm:py-4 h-screen`}
+     >
+       <CommunityNavbar />
+       <div className="mt-4 flex-grow overflow-auto">{children}</div>
+       <TailwindIndicator />
+     </div>
   );
-}
+ }

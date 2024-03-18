@@ -130,7 +130,7 @@ const ChatPage: React.FC<ChatPageProps> = ({ user, selectedChat }) => {
    }, [messages]);
 
   return (
-    <div className="flex h-screen w-full flex-col rounded-lg border border-gray-300 md:w-full">
+    <div className="flex h-full w-full flex-col rounded-lg border border-gray-300 md:w-full">
       <header className="rounded-lg bg-green-700 p-4 text-white shadow-md">
         <h1 className="text-xl font-bold">
           {selectedChat ? selectedChat.chatName : "Select a chat"}
