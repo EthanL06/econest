@@ -31,8 +31,10 @@ const AddFriendCard: React.FC<AddFriendCardProps> = ({ userId }) => {
         return;
       }
       const currentUser = await getUserById(currentUserID);
-      const friends = currentUser.ecoFriends;
-      setIsFriend(friends.includes(userId));
+      if(currentUser) {
+        const friends = currentUser.ecoFriends;
+        setIsFriend(friends.includes(userId));
+      }
     };
 
     checkIfFriend();
@@ -53,6 +55,10 @@ const AddFriendCard: React.FC<AddFriendCardProps> = ({ userId }) => {
       console.error("Error adding friend:", error);
     }
  };
+
+ const goToChatPage = () => {
+  window.location.href = "/chat"
+ }
 
  return (
     <div className="mx-auto flex w-full max-w-md space-x-5 rounded-lg bg-white p-4 shadow-md">
@@ -79,11 +85,10 @@ const AddFriendCard: React.FC<AddFriendCardProps> = ({ userId }) => {
            <span>{user?.ecoPoints} Eco Points</span>
           </div>
           <Button
-            onClick={handleAddFriend}
-            className={`mt-4 w-full font-semibold ${isFriend ? 'bg-gray-500 cursor-not-allowed' : ''}`}
-            disabled={isFriend}
+            onClick={isFriend ? goToChatPage : handleAddFriend}
+            className={`mt-4 w-full font-semibold ${isFriend ? 'bg-green-700 hover:bg-green-600' : ''}`}
           >
-            {isFriend ? 'Already Added' : 'Add Friend'}
+            {isFriend ? 'Chat Now' : 'Add Friend'}
           </Button>
           </div>
       </div>

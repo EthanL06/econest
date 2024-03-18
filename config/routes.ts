@@ -106,7 +106,7 @@ export async function addFriend(
 
   const userData = userDocSnap.data();
 
-  if(!userData.ecoFriends.includes(friendID)) {
+  if(!userData?.ecoFriends.includes(friendID)) {
     const updateCurrentUserPromise = updateDoc(currentUserDoc, {
       ecoFriends: arrayUnion(friendID),
     })

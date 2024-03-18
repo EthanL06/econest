@@ -26,7 +26,7 @@ const Chat = () => {
   }, [userID]);
 
   return (
-    <div className="">
+    <div className="h-full">
       <ChatContainer user={userData}/>
     </div>
   );
