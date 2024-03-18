@@ -61,7 +61,7 @@ const Navbar = (props: Props) => {
           </div>
         </div>
       </Link>
-
+      
       <Button
         onClick={() => {
           setShowMobileMenu(!showMobileMenu);
@@ -180,7 +180,7 @@ const Navbar = (props: Props) => {
         </Link>
       </motion.div>
 
-      <div className="hidden items-center gap-x-6 sm:flex">
+      <div className="hidden items-center gap-x-4 sm:flex">
         <Link href="/solutions">
           <div className="cursor-pointer text-sm font-semibold">Solutions</div>
         </Link>
