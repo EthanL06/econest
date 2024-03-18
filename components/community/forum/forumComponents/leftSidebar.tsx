@@ -43,7 +43,7 @@ const LeftSidebar: React.FC = () => {
   return (
     <div className="py-4">
       <div className="mb-4">
-        <h3 className="mb-2 text-lg font-bold">Quick Links</h3>
+        <h3 className="mb-2 text-lg font-bold">Popular Links</h3>
         <ul>
           {quickLinks.map((link, index) => (
             <li key={index} className="bold mb-1 cursor-pointer">

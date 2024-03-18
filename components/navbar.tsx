@@ -139,9 +139,21 @@ const Navbar = (props: Props) => {
             setShowMobileMenu(false);
           }}
           className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
+          href={"/forum"}
+        >
+          Forums
+          <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
+        </Link>
+
+
+        <Link
+          onClick={() => {
+            setShowMobileMenu(false);
+          }}
+          className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
           href={"/community"}
         >
-          Community
+          Challenges
           <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
         </Link>
 
@@ -172,8 +184,11 @@ const Navbar = (props: Props) => {
         <Link href="/solutions">
           <div className="cursor-pointer text-sm font-semibold">Solutions</div>
         </Link>
+        <Link href="/forum">
+          <div className="cursor-pointer text-sm font-semibold">Forums</div>
+        </Link>
         <Link href="/community">
-          <div className="cursor-pointer text-sm font-semibold">Community</div>
+          <div className="cursor-pointer text-sm font-semibold">Challenges</div>
         </Link>
         <Link href="/about">
           <div className="cursor-pointer text-sm font-semibold">About</div>

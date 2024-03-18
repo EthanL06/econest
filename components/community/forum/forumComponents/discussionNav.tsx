@@ -10,7 +10,10 @@ const DiscussionNav: React.FC = () => {
   return (
     <div className="sm:p-4">
       <div className="flex justify-between">
-        <div className="flex flex-wrap gap-2 text-2xl sm:gap-4	">
+        <div className="flex flex-wrap gap-2 text-2xl sm:gap-4	text-gray-500 underline">
+          Discussions
+        </div>
+        {/* <div className="flex flex-wrap gap-2 text-2xl sm:gap-4	">
           <button
             onClick={() => handleClick("Discussions")}
             className={`text-gray-500  ${
@@ -35,7 +38,7 @@ const DiscussionNav: React.FC = () => {
           >
             Announced
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
