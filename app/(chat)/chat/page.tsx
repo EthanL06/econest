@@ -26,7 +26,7 @@ const Chat = () => {
   }, [userID]);
 
   return (
-    <div className="flex-grow overflow-auto">
+    <div className="flex-grow overflow-auto h-full">
       <ChatContainer user={userData}/>
     </div>
   );
