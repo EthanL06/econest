@@ -40,7 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user, selectedChat, setSelectedChat }
  // add filter to go off of the friends names 
 
  return (
-    <div className="flex h-screen w-full flex-col rounded-lg border border-gray-300 bg-white md:w-64 md:flex-shrink-0">
+    <div className="flex h-full w-full flex-col rounded-lg border border-gray-300 bg-white md:w-64 md:flex-shrink-0">
       <div className="flex h-full flex-col">
         <div className="mt-8 flex flex-col items-center justify-center p-4">
           <h1 className="text-xl font-semibold">Messages</h1>

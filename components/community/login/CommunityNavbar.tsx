@@ -41,6 +41,10 @@ const CommunityNavbar = (props: Props) => {
       });
   };
 
+  const goToChatPage = () => {
+    window.location.href = "/chat"
+  }
+
   useEffect(() => {
     // Get userid from local storage. If it exists, user is logged in
     const userID = localStorage.getItem("userID");
@@ -125,7 +129,10 @@ const CommunityNavbar = (props: Props) => {
                   My Profile
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <div className="my-2 flex w-full items-center justify-center">
+                <div className="my-2 flex flex-col w-full px-3 justify-center align-center gap-y-3">
+                  <Button onClick={goToChatPage} className="bg-green-500 ">
+                    Chat
+                  </Button>
                   <Button onClick={signOutUser} variant={"destructive"}>
                     Sign Out
                   </Button>

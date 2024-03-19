@@ -5,6 +5,7 @@ import { ThumbsUp, ThumbsDown } from "lucide-react";
 import { getUserById, updateCommentLikesDislikes } from "@config/routes";
 import UserProfile from '@/components/ui/userProfile'
 import Image from 'next/image'
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type ForumCommentProps = {
   user: User | null;
@@ -98,16 +99,13 @@ function convertNewlinesToBreaks(text: string): JSX.Element {
       <div className="flex flex-row items-start space-x-3">
         {commentUser && (
           <div className="relative flex flex-col items-center"> 
-                <Image
-    src={commentUser.profilePicture}
-    alt={`${commentUser.name}'s profile`}
-        width={200}
-        height={200}
-        placeholder="blur"
-        blurDataURL="data:image/webp;base64,UklGRkIDAABXRUJQVlA4WAoAAAAgAAAARAEAtQAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggVAEAALAUAJ0BKkUBtgA+7Xa3VqmnJSOgKAEwHYlpbt5QA25jr3PkAWlsnIe+2TkPfbZaZv2vS38VWYuInNBCLmUEI9eSPEIYruahLQJdeRJA+7Rt+cwvscmRF+jMiWGOHoqwX6QGAjvxa8CMWgCBnpaE21UAYwGl6WbhO13EeHHGhLAR4PeUrAyPeZ5bPk0u6Fim7CM51Y8QhdMu6Flns7jXqiWyFkkoJnxdHNcVCtxIgAD+7XEDHg7D7bdnUxJHZqBQI1Nm7hAr7F77T6PzKewwpzMk5iQiC813JJyVsqQQc7yiMDEj/ovkH5754qdA5StVFHrHdZoQKS2R3AErOzGyCqB+5jDgJ5XXJ9hz3XvNn/Xd+jxrnWLOA8McuNLlVF0pNrY62t654c5gIkfvvwURzKizTuug5GxqbI0BIQE6eRjz5l99W5MUln5mF5HRBu3gW9RAAAA="
-        className="aspect-video mr-4 h-12 w-12 rounded-full cursor-pointer"
-        onClick={() => setShowModal(true)}
-    />
+                <Avatar className="outline outline-2 outline-primary-foreground hover:cursor-pointer hover:bg-gray-800"  onClick={() => setShowModal(true)}>
+                  <AvatarImage
+                    src={commentUser.profilePicture}
+                    alt={`${commentUser.name}'s profile`}
+                  />
+                  <AvatarFallback>{commentUser.name}</AvatarFallback>
+                </Avatar>
             {showModal && (
               <div className="absolute z-10 top-0 left-0 mt-10"> 
                 <UserProfile userId={commentUser.userID} showModal={showModal} setShowModal={setShowModal} />

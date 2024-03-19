@@ -102,83 +102,90 @@ export async function addFriend(
 
   // add friend to user
   const currentUserDoc = doc(db, "users", currentUserID);
-  const updateCurrentUserPromise = updateDoc(currentUserDoc, {
-    ecoFriends: arrayUnion(friendID),
-  })
-    .then(() => {
-      console.log("Friend added successfully to current user");
+  const userDocSnap = await getDoc(currentUserDoc);
+
+  const userData = userDocSnap.data();
+
+  if(!userData?.ecoFriends.includes(friendID)) {
+    const updateCurrentUserPromise = updateDoc(currentUserDoc, {
+      ecoFriends: arrayUnion(friendID),
     })
-    .catch((error) => {
-      console.error("Error adding friend to current user:", error);
-      throw error;
-    });
-
-  // add u to friend
-  const friendDoc = doc(db, "users", friendID);
-  const updateFriendPromise = updateDoc(friendDoc, {
-    ecoFriends: arrayUnion(currentUserID),
-  })
-    .then(() => {
-      console.log("Current user added successfully to friend");
+      .then(() => {
+        console.log("Friend added successfully to current user");
+      })
+      .catch((error) => {
+        console.error("Error adding friend to current user:", error);
+        throw error;
+      });
+  
+    // add u to friend
+    const friendDoc = doc(db, "users", friendID);
+    const updateFriendPromise = updateDoc(friendDoc, {
+      ecoFriends: arrayUnion(currentUserID),
     })
-    .catch((error) => {
-      console.error("Error adding current user to friend:", error);
-      throw error;
-    });
-
-  // create chat
-  const ecoChatCollection = collection(db, "ecoChats");
-  const chatData: EcoChat = {
-    chatId: "",
-    chatName: "Direct Message",
-    chatMembers: [currentUserID, friendID],
-    chatMessages: [],
-  };
-
-  const createChatPromise = addDoc(ecoChatCollection, chatData)
-    .then((docRef) => {
-      console.log("EcoChat created with ID:", docRef.id);
-      // it isnt running this line and saving it for some reason. fix that later
-      chatData.chatId = docRef.id;
-      
-      return Promise.all([
-        updateDoc(doc(ecoChatCollection, docRef.id), {
-          chatId: docRef.id,
-        }),
-        updateDoc(currentUserDoc, {
-          ecoChats: arrayUnion(docRef.id),
-        })
-          .then(() => {
-            console.log("Chat ID added to current user");
-          })
-          .catch((error) => {
-            console.error("Error adding chat ID to current user:", error);
-            throw error;
+      .then(() => {
+        console.log("Current user added successfully to friend");
+      })
+      .catch((error) => {
+        console.error("Error adding current user to friend:", error);
+        throw error;
+      });
+  
+    // create chat
+    const ecoChatCollection = collection(db, "ecoChats");
+    const chatData: EcoChat = {
+      chatId: "",
+      chatName: "Direct Message",
+      chatMembers: [currentUserID, friendID],
+      chatMessages: [],
+    };
+  
+    const createChatPromise = addDoc(ecoChatCollection, chatData)
+      .then((docRef) => {
+        console.log("EcoChat created with ID:", docRef.id);
+        // it isnt running this line and saving it for some reason. fix that later
+        chatData.chatId = docRef.id;
+        
+        return Promise.all([
+          updateDoc(doc(ecoChatCollection, docRef.id), {
+            chatId: docRef.id,
           }),
-        updateDoc(friendDoc, {
-          ecoChats: arrayUnion(docRef.id),
-        })
-          .then(() => {
-            console.log("Chat ID added to friend");
+          updateDoc(currentUserDoc, {
+            ecoChats: arrayUnion(docRef.id),
           })
-          .catch((error) => {
-            console.error("Error adding chat ID to friend:", error);
-            throw error;
-          }),
-      ]);
-    })
-    .catch((error) => {
-      console.error("Error creating EcoChat:", error);
-      throw error;
+            .then(() => {
+              console.log("Chat ID added to current user");
+            })
+            .catch((error) => {
+              console.error("Error adding chat ID to current user:", error);
+              throw error;
+            }),
+          updateDoc(friendDoc, {
+            ecoChats: arrayUnion(docRef.id),
+          })
+            .then(() => {
+              console.log("Chat ID added to friend");
+            })
+            .catch((error) => {
+              console.error("Error adding chat ID to friend:", error);
+              throw error;
+            }),
+        ]);
+      })
+      .catch((error) => {
+        console.error("Error creating EcoChat:", error);
+        throw error;
+      });
+  
+    return Promise.all([
+      updateCurrentUserPromise,
+      updateFriendPromise,
+      createChatPromise,
+    ]).then(() => {
+      console.log("All operations completed successfully");
     });
-
-  return Promise.all([
-    updateCurrentUserPromise,
-    updateFriendPromise,
-    createChatPromise,
-  ]).then(() => {
-    console.log("All operations completed successfully");
-  });
+  }
+ 
 }
 
 
