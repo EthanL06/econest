@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import User from "@/types/user";
 import Image from "next/image";
@@ -31,7 +32,6 @@ const LeaderboardSidebarItem: React.FC<LeaderboardSidebarItemProps> = ({
       <div className="text-sm font-medium text-gray-900">{user.name}</div>
       <div className="text-sm text-gray-500">EcoPoints: {user.ecoPoints}</div>
     </li>
-
     {showModal && (
       <div className="z-10 top-0 left-0"> 
         <UserProfile userId={user.userID} showModal={showModal} setShowModal={setShowModal} />
