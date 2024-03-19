@@ -17,7 +17,7 @@ import {
   startAfter,
   limit,
   onSnapshot,
-  arrayRemove
+  arrayRemove,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -30,6 +30,7 @@ import EcoChat from "@/types/ecoChat";
 import Message from "@/types/message";
 import Forum from "@/types/forum";
 import ForumComment from "@/types/forumComment";
+import { toast } from "@/components/ui/use-toast";
 
 //GENERAL ROUTES BELOW
 
@@ -106,7 +107,7 @@ export async function addFriend(
 
   const userData = userDocSnap.data();
 
-  if(!userData?.ecoFriends.includes(friendID)) {
+  if (!userData?.ecoFriends.includes(friendID)) {
     const updateCurrentUserPromise = updateDoc(currentUserDoc, {
       ecoFriends: arrayUnion(friendID),
     })
@@ -117,7 +118,7 @@ export async function addFriend(
         console.error("Error adding friend to current user:", error);
         throw error;
       });
-  
+
     // add u to friend
     const friendDoc = doc(db, "users", friendID);
     const updateFriendPromise = updateDoc(friendDoc, {
@@ -130,7 +131,7 @@ export async function addFriend(
         console.error("Error adding current user to friend:", error);
         throw error;
       });
-  
+
     // create chat
     const ecoChatCollection = collection(db, "ecoChats");
     const chatData: EcoChat = {
@@ -139,13 +140,13 @@ export async function addFriend(
       chatMembers: [currentUserID, friendID],
       chatMessages: [],
     };
-  
+
     const createChatPromise = addDoc(ecoChatCollection, chatData)
       .then((docRef) => {
         console.log("EcoChat created with ID:", docRef.id);
         // it isnt running this line and saving it for some reason. fix that later
         chatData.chatId = docRef.id;
-        
+
         return Promise.all([
           updateDoc(doc(ecoChatCollection, docRef.id), {
             chatId: docRef.id,
@@ -176,7 +177,7 @@ export async function addFriend(
         console.error("Error creating EcoChat:", error);
         throw error;
       });
-  
+
     return Promise.all([
       updateCurrentUserPromise,
       updateFriendPromise,
@@ -185,9 +186,7 @@ export async function addFriend(
       console.log("All operations completed successfully");
     });
   }
- 
 }
-
 
 export async function addPoints(user: string, points: number): Promise<void> {
   if (!user || points === 0) {
@@ -208,14 +207,19 @@ export async function addPoints(user: string, points: number): Promise<void> {
     await updateDoc(userDocRef, {
       ecoPoints: updatedPoints,
     });
+
+    toast({
+      title: `You've earned ${points} Eco Points!`,
+      description: "Refresh the page to see your updated points. Great job!",
+      variant: "success",
+      duration: 3000,
+    });
     console.log("Points added successfully");
   } catch (error) {
     console.error("Error adding points:", error);
     throw error;
   }
 }
-
-
 
 // CHAT ROUTES BELOW
 
@@ -416,172 +420,195 @@ export async function fetchLeaderboard(): Promise<User[]> {
   }
 }
 
-export async function addForumComment(comment: ForumComment): Promise<ForumComment> {
+export async function addForumComment(
+  comment: ForumComment,
+): Promise<ForumComment> {
   if (!comment) {
-     throw new Error("Comment data is required");
+    throw new Error("Comment data is required");
   }
- 
+
   const forumsCollection = collection(db, "forums");
   const forumDocRef = doc(forumsCollection, comment.forumId);
   try {
-     const forumDocSnap = await getDoc(forumDocRef);
-     if (!forumDocSnap.exists()) {
-       throw new Error("Forum document does not exist");
-     }
- 
-     const newComment = {
-       forumId: comment.forumId,
-       forumCommenterId: comment.forumCommenterId,
-       forumCommentId: Date.now().toString(),
-       forumCommentAuthor: comment.forumCommentAuthor,
-       forumCommentDate:  new Date().toISOString(),
-       forumCommentContent: comment.forumCommentContent,
-       forumCommentLikes: [],
-       forumCommentDislikes: [],
-     };
- 
-     await updateDoc(forumDocRef, {
-       forumComments: arrayUnion(newComment),
-     });
-     console.log("Comment added successfully under the forum with ID:", comment.forumId);
+    const forumDocSnap = await getDoc(forumDocRef);
+    if (!forumDocSnap.exists()) {
+      throw new Error("Forum document does not exist");
+    }
 
-     addPoints(comment.forumCommenterId, 10);
+    const newComment = {
+      forumId: comment.forumId,
+      forumCommenterId: comment.forumCommenterId,
+      forumCommentId: Date.now().toString(),
+      forumCommentAuthor: comment.forumCommentAuthor,
+      forumCommentDate: new Date().toISOString(),
+      forumCommentContent: comment.forumCommentContent,
+      forumCommentLikes: [],
+      forumCommentDislikes: [],
+    };
 
-     return(newComment)
+    await updateDoc(forumDocRef, {
+      forumComments: arrayUnion(newComment),
+    });
+    console.log(
+      "Comment added successfully under the forum with ID:",
+      comment.forumId,
+    );
+
+    addPoints(comment.forumCommenterId, 10);
+
+    return newComment;
   } catch (error) {
-     console.error("Error adding comment:", error);
-     throw error;
+    console.error("Error adding comment:", error);
+    throw error;
   }
 }
 
 export async function updateCommentLikesDislikes(
   forumId: string,
   commentId: string,
-  userId: string, 
-  updateType: 'like' | 'dislike'
- ): Promise<void> {
+  userId: string,
+  updateType: "like" | "dislike",
+): Promise<void> {
   if (!forumId || !commentId || !userId || !updateType) {
-     throw new Error("Forum ID, comment ID, user ID, and update type are required");
+    throw new Error(
+      "Forum ID, comment ID, user ID, and update type are required",
+    );
   }
- 
+
   const forumsCollection = collection(db, "forums");
   const forumDocRef = doc(forumsCollection, forumId);
- 
-  try {
-     const forumDocSnap = await getDoc(forumDocRef);
-     if (!forumDocSnap.exists()) {
-       throw new Error("Forum document does not exist");
-     }
- 
-     const forumData = forumDocSnap.data();
-     const comments: ForumComment[] = forumData.forumComments;
-     const commentIndex = comments.findIndex(comment => comment.forumCommentId === commentId);
- 
-     if (commentIndex === -1) {
-       throw new Error("Comment not found in forum");
-     }
- 
-     const comment = comments[commentIndex];
- 
-     comment.forumCommentLikes = Array.isArray(comment.forumCommentLikes) ? comment.forumCommentLikes : [];
-     comment.forumCommentDislikes = Array.isArray(comment.forumCommentDislikes) ? comment.forumCommentDislikes : [];
- 
-     if (updateType === 'like') {
-       if (comment.forumCommentLikes.includes(userId)) {
-         comment.forumCommentLikes = comment.forumCommentLikes.filter(id => id !== userId);
-       } else {
-         comment.forumCommentLikes.push(userId);
-       }
-     } else if (updateType === 'dislike') {
-       if (comment.forumCommentDislikes.includes(userId)) {
-         comment.forumCommentDislikes = comment.forumCommentDislikes.filter(id => id !== userId);
-       } else {
-         comment.forumCommentDislikes.push(userId);
-       }
-     }
- 
-     const updatedComments = [...comments];
-     updatedComments[commentIndex] = comment;
- 
-     await updateDoc(forumDocRef, {
-       forumComments: updatedComments,
-     });
 
-     addPoints(userId, 10);
- 
-     console.log(`Comment likes/dislikes updated successfully for comment with ID: ${commentId}`);
+  try {
+    const forumDocSnap = await getDoc(forumDocRef);
+    if (!forumDocSnap.exists()) {
+      throw new Error("Forum document does not exist");
+    }
+
+    const forumData = forumDocSnap.data();
+    const comments: ForumComment[] = forumData.forumComments;
+    const commentIndex = comments.findIndex(
+      (comment) => comment.forumCommentId === commentId,
+    );
+
+    if (commentIndex === -1) {
+      throw new Error("Comment not found in forum");
+    }
+
+    const comment = comments[commentIndex];
+
+    comment.forumCommentLikes = Array.isArray(comment.forumCommentLikes)
+      ? comment.forumCommentLikes
+      : [];
+    comment.forumCommentDislikes = Array.isArray(comment.forumCommentDislikes)
+      ? comment.forumCommentDislikes
+      : [];
+
+    if (updateType === "like") {
+      if (comment.forumCommentLikes.includes(userId)) {
+        comment.forumCommentLikes = comment.forumCommentLikes.filter(
+          (id) => id !== userId,
+        );
+      } else {
+        comment.forumCommentLikes.push(userId);
+      }
+    } else if (updateType === "dislike") {
+      if (comment.forumCommentDislikes.includes(userId)) {
+        comment.forumCommentDislikes = comment.forumCommentDislikes.filter(
+          (id) => id !== userId,
+        );
+      } else {
+        comment.forumCommentDislikes.push(userId);
+      }
+    }
+
+    const updatedComments = [...comments];
+    updatedComments[commentIndex] = comment;
+
+    await updateDoc(forumDocRef, {
+      forumComments: updatedComments,
+    });
+
+    addPoints(userId, 10);
+
+    console.log(
+      `Comment likes/dislikes updated successfully for comment with ID: ${commentId}`,
+    );
   } catch (error) {
-     console.error("Error updating comment likes/dislikes:", error);
-     throw error;
+    console.error("Error updating comment likes/dislikes:", error);
+    throw error;
   }
 }
 
-
 // ECO CHALLENGES
 
-export async function addChallengeToUserClaimedList(userID: string, challengeID: string, points: number): Promise<void> {
+export async function addChallengeToUserClaimedList(
+  userID: string,
+  challengeID: string,
+  points: number,
+): Promise<void> {
   if (!userID || !challengeID) {
-     throw new Error("User ID and challenge are required");
+    throw new Error("User ID and challenge are required");
   }
- 
+
   const usersCollection = collection(db, "users");
   const userDocRef = doc(usersCollection, userID);
   try {
-     const userDocSnap = await getDoc(userDocRef);
-     if (!userDocSnap.exists()) {
-       throw new Error("User document does not exist");
-     }
- 
-     const userData = userDocSnap.data() as User;
-     const claimedChallenges = userData.blogsRead || [];
- 
-     if (claimedChallenges.includes(challengeID)) {
-       throw new Error("Challenge is already claimed by the user");
-     }
- 
-     await updateDoc(userDocRef, {
-        blogsRead: arrayUnion(challengeID),
-     });
-     console.log("Challenge added successfully to user's claimed list");
-     
-      addPoints(userID, points);
-  } catch (error) {
-     console.error("Error adding challenge to user's claimed list:", error);
-     throw error;
-  }
- }
+    const userDocSnap = await getDoc(userDocRef);
+    if (!userDocSnap.exists()) {
+      throw new Error("User document does not exist");
+    }
 
- export async function addSolutionToReadList(userID: string, solutionID: string, points: number): Promise<void> {
+    const userData = userDocSnap.data() as User;
+    const claimedChallenges = userData.blogsRead || [];
+
+    if (claimedChallenges.includes(challengeID)) {
+      throw new Error("Challenge is already claimed by the user");
+    }
+
+    await updateDoc(userDocRef, {
+      blogsRead: arrayUnion(challengeID),
+    });
+    console.log("Challenge added successfully to user's claimed list");
+
+    addPoints(userID, points);
+  } catch (error) {
+    console.error("Error adding challenge to user's claimed list:", error);
+    throw error;
+  }
+}
+
+export async function addSolutionToReadList(
+  userID: string,
+  solutionID: string,
+  points: number,
+): Promise<void> {
   if (!userID || !solutionID) {
-     throw new Error("User ID and challenge are required");
+    throw new Error("User ID and challenge are required");
   }
- 
+
   const usersCollection = collection(db, "users");
   const userDocRef = doc(usersCollection, userID);
   try {
-     const userDocSnap = await getDoc(userDocRef);
-     if (!userDocSnap.exists()) {
-       throw new Error("User document does not exist");
-     }
- 
-     const userData = userDocSnap.data() as User;
-     const claimedChallenges = userData.blogPosts || [];
- 
-     if (claimedChallenges.includes(solutionID)) {
-       throw new Error("Challenge is already claimed by the user");
-     }
- 
-     await updateDoc(userDocRef, {
+    const userDocSnap = await getDoc(userDocRef);
+    if (!userDocSnap.exists()) {
+      throw new Error("User document does not exist");
+    }
+
+    const userData = userDocSnap.data() as User;
+    const claimedChallenges = userData.blogPosts || [];
+
+    if (claimedChallenges.includes(solutionID)) {
+      throw new Error("Challenge is already claimed by the user");
+    }
+
+    await updateDoc(userDocRef, {
       blogPosts: arrayUnion(solutionID),
-     });
-     console.log("Challenge added successfully to user's claimed list");
-     
-      addPoints(userID, points);
+    });
+    console.log("Challenge added successfully to user's claimed list");
+
+    addPoints(userID, points);
   } catch (error) {
-     console.error("Error adding challenge to user's claimed list:", error);
-     throw error;
+    console.error("Error adding challenge to user's claimed list:", error);
+    throw error;
   }
- }
-
-
-
+}

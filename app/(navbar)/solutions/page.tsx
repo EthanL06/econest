@@ -10,6 +10,7 @@ import {
   BreadcrumbLink,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 type Props = {};
 
@@ -45,6 +46,14 @@ const Page = async (props: Props) => {
         <div className="mt-8">
           <Blogs data={data} />
         </div>
+      </div>
+
+      <div className="grid place-items-center">
+        <Link href={"/forum"}>
+          <Button className="mx-auto font-bold" variant={"link"}>
+            View More from our Community!
+          </Button>
+        </Link>
       </div>
     </div>
   );
