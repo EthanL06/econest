@@ -37,7 +37,8 @@ import { toast } from "@/components/ui/use-toast";
 // works
 export async function getUserById(userID: string): Promise<User | null> {
   if (!userID) {
-    return Promise.reject(new Error("User ID is required"));
+    return null;
+    // return Promise.reject(new Error("User ID is required"));
   }
 
   const userDoc = doc(db, "users", userID);

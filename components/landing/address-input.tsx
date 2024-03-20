@@ -50,7 +50,6 @@ const AddressInput = (props: Props) => {
       <Input
         onChange={handleInput}
         value={value}
-        disabled={!ready}
         name="address"
         placeholder="Enter home address"
         type="text"

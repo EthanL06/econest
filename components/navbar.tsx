@@ -187,7 +187,7 @@ const Navbar = (props: Props) => {
         <Link href="/forum">
           <div className="cursor-pointer text-sm font-semibold">Forums</div>
         </Link>
-        <Link href="/community">
+        <Link href="/challenges">
           <div className="cursor-pointer text-sm font-semibold">Challenges</div>
         </Link>
         <Link href="/about">
