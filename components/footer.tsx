@@ -27,40 +27,76 @@ const Footer = (props: Props) => {
               </span>
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-12">
-            <div>
-              <h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
-                Main Links
-              </h2>
-              <ul className="font-medium text-gray-500 dark:text-gray-400">
-                <li className="mb-4">
-                  <Link href="/" className="hover:underline">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="hover:underline">
-                    About
-                  </Link>
-                </li>
-              </ul>
+
+          <div className="flex grid-cols-2 flex-wrap gap-12 sm:grid">
+            <div className="flex gap-x-8">
+              <div>
+                <h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
+                  Main Links
+                </h2>
+                <ul className="font-medium text-gray-500 dark:text-gray-400">
+                  <li className="mb-4">
+                    <Link href="/" className="hover:underline">
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/about" className="hover:underline">
+                      About
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h2 className="invisible mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
+                  Misc
+                </h2>
+                <ul className="font-medium text-gray-500 dark:text-gray-400">
+                  <li className="mb-4">
+                    <Link href="/solutions" className="hover:underline">
+                      Solutions
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/build-a-home" className="hover:underline">
+                      Build-A-Home
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <h2 className="invisible mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
-                Misc
-              </h2>
-              <ul className="font-medium text-gray-500 dark:text-gray-400">
-                <li className="mb-4">
-                  <Link href="/solutions" className="hover:underline">
-                    Solutions
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/build-a-home" className="hover:underline">
-                    Build-A-Home
-                  </Link>
-                </li>
-              </ul>
+
+            <div className="flex gap-x-8">
+              <div>
+                <h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
+                  Community
+                </h2>
+                <ul className="font-medium text-gray-500 dark:text-gray-400">
+                  <li className="mb-4">
+                    <Link href="/forum" className="hover:underline">
+                      Forums
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/challenges" className="hover:underline">
+                      Challenges
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h2 className="invisible mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
+                  Misc
+                </h2>
+                <ul className="font-medium text-gray-500 dark:text-gray-400">
+                  <li className="mb-4">
+                    <Link href="/chat" className="hover:underline">
+                      Chat
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

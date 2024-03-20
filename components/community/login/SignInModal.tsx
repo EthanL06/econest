@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -28,6 +28,16 @@ import { db } from "@/config/firebase";
 import User from "@/types/user";
 
 const SignInModal = () => {
+  const [redirect, setRedirect] = useState<string>("/community");
+  // Get url params
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirect = urlParams.get("redirect");
+    if (redirect) {
+      setRedirect(redirect);
+    }
+  }, []);
+
   return (
     <Tabs defaultValue="new" className="w-full">
       <TabsList className="grid w-full grid-cols-2">
@@ -43,7 +53,7 @@ const SignInModal = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-y-1">
-            <SignIn />
+            <SignIn redirect={redirect} />
           </CardContent>
           <CardFooter>
             <div className="text-[0.869rem]">
@@ -99,66 +109,68 @@ const SignIn = ({
         const userRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userRef);
 
-        if(!userDoc.exists()) {
-      
-        const defaultUser: User = {
-          userID: user.uid,
-          username: user.email ?? "default@email.com",
-          password: "testpassword",
-          name: user.displayName ?? "Default Name",
-          email: user.email ?? "default@email.com",
-          profilePicture: user.photoURL ?? "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg",
-          ecoPoints: 0,
-          ecoFriends: [],
-          ecoCommunity: [],
-          ecoChats: [],
-          homeAddress: "123 Test Street, Test City, Test Country",
-          electricalBill: 100,
-          blogPosts: [],
-          blogsRead: [],
-          carbonFootprintInfo: {
-            total: 0,
-            transportation: 0,
-            food: 0,
-            housing: 0,
-            goodsAndServices: 0,
-            waste: 0,
-          },
-        };
+        if (!userDoc.exists()) {
+          const defaultUser: User = {
+            userID: user.uid,
+            username: user.email ?? "default@email.com",
+            password: "testpassword",
+            name: user.displayName ?? "Default Name",
+            email: user.email ?? "default@email.com",
+            profilePicture:
+              user.photoURL ??
+              "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg",
+            ecoPoints: 0,
+            ecoFriends: [],
+            ecoCommunity: [],
+            ecoChats: [],
+            homeAddress: "123 Test Street, Test City, Test Country",
+            electricalBill: 100,
+            blogPosts: [],
+            blogsRead: [],
+            carbonFootprintInfo: {
+              total: 0,
+              transportation: 0,
+              food: 0,
+              housing: 0,
+              goodsAndServices: 0,
+              waste: 0,
+            },
+          };
 
-        try {
-          setDoc(doc(db, "users", defaultUser.userID), defaultUser).then(() => {
-            localStorage.setItem("userID", user.uid);
+          try {
+            setDoc(doc(db, "users", defaultUser.userID), defaultUser).then(
+              () => {
+                localStorage.setItem("userID", user.uid);
 
-            router.push(redirect);
+                router.push(redirect);
+                toast({
+                  title: `Sign in successful!`,
+                  description: "Welcome to ecoNest!",
+                  variant: "success",
+                  duration: 3000,
+                });
+              },
+            );
+          } catch (error) {
             toast({
-              title: `Sign in successful!`,
-              description: "Welcome to ecoNest!",
-              variant: "success",
+              title: `Error adding user!`,
+              description: "Please try again.",
+              variant: "destructive",
               duration: 3000,
             });
-          });
-        } catch (error) {
+
+            console.error("Error adding user:", error);
+          }
+        } else {
+          localStorage.setItem("userID", user.uid);
+          router.push(redirect);
           toast({
-            title: `Error adding user!`,
-            description: "Please try again.",
-            variant: "destructive",
+            title: `Sign in successful!`,
+            description: "Welcome to ecoNest!",
+            variant: "success",
             duration: 3000,
           });
-
-          console.error("Error adding user:", error);
         }
-
-      } else {
-        localStorage.setItem("userID", user.uid);
-        router.push(redirect);
-        toast({
-          title: `Sign in successful!`,
-          description: "Welcome to ecoNest!",
-          variant: "success",
-          duration: 3000,
-        });
-      }
       })
       .catch((error) => {
         toast({
@@ -207,7 +219,9 @@ const SignIn = ({
         password: "testpassword",
         name: user.displayName ?? "Default Name",
         email: user.email ?? "default@email.com",
-        profilePicture: user.photoURL ?? "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg",
+        profilePicture:
+          user.photoURL ??
+          "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg",
         ecoPoints: 0,
         ecoFriends: [],
         ecoCommunity: [],
