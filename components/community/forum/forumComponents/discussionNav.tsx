@@ -8,38 +8,10 @@ const DiscussionNav: React.FC = () => {
   };
 
   return (
-    <div className="sm:p-4">
-      <div className="flex justify-between">
-        <div className="flex flex-wrap gap-2 text-2xl sm:gap-4	text-gray-500 underline">
+    <div className="sm:p-4 w-full rounded-md bg-gray-300">
+        <div className="text-black font-bold text-xl">
           Discussions
         </div>
-        {/* <div className="flex flex-wrap gap-2 text-2xl sm:gap-4	">
-          <button
-            onClick={() => handleClick("Discussions")}
-            className={`text-gray-500  ${
-              activeTab === "Discussions" ? "underline " : ""
-            }`}
-          >
-            Discussions
-          </button>
-          <button
-            onClick={() => handleClick("Trending")}
-            className={`text-gray-500  ${
-              activeTab === "Trending" ? "underline " : ""
-            }`}
-          >
-            Trending
-          </button>
-          <button
-            onClick={() => handleClick("Announced")}
-            className={`text-gray-500  ${
-              activeTab === "Announced" ? "0 underline" : ""
-            }`}
-          >
-            Announced
-          </button>
-        </div> */}
-      </div>
     </div>
   );
 };

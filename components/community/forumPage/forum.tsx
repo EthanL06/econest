@@ -47,8 +47,8 @@ const ForumPage: React.FC<ForumPageProps> = ({ user, forum }) => {
                 <div className="gap-3 mt-4 md:mt-0">
                     <h2 className="text-xl font-bold mb-2">About This Topic</h2>
                     {forum && <>
-                        <p>{forum.forumLikes.length} likes</p>
-                    <p>{forum.forumDislikes.length} dislikes</p>
+                        <p>{forum.forumLikes} likes</p>
+                    <p>{forum.forumDislikes} dislikes</p>
                     <p>{forum.forumViews} views</p>
                     <p>{forum.forumComments.length} comments</p>
 

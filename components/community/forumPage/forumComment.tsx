@@ -103,6 +103,7 @@ function convertNewlinesToBreaks(text: string): JSX.Element {
                   <AvatarImage
                     src={commentUser.profilePicture}
                     alt={`${commentUser.name}'s profile`}
+                    className=" aspect-video rounded-full object-cover object-center"
                   />
                   <AvatarFallback>{commentUser.name}</AvatarFallback>
                 </Avatar>

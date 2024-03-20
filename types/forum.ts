@@ -8,8 +8,8 @@ type Forum = {
     forumImage: string;
     forumDate: string;
     forumViews: string;
-    forumLikes: string[];
-    forumDislikes: string[];
+    forumLikes: number;
+    forumDislikes: number;
     forumComments: ForumComment[];
     forumTags: string[];
   };

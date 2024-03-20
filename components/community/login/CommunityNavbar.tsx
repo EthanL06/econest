@@ -116,6 +116,7 @@ const CommunityNavbar = (props: Props) => {
                   <AvatarImage
                     src={user.profilePicture}
                     alt={`${user.name}'s profile`}
+                    className="aspect-video rounded-full object-cover object-center"
                   />
                   <AvatarFallback>{user.name}</AvatarFallback>
                 </Avatar>

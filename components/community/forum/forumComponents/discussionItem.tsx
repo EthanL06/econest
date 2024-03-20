@@ -23,7 +23,7 @@ function convertTimeToEnglish(time: string) {
 }
 
  return (
-    <div className="flex flex-col md:flex-row items-center p-4 border-b border-gray-200 hover:bg-gray-100 cursor-pointer" onClick={handleClick}>
+    <div className="flex flex-col md:flex-row items-center p-4 border-b border-gray-200 hover:bg-gray-100 cursor-pointer rounded-md" onClick={handleClick}>
       <div className="mb-4 w-full flex-shrink-0 sm:w-auto md:mb-0 md:mr-4">
         <Image
           src={discussion.forumImage}

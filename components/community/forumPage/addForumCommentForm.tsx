@@ -48,7 +48,7 @@ const AddForumCommentForm: React.FC<AddForumCommentProps> = ({ user, forum, onAd
     return (
         <div className=" p-4 rounded-lg border mt-4">
             <div className="flex items-center mb-4">
-                <img src={user?.profilePicture || 'https://via.placeholder.com/40'} alt="User Profile" className="rounded-full w-10 h-10 mr-4" />
+                <img src={user?.profilePicture || 'https://via.placeholder.com/40'} alt="User Profile" className="rounded-full w-10 h-10 mr-4 aspect-video rounded-full object-cover object-center" />
                 <h3 className="text-lg font-semibold">{user?.name}</h3>
             </div>
             <form onSubmit={handleSubmit} className="space-y-4">
