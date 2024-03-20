@@ -100,7 +100,7 @@ const NewChatModal: React.FC<NewChatModalProps> = ({ friends, onClose, user }) =
                 <img
                   src={friend.profilePicture}
                   alt={friend.name}
-                  className="h-8 w-8 rounded-full"
+                  className="h-8 w-8 rounded-full object-cover object-center"
                 />
                 <span className="ml-2">{truncateName(friend.name)}</span>
                 <input

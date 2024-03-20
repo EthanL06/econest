@@ -3,7 +3,7 @@ import User from "@/types/user";
 import EcoChat from "@/types/ecoChat";
 import SidebarItem from "./sidebarItem";
 import React, { useEffect, useState } from "react";
-import { fetchChats, addFriend, fetchFriends } from "@config/routes";
+import { fetchChats, addFriend, fetchFriends, getUserById } from "@config/routes";
 import NewChatModal from "./newChatModal";
 
 interface SidebarProps {
@@ -17,6 +17,8 @@ const Sidebar: React.FC<SidebarProps> = ({ user, selectedChat, setSelectedChat }
  const [friends, setFriends] = useState<User[]>([]);
  const [isModalOpen, setIsModalOpen] = useState(false);
  const [searchQuery, setSearchQuery] = useState('');
+ const [filteredChats, setFilteredChats] = useState<EcoChat[]>([]);
+
 
  useEffect(() => {
     if (user) {
@@ -36,8 +38,22 @@ const Sidebar: React.FC<SidebarProps> = ({ user, selectedChat, setSelectedChat }
     }
  }, [user]);
 
- const filteredChats = chats.filter(chat => chat.chatName.toLowerCase().includes(searchQuery.toLowerCase()));
- // add filter to go off of the friends names 
+ useEffect(() => {
+  const filterChats = async () => {
+     const filtered = await Promise.all(chats.map(async (chat) => {
+       const chatNameMatch = chat.chatName.toLowerCase().includes(searchQuery.toLowerCase());
+       const chatMembersMatch = (await Promise.all(chat.chatMembers.map(async (member) => {
+        let friendUser = await getUserById(member);
+        return friendUser?.name.toLowerCase().includes(searchQuery.toLowerCase());
+       }))).some((result: boolean | undefined) => result);
+       return chatNameMatch || chatMembersMatch ? chat : null;
+     }));
+     setFilteredChats(filtered.filter((chat): chat is EcoChat => chat !== null));
+  };
+ 
+  filterChats();
+ }, [chats, searchQuery]);
+
 
  return (
     <div className="flex h-full w-full flex-col rounded-lg border border-gray-300 bg-white md:w-64 md:flex-shrink-0">
