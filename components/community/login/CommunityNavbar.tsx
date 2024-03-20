@@ -57,13 +57,13 @@ const CommunityNavbar = (props: Props) => {
   }, []);
 
   return (
-    <div className=" mt-2 flex w-full items-center justify-between sm:mt-1">
+    <div className=" mt-2 flex w-full flex-wrap items-center justify-between gap-y-2 sm:mt-1">
       <Link className="" href="/">
-        <div className="group flex items-center gap-x-2">
+        <div className="group flex items-center gap-x-1 sm:gap-x-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={
-              "size-8 rotate-0 transform transition-all duration-300 group-hover:rotate-45"
+              "size-6 rotate-0 transform transition-all duration-300 group-hover:rotate-45 sm:size-8"
             }
             viewBox="0 0 512 512"
           >
@@ -76,7 +76,7 @@ const CommunityNavbar = (props: Props) => {
 
           <div
             className={
-              "overflow-hidden text-xl  font-bold transition-all duration-300 sm:text-2xl "
+              "overflow-hidden text-lg font-bold  transition-all duration-300 sm:text-xl md:text-2xl "
             }
           >
             <span className="">eco</span>
@@ -89,7 +89,11 @@ const CommunityNavbar = (props: Props) => {
         {!user && (
           <>
             <Link href="/login#join">
-              <Button className="font-bold">Join our Community!</Button>
+              <Button className="font-bold">
+                <span className="hidden sm:block">Join our Community!</span>
+
+                <span className="block sm:hidden">Join us!</span>
+              </Button>
             </Link>
 
             <Link href="/login">
@@ -120,6 +124,13 @@ const CommunityNavbar = (props: Props) => {
                 href="/challenges"
               >
                 Challenges
+              </Link>
+
+              <Link
+                className="flex cursor-pointer items-center text-center text-sm font-semibold"
+                href="/chat"
+              >
+                Chat
               </Link>
             </div>
             <div className="mr-2 hidden sm:block">

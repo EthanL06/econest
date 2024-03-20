@@ -407,6 +407,29 @@ export async function addForum(forum: Forum): Promise<void> {
   }
 }
 
+// Create getForumById
+export async function getForumById(forumId: string): Promise<Forum | null> {
+  if (!forumId) {
+    return null;
+  }
+
+  const forumDoc = doc(db, "forums", forumId);
+
+  try {
+    const docSnap = await getDoc(forumDoc);
+    if (docSnap.exists()) {
+      const forumData = docSnap.data() as Forum;
+      return forumData;
+    } else {
+      console.log("No such document!");
+      return null;
+    }
+  } catch (error) {
+    console.log("Error getting document:", error);
+    return null;
+  }
+}
+
 export async function fetchLeaderboard(): Promise<User[]> {
   const usersCollection = collection(db, "users");
   const q = query(usersCollection, orderBy("ecoPoints", "desc"), limit(10));

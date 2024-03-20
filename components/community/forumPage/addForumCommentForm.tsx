@@ -3,6 +3,7 @@ import { addForumComment } from "@config/routes";
 import ForumComment from "@/types/forumComment";
 import User from "@/types/user";
 import Forum from "@/types/forum";
+import { Button } from "@/components/ui/button";
 
 interface AddForumCommentProps {
   user: User | null;
@@ -70,12 +71,14 @@ const AddForumCommentForm: React.FC<AddForumCommentProps> = ({
             className="w-full whitespace-pre-wrap rounded-lg border border-gray-300 p-2 focus:border-green-500 focus:outline-none"
           />
         </label>
-        <button
+
+        <Button
           type="submit"
-          className="w-full rounded-lg bg-green-600 p-2 text-white hover:bg-green-700 focus:outline-none"
+          variant={"default"}
+          className="w-full font-semibold"
         >
           Add Comment
-        </button>
+        </Button>
       </form>
     </div>
   );

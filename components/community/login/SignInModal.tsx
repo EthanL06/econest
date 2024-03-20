@@ -28,7 +28,7 @@ import { db } from "@/config/firebase";
 import User from "@/types/user";
 
 const SignInModal = () => {
-  const [redirect, setRedirect] = useState<string>("/community");
+  const [redirect, setRedirect] = useState<string>("/forum");
   // Get url params
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -87,7 +87,7 @@ const SignInModal = () => {
 const SignIn = ({
   signInGoogleText = "Continue with Google",
   signInGuestText = "Sign In as Guest",
-  redirect = "/community",
+  redirect = "/forum",
 }) => {
   const router = useRouter();
   const { toast } = useToast();

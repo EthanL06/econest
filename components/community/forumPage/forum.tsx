@@ -4,6 +4,7 @@ import Forum from "@/types/forum";
 import ForumComment from "./forumComment";
 import AddForumCommentForm from "./addForumCommentForm";
 import User from "@/types/user";
+import { buttonVariants } from "@/components/ui/button";
 
 interface ForumPageProps {
   user: User | null;
@@ -11,18 +12,15 @@ interface ForumPageProps {
 }
 
 const ForumPage: React.FC<ForumPageProps> = ({ user, forum }) => {
-  const [comments, setComments] = useState<ForumComment[]>(
-    forum?.forumComments || [],
-  );
+  const [comments, setComments] = useState<ForumComment[]>([]);
 
   useEffect(() => {
-    // Sort the forum comments by date
-    const sortedComments = forum?.forumComments.sort((a, b) => {
-      return (
-        new Date(a.forumCommentDate).getTime() -
-        new Date(b.forumCommentDate).getTime()
-      );
-    });
+    // Sort the forum comments by date from newest to oldest
+    const sortedComments = forum?.forumComments.sort(
+      (a, b) =>
+        new Date(b.forumCommentDate).getTime() -
+        new Date(a.forumCommentDate).getTime(),
+    );
 
     setComments(sortedComments || []);
   }, [forum]);
@@ -34,13 +32,14 @@ const ForumPage: React.FC<ForumPageProps> = ({ user, forum }) => {
   return (
     <div className="flex flex-col md:flex-row">
       <div className="w-full bg-white p-4 md:w-3/4">
-        {comments.map((comment) => (
-          <ForumComment
-            key={comment.forumCommentId}
-            user={user}
-            comment={comment}
-          />
-        ))}
+        {comments.length > 0 &&
+          comments.map((comment) => (
+            <ForumComment
+              key={comment.forumCommentId}
+              user={user}
+              comment={comment}
+            />
+          ))}
         <AddForumCommentForm
           user={user}
           forum={forum}
@@ -70,17 +69,17 @@ const ForumPage: React.FC<ForumPageProps> = ({ user, forum }) => {
           <h2 className="mb-2 text-xl font-bold">About This Topic</h2>
           {forum && (
             <>
-              <p>{forum.forumLikes.length} likes</p>
-              <p>{forum.forumDislikes.length} dislikes</p>
+              <p>{forum.forumLikes.length || 0} likes</p>
+              <p>{forum.forumDislikes.length || 0} dislikes</p>
               <p>{forum.forumViews} views</p>
-              <p>{forum.forumComments.length} comments</p>
+              <p>{forum.forumComments.length || 0} comments</p>
             </>
           )}
         </div>
         <div className="mt-4 gap-3 md:mt-0">
           <h2 className="mb-2 text-xl font-bold">Promote the Ecosystem</h2>
           <img
-            src="./images/deadPenguin.jpeg"
+            src="/images/deadPenguin.jpeg"
             alt="Ecosystem"
             className="mb-4 h-auto w-full rounded-lg"
           />
@@ -89,7 +88,9 @@ const ForumPage: React.FC<ForumPageProps> = ({ user, forum }) => {
             href="https://donate.oceanconservancy.org/page/136010/donate/1?ea.tracking.id=23HPXWJAXX&utm_medium=PaidSearch&utm_source=GooglePaid&utm_campaign=NonBranded&gad_source=1&gclid=CjwKCAiA0bWvBhBjEiwAtEsoW-Igm67aHWsowLDm-Q9tXI2vnq6cwkiCaee6_F2LTqz7RpLWu21iBxoCjY8QAvD_BwE"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 block flex w-full justify-center rounded-lg bg-green-600 p-2 text-white hover:bg-green-700 focus:outline-none"
+            className={buttonVariants({
+              className: "mt-2 w-full font-semibold",
+            })}
           >
             Donate Now
           </a>
@@ -100,7 +101,7 @@ const ForumPage: React.FC<ForumPageProps> = ({ user, forum }) => {
             Special thanks to our sponsors
           </h2>
           <img
-            src="./images/sunPow.png"
+            src="/images/sunPow.png"
             alt="Ecosystem"
             className="mb-4 h-auto w-full rounded-lg"
           />
@@ -109,7 +110,9 @@ const ForumPage: React.FC<ForumPageProps> = ({ user, forum }) => {
             href="https://us.sunpower.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 block flex w-full justify-center rounded-lg bg-green-600 p-2 text-white hover:bg-green-700 focus:outline-none"
+            className={buttonVariants({
+              className: "mt-2 w-full font-semibold",
+            })}
           >
             Find Out More
           </a>
