@@ -28,10 +28,27 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ user, chat, selectedChat, set
     const highlight = selectedChat && selectedChat.chatId === chat.chatId ? 'bg-gray-100' : '';
 
     return (
-        <div className={`flex items-center p-4 hover:bg-gray-100 shadow-lg transition-colors duration-200 overflow-hidden cursor-pointer ${highlight}` } onClick={handleClick}>
-            {friend && <img src={friend.profilePicture} alt="Friend Avatar" className="w-10 h-10 rounded-full" />}
+        <div className={`flex items-center p-4 hover:bg-gray-100 shadow-sm transition-colors duration-200 overflow-hidden cursor-pointer ${highlight}` } onClick={handleClick}>
+            {friend && (chat.chatMembers.length > 2 ? 
+            <img src={'/images/ecoCommunity/gclogo2.webp'} alt="Friend Avatar" className="w-10 h-10 rounded-full object-cover object-center" />
+            :
+            friend ?
+            <img src={friend.profilePicture} alt="Friend Avatar" className="w-10 h-10 rounded-full object-cover object-center" />
+            : 
+            null
+        )}
             <div className="ml-4">
-                <h2 className="text-sm font-medium">{friend ? friend.name : 'Loading...'}</h2>
+                <h2 className="text-sm font-medium">
+                
+                {
+                friend && chat.chatMembers.length > 3 ?
+                    'Group Chat' 
+                :
+                friend && friend.name ? friend.name
+                :
+                'Loading...'
+                
+                }</h2>
                 <p className="text-xs text-gray-500">{chat.chatName}</p>
             </div>
         </div>

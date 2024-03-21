@@ -106,18 +106,17 @@ const ForumComment: React.FC<ForumCommentProps> = ({ user, comment }) => {
     <div className="my-2 border-b border-gray-200 p-4">
       <div className="flex flex-row items-start space-x-3">
         {commentUser && (
-          <div className="relative flex flex-col items-center">
-            <Avatar
-              className="outline outline-2 outline-primary-foreground hover:cursor-pointer hover:bg-gray-800"
-              onClick={() => setShowModal(true)}
-            >
-              <AvatarImage
-                className="object-cover"
-                src={commentUser.profilePicture}
-                alt={`${commentUser.name}'s profile`}
-              />
-              <AvatarFallback>{commentUser.name}</AvatarFallback>
-            </Avatar>
+          <div className="relative flex flex-col items-center"> 
+                <Avatar className="outline outline-2 outline-primary-foreground hover:cursor-pointer hover:bg-gray-800"  
+                  onClick={() => setShowModal(true)}
+                  >
+                  <AvatarImage
+                    src={commentUser.profilePicture}
+                    alt={`${commentUser.name}'s profile`}
+                    className=" aspect-video rounded-full object-cover object-center"
+                  />
+                  <AvatarFallback>{commentUser.name}</AvatarFallback>
+                </Avatar>
             {showModal && (
               <div className="absolute left-0 top-0 z-10 mt-10">
                 <UserProfile

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState, useEffect } from "react";
 import User from "@/types/user";
 import { createNewChat } from "@config/routes";
@@ -9,10 +9,14 @@ interface NewChatModalProps {
   user: User | null;
 }
 
-const NewChatModal: React.FC<NewChatModalProps> = ({ friends, onClose, user }) => {
+const NewChatModal: React.FC<NewChatModalProps> = ({
+  friends,
+  onClose,
+  user,
+}) => {
   const [searchInput, setSearchInput] = useState("");
   const [selectedFriends, setSelectedFriends] = useState<User[]>([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleAddFriend = (friend: User) => {
     if (selectedFriends.some((f) => f.userID === friend.userID)) {
@@ -35,32 +39,33 @@ const NewChatModal: React.FC<NewChatModalProps> = ({ friends, onClose, user }) =
   };
 
   const createChat = () => {
-    if(user) {
+    if (user) {
       createNewChat(user, selectedFriends)
-      .then(() => {
-        console.log("Chat created successfully");
-        onClose();
-      })
-      .catch((error) => {
-        console.error("Failed to create chat:", error);
-      });
-    } 
-    };
+        .then(() => {
+          console.log("Chat created successfully");
+          onClose();
+        })
+        .catch((error) => {
+          console.error("Failed to create chat:", error);
+        });
+    }
+  };
 
-    const filteredFriends = friends.filter(friend => friend.name.toLowerCase().includes(searchQuery.toLowerCase()));
-
+  const filteredFriends = friends.filter((friend) =>
+    friend.name.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
   return (
     <div className="relative">
       <div className="absolute left-0 top-full m-2 mt-2 w-64 rounded-md border border-gray-300 bg-white shadow-lg">
         <div className="p-2">
           <h2 className="mb-2 text-xl font-bold">Start a New Chat</h2>
-          <div className="relative mb-4 w-full">
+          <div className="relative mb-4 flex w-full">
             <input
               type="text"
               placeholder={selectedFriends.length > 0 ? `` : `Search...`}
-              value={searchQuery} 
-            onChange={(e) => setSearchQuery(e.target.value)} 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className={`px-2 py-${
                 selectedFriends.length > 1 ? selectedFriends.length * 4 : 3
               } rounded-md border border-gray-300`}
@@ -79,14 +84,17 @@ const NewChatModal: React.FC<NewChatModalProps> = ({ friends, onClose, user }) =
                   <span>{truncateName(friend.name)}</span>
                   <button
                     onClick={() => handleRemoveFriend(friend)}
-                    className="ml-2 text-xs text-gray-500 z-10"
+                    className="z-10 ml-2 text-xs text-gray-500"
                   >
                     x
                   </button>
                 </div>
               ))}
             </div>
-            <button className="ml-3 rounded-md border border-gray-300 px-4 py-2 cursor-pointer hover:bg-green-600 hover:text-white" onClick={createChat}>
+            <button
+              className="ml-3 cursor-pointer rounded-md border border-gray-300 px-3 hover:bg-green-600 hover:text-white"
+              onClick={createChat}
+            >
               +
             </button>
           </div>
@@ -100,7 +108,7 @@ const NewChatModal: React.FC<NewChatModalProps> = ({ friends, onClose, user }) =
                 <img
                   src={friend.profilePicture}
                   alt={friend.name}
-                  className="h-8 w-8 rounded-full"
+                  className="h-8 w-8 rounded-full object-cover object-center"
                 />
                 <span className="ml-2">{truncateName(friend.name)}</span>
                 <input
