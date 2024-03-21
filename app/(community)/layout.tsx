@@ -26,7 +26,9 @@ export default function RootLayout({
     <div
       className={`${quicksand.variable} max-w-screen-[1400px] relative mx-auto flex flex-col overflow-x-hidden px-8 py-2  font-sans text-black sm:px-8 sm:py-4`}
     >
-      <CommunityNavbar />
+      <div className="px-4">
+        <CommunityNavbar />
+      </div>
       <div className="mt-4 min-h-screen">{children}</div>
       <TailwindIndicator />
     </div>

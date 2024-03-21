@@ -8,10 +8,8 @@ const DiscussionNav: React.FC = () => {
   };
 
   return (
-    <div className="sm:p-4 w-full rounded-md bg-gray-300">
-        <div className="text-black font-bold text-xl">
-          Discussions
-        </div>
+    <div className="mt-4 w-full rounded-md">
+      <div className="text-2xl font-bold">Discussions</div>
     </div>
   );
 };

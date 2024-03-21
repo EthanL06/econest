@@ -157,23 +157,44 @@ const About = (props: Props) => {
             </div>
           </motion.div>
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{
-            once: true,
-            amount: 0.9,
-          }}
-        >
-          <Link href={"/about"}>
-            <Button
-              size={"lg"}
-              className="mt-8 bg-emerald-500 px-6 py-8 text-lg font-bold hover:bg-emerald-500/90"
-            >
-              Learn More
-            </Button>
-          </Link>
-        </motion.div>
+        <div className="flex flex-wrap justify-center gap-x-4 sm:justify-start">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{
+              once: true,
+              amount: 0.9,
+            }}
+          >
+            <Link href={"/forum"}>
+              <Button
+                size={"lg"}
+                className="mt-8 bg-emerald-500 px-6 py-8 text-lg font-bold hover:bg-emerald-500/90"
+              >
+                Join our Community!
+              </Button>
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{
+              once: true,
+              amount: 0.9,
+            }}
+          >
+            <Link href={"/about"}>
+              <Button
+                size={"lg"}
+                variant={"ghost"}
+                className="mt-8  px-6 py-8 text-lg font-bold "
+              >
+                Learn More
+              </Button>
+            </Link>
+          </motion.div>
+        </div>
       </div>
 
       <div className="relative hidden h-[20rem] w-full  max-w-2xl lg:block lg:max-w-[50%] ">

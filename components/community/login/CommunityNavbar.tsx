@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/use-toast";
 import { getUserById } from "@/config/routes";
 import { quicksand } from "@/lib/fonts";
@@ -42,8 +43,8 @@ const CommunityNavbar = (props: Props) => {
   };
 
   const goToChatPage = () => {
-    window.location.href = "/chat"
-  }
+    window.location.href = "/chat";
+  };
 
   useEffect(() => {
     // Get userid from local storage. If it exists, user is logged in
@@ -56,13 +57,13 @@ const CommunityNavbar = (props: Props) => {
   }, []);
 
   return (
-    <div className="flex w-full items-center justify-between px-[1rem]">
+    <div className=" mt-2 flex w-full flex-wrap items-center justify-between gap-y-2 sm:mt-1">
       <Link className="" href="/">
-        <div className="group flex items-center gap-x-2">
+        <div className="group flex items-center gap-x-1 sm:gap-x-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={
-              "size-8 rotate-0 transform transition-all duration-300 group-hover:rotate-45"
+              "size-6 rotate-0 transform transition-all duration-300 group-hover:rotate-45 sm:size-8"
             }
             viewBox="0 0 512 512"
           >
@@ -75,7 +76,7 @@ const CommunityNavbar = (props: Props) => {
 
           <div
             className={
-              "overflow-hidden text-xl  font-bold transition-all duration-300 sm:text-2xl "
+              "overflow-hidden text-lg font-bold  transition-all duration-300 sm:text-xl md:text-2xl "
             }
           >
             <span className="">eco</span>
@@ -88,7 +89,11 @@ const CommunityNavbar = (props: Props) => {
         {!user && (
           <>
             <Link href="/login#join">
-              <Button className="font-bold">Join our Community!</Button>
+              <Button className="font-bold">
+                <span className="hidden sm:block">Join our Community!</span>
+
+                <span className="block sm:hidden">Join us!</span>
+              </Button>
             </Link>
 
             <Link href="/login">
@@ -101,6 +106,36 @@ const CommunityNavbar = (props: Props) => {
 
         {user && (
           <div className="flex gap-x-2">
+            <div className=" hidden gap-x-3 sm:flex">
+              <Link
+                className="flex cursor-pointer items-center text-center text-sm font-semibold"
+                href="/"
+              >
+                Home
+              </Link>
+              <Link
+                className="flex cursor-pointer items-center text-center text-sm font-semibold"
+                href="/forum"
+              >
+                Forums
+              </Link>
+              <Link
+                className="flex cursor-pointer items-center text-center text-sm font-semibold"
+                href="/challenges"
+              >
+                Challenges
+              </Link>
+
+              <Link
+                className="flex cursor-pointer items-center text-center text-sm font-semibold"
+                href="/chat"
+              >
+                Chat
+              </Link>
+            </div>
+            <div className="mr-2 hidden sm:block">
+              <Separator className="h-full w-[2px]" />
+            </div>
             <div className="flex items-center">
               <Leaf
                 className="rounded-full stroke-[3px] text-primary outline outline-[3px] outline-offset-4"
@@ -110,6 +145,9 @@ const CommunityNavbar = (props: Props) => {
                 {user.ecoPoints} Eco Points
               </span>
             </div>
+            {/* <div>
+              <Separator className="h-full w-[2px]" />
+            </div> */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Avatar className="outline outline-2 outline-primary-foreground hover:cursor-pointer">
@@ -130,7 +168,7 @@ const CommunityNavbar = (props: Props) => {
                   My Profile
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <div className="my-2 flex flex-col w-full px-3 justify-center align-center gap-y-3">
+                <div className="align-center my-2 flex w-full flex-col justify-center gap-y-3 px-3">
                   <Button onClick={goToChatPage} className="bg-green-500 ">
                     Chat
                   </Button>

@@ -6,9 +6,36 @@ import { ChevronRight, HomeIcon, MenuIcon, XIcon } from "lucide-react";
 import { useWindowScroll } from "@uidotdev/usehooks";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import { motion } from "framer-motion";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "./ui/navigation-menu";
 type Props = {};
+
+const components: { title: string; href: string; description: string }[] = [
+  {
+    title: "Forums",
+    href: "/forum",
+    description: "Discuss and share ideas about sustainable living.",
+  },
+  {
+    title: "Challenges",
+    href: "/challenges",
+    description:
+      "Participate in eco-friendly challenges to live a more sustainable life.",
+  },
+  {
+    title: "Chat",
+    href: "/chat",
+    description: "Share eco ideas with others. (login required)",
+  },
+];
 
 const Navbar = (props: Props) => {
   const [{ y }] = useWindowScroll();
@@ -127,33 +154,21 @@ const Navbar = (props: Props) => {
           onClick={() => {
             setShowMobileMenu(false);
           }}
+          className="group flex w-full items-center justify-between gap-x-2 border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
+          href={"/about"}
+        >
+          About
+          <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
+        </Link>
+
+        <Link
+          onClick={() => {
+            setShowMobileMenu(false);
+          }}
           className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
           href={"/solutions"}
         >
           Solutions
-          <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
-        </Link>
-
-        <Link
-          onClick={() => {
-            setShowMobileMenu(false);
-          }}
-          className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
-          href={"/forum"}
-        >
-          Forums
-          <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
-        </Link>
-
-
-        <Link
-          onClick={() => {
-            setShowMobileMenu(false);
-          }}
-          className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
-          href={"/community"}
-        >
-          Challenges
           <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
         </Link>
 
@@ -172,25 +187,79 @@ const Navbar = (props: Props) => {
           onClick={() => {
             setShowMobileMenu(false);
           }}
-          className="group flex w-full items-center justify-between gap-x-2 border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
-          href={"/about"}
+          className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
+          href={"/forum"}
         >
-          About
+          Forums
+          <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
+        </Link>
+
+        <Link
+          onClick={() => {
+            setShowMobileMenu(false);
+          }}
+          className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
+          href={"/challenges"}
+        >
+          Challenges
+          <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
+        </Link>
+
+        <Link
+          onClick={() => {
+            setShowMobileMenu(false);
+          }}
+          className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
+          href={"/chat"}
+        >
+          Chat
           <ChevronRight className="relative left-0 h-6 w-6 stroke-[3] text-black/50 transition-all duration-200 ease-in-out group-hover:left-1 group-hover:text-white" />
         </Link>
       </motion.div>
 
       <div className="hidden items-center gap-x-4 sm:flex">
+        <NavigationMenu className="">
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger
+                className={buttonVariants({
+                  variant: "link",
+                  className:
+                    "bg-transparent p-0 text-sm font-semibold text-black hover:bg-transparent focus:bg-transparent",
+                })}
+              >
+                Community
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[350px] gap-3 p-4  ">
+                  {components.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={component.href}
+                    >
+                      {component.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+
         <Link href="/solutions">
           <div className="cursor-pointer text-sm font-semibold">Solutions</div>
         </Link>
-        <Link href="/forum">
+        {/* <Link href="/forum">
           <div className="cursor-pointer text-sm font-semibold">Forums</div>
         </Link>
-        <Link href="/community">
+
+
+
+        <Link href="/challenges">
           <div className="cursor-pointer text-sm font-semibold">Challenges</div>
-        </Link>
-        <Link href="/about">
+        </Link> */}
+        <Link className="" href="/about">
           <div className="cursor-pointer text-sm font-semibold">About</div>
         </Link>
         <Link href="/build-a-home">
@@ -200,5 +269,33 @@ const Navbar = (props: Props) => {
     </div>
   );
 };
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "group block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className,
+          )}
+          {...props}
+        >
+          <div className="text-sm font-semibold leading-none transition-colors group-hover:text-primary">
+            {title}
+          </div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = "ListItem";
 
 export default Navbar;

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Leaf } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { addChallengeToUserClaimedList, getUserById } from "@config/routes";
+import { toast } from "@/components/ui/use-toast";
 type Challenge = {
   id: string;
   image: string;
@@ -22,24 +23,25 @@ const CustomCard: React.FC<CustomCardProps> = ({ challenge }) => {
 
   const [claimedChallenges, setClaimedChallenges] = useState<string[]>([]);
   const [isClaiming, setIsClaiming] = useState(false);
-
+  const [isDisabled, setIsDisabled] = useState(true);
   useEffect(() => {
     const fetchClaimedChallenges = async () => {
-       const userID = localStorage.getItem("userID");
-       if (userID) {
-         try {
-           const user = await getUserById(userID);
-           if (user) {
-             setClaimedChallenges(user.blogsRead || []);
-           }
-         } catch (error) {
-           console.error("Error fetching user:", error);
-         }
-       }
+      const userID = localStorage.getItem("userID");
+      if (userID) {
+        try {
+          const user = await getUserById(userID);
+          if (user) {
+            setClaimedChallenges(user.blogsRead || []);
+            setIsDisabled(false);
+          }
+        } catch (error) {
+          console.error("Error fetching user:", error);
+        }
+      }
     };
-   
+
     fetchClaimedChallenges();
-   }, []);
+  }, []);
 
   const runDidChallenge = async () => {
     setIsClaiming(true);
@@ -118,11 +120,11 @@ const CustomCard: React.FC<CustomCardProps> = ({ challenge }) => {
             </span>
           </div>
           <Button
-            className={`px-4 py-2 text-sm font-bold z-20 ${
+            className={`z-20 px-4 py-2 text-sm font-bold ${
               isChallengeClaimed ? "cursor-not-allowed bg-gray-500 " : ""
             }`}
             onClick={isChallengeClaimed ? undefined : runDidChallenge}
-            disabled={isChallengeClaimed || isClaiming}
+            disabled={isChallengeClaimed || isClaiming || isDisabled}
           >
             {isClaiming
               ? "Claiming..."

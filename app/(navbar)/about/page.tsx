@@ -51,6 +51,50 @@ const Page = (props: Props) => {
               improves their quality of life.
             </p>
             <hr />
+            <h2>Site Map</h2>
+            <p>
+              A collection of all the pages on our website aggregated into one
+              convenient place.
+            </p>
+
+            <ul>
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              <li>
+                <Link href="/about">About</Link>
+              </li>
+              <li>
+                <Link href="/solutions">Solutions</Link>
+              </li>
+              <li>
+                <span className="font-semibold">Home Customization</span>
+
+                <ul>
+                  <li>
+                    <Link href="/build-a-home">Build-A-Home</Link>
+                  </li>
+                  <li>
+                    <Link href="/purchase">Purchase</Link>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span className="font-semibold">Community</span>
+                <ul>
+                  <li>
+                    <Link href="/forum">Forums</Link>
+                  </li>
+                  <li>
+                    <Link href="/challenges">Challenges</Link>
+                  </li>
+                  <li>
+                    <Link href="/chat">Chat</Link>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <hr />
             <h2>TSA Documents</h2>
             <p>
               Regulations and requirements in compliance with the TSA Webmaster
