@@ -32,3 +32,24 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+
+
+// SLHS TSA = FIkky Fly 
+
+// saskahm alt = arab girl
+
+// santiago = Garden Guru
+
+// bdjh tsa = Alice Smith
+
+// cs club = Eve Green
+
+// ethan = Charlie Brown
+
+// sak alt = Bob Smith
+
+// saksham 2 = Baozhai Zhang
+
+
+

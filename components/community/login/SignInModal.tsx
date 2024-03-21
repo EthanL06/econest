@@ -136,7 +136,7 @@ const SignIn = ({
               waste: 0,
             },
           };
-
+          
           try {
             setDoc(doc(db, "users", defaultUser.userID), defaultUser).then(
               () => {

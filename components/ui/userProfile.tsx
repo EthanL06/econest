@@ -48,7 +48,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
     };
 
     checkIfFriend();
-  }, [user]);
+  }, [user, userId]);
 
   const handleAddFriend = async () => {
     const currentUserID = localStorage.getItem("userID");

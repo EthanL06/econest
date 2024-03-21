@@ -105,7 +105,7 @@ export async function addFriend(
   // add friend to user
   const currentUserDoc = doc(db, "users", currentUserID);
   const userDocSnap = await getDoc(currentUserDoc);
-
+  
   const userData = userDocSnap.data();
 
   if (!userData?.ecoFriends.includes(friendID)) {
@@ -141,13 +141,13 @@ export async function addFriend(
       chatMembers: [currentUserID, friendID],
       chatMessages: [],
     };
-
+    
     const createChatPromise = addDoc(ecoChatCollection, chatData)
       .then((docRef) => {
         console.log("EcoChat created with ID:", docRef.id);
         // it isnt running this line and saving it for some reason. fix that later
         chatData.chatId = docRef.id;
-
+        
         return Promise.all([
           updateDoc(doc(ecoChatCollection, docRef.id), {
             chatId: docRef.id,
