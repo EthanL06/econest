@@ -48,7 +48,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
     };
 
     checkIfFriend();
-  }, [user]);
+  }, [user, userId]);
 
   const handleAddFriend = async () => {
     const currentUserID = localStorage.getItem("userID");
@@ -56,38 +56,19 @@ const UserProfile: React.FC<UserProfileProps> = ({
       console.error("Current user ID not found in local storage");
       return;
     }
-    
-    const currentUser = await getUserById(currentUserID);
-    if(currentUser) {
-      const friends = currentUser.ecoFriends;
-      setIsFriend(friends.includes(userId));
+
+    try {
+      await addFriend(currentUserID, userId);
+      console.log("Friend added successfully");
+      setIsFriend(true);
+    } catch (error) {
+      console.error("Error adding friend:", error);
     }
   };
 
-  checkIfFriend();
-}, [user]);
-
-
-
-const handleAddFriend = async () => {
-  const currentUserID = localStorage.getItem("userID");
-  if (!currentUserID) {
-    console.error("Current user ID not found in local storage");
-    return;
-  }
-
-  try {
-    await addFriend(currentUserID, userId);
-    console.log("Friend added successfully");
-    setIsFriend(true); 
-  } catch (error) {
-    console.error("Error adding friend:", error);
-  }
-};
-
-const goToChatPage = () => {
-window.location.href = "/chat"
-}
+  const goToChatPage = () => {
+    window.location.href = "/chat";
+  };
 
   const truncateName = (name: string | undefined) => {
     if (name) {

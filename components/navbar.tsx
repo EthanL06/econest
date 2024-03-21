@@ -88,7 +88,7 @@ const Navbar = (props: Props) => {
           </div>
         </div>
       </Link>
-      
+
       <Button
         onClick={() => {
           setShowMobileMenu(!showMobileMenu);
@@ -154,7 +154,7 @@ const Navbar = (props: Props) => {
           onClick={() => {
             setShowMobileMenu(false);
           }}
-          className="group flex w-full items-center justify-between gap-x-2 border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
+          className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
           href={"/about"}
         >
           About
@@ -209,7 +209,7 @@ const Navbar = (props: Props) => {
           onClick={() => {
             setShowMobileMenu(false);
           }}
-          className="group flex w-full items-center justify-between gap-x-2 border-b border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
+          className="group flex w-full items-center justify-between gap-x-2 border-border p-4 text-left text-2xl font-semibold transition-colors hover:border-primary hover:bg-primary hover:text-white"
           href={"/chat"}
         >
           Chat

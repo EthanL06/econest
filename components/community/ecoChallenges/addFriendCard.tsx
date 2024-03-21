@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { getUserById } from "@config/routes"; 
+import { getUserById } from "@config/routes";
 import User from "@/types/user";
 import { addFriend } from "@config/routes";
 import { Button } from "@/components/ui/button";
 import { Leaf } from "lucide-react";
 
 type AddFriendCardProps = {
- userId: string;
+  userId: string;
 };
 
 const AddFriendCard: React.FC<AddFriendCardProps> = ({ userId }) => {
   const [user, setUser] = useState<User | null>();
   const [isFriend, setIsFriend] = useState<boolean>(false);
 
- useEffect(() => {
+  useEffect(() => {
     const fetchUser = async () => {
       const userData = await getUserById(userId);
       setUser(userData);
     };
 
     fetchUser();
- }, [userId]);
+  }, [userId]);
 
   useEffect(() => {
     const checkIfFriend = async () => {
@@ -54,11 +54,7 @@ const AddFriendCard: React.FC<AddFriendCardProps> = ({ userId }) => {
     } catch (error) {
       console.error("Error adding friend:", error);
     }
- };
-
- const goToChatPage = () => {
-  window.location.href = "/chat"
- }
+  };
 
   const goToChatPage = () => {
     window.location.href = "/chat";
@@ -99,12 +95,10 @@ const AddFriendCard: React.FC<AddFriendCardProps> = ({ userId }) => {
               </div>
             </div>
           </div>
-      </div>
-    </div>
         </>
       )}
     </div>
- );
+  );
 };
 
 export default AddFriendCard;
