@@ -8,11 +8,12 @@ import LogoWall from "@/components/landing/logo-wall";
 import Reviews from "@/components/landing/reviews";
 import CallToAction from "@/components/landing/call-to-action";
 import Video from "@/components/landing/video";
+import Chatbot from "@/components/chatbot/chatbot";
 
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col">
+      <div className=" flex flex-col">
         <div className="flex min-h-screen flex-col justify-around gap-y-24 ">
           <div className="px-4 py-6 sm:px-8">
             <Heading />
