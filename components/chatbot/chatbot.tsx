@@ -1,6 +1,6 @@
 "use client";
 import BouncingDotsLoader from "@/components/loadingAnim/BouncingDotsLoader";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "../ui/button";
 import { Key, XIcon, MessageSquareMore  } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,14 @@ const Chatbot = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [msgArr, setMsgArr] = useState<string[]>([]);
   const [clicked, setClicked] = useState(false);
+  const messagesContainerRef = useRef<HTMLDivElement>(null); 
+
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  }, [msgArr]); 
+
 
 
   const onSubmit = async (e: React.MouseEvent<HTMLButtonElement> | null) => {
@@ -30,8 +38,8 @@ const Chatbot = () => {
         "We are ecoNest, a passionate group committed to transforming homes into eco-friendly havens. With a focus on green and clean energy solutions, we aim to guide homeowners toward sustainable choices the benefit both their wallets and the planet.   \n   Our mission is to create a more sustainable future by making eco-friendly living accessible and rewarding. We envision a world where people embrace green solutions not just because it is the right thing to do, but because it benefits them financially and improves their quality of life. ";
     } else if (text.toLowerCase().includes("feature")) {
       response =
-        "EcoNest is comprised of Articles, Build A Home, or Community. You can ask for more information about each feature using its name";
-    } else if (text.toLowerCase().includes("article")) {
+        "ecoNest is comprised of Articles, Build A Home, or Community. You can ask for more information about each feature using its name";
+    } else if (text.toLowerCase().includes("solution") || text.toLowerCase().includes("article")) {
       response =
         "Our website has many articles, each one containing concise yet comprehensive guide to renewable energy. Here, visitors will find insightful articles covering the latest in solar, wind, hydroelectric, geothermal, and biomass energy technologies. Each piece aims to educate readers on the science, efficiency, and potential of these green energy sources, alongside discussing the importance of energy storage and regulatory support.";
     } else if (  text.toLowerCase().includes("build") ||text.toLowerCase().includes("home") ) {
@@ -42,7 +50,7 @@ const Chatbot = () => {
         "Our website's social network contains a forum, where people can search for different community discussions regarding eco-friendly topics by selecting from many different popular tags, a challenges section, which contains countless number of Eco Challenges that people can parttake in in order to improve their community and claim Eco Points, and a chat section where members can log in and communicate with other members through text messages.";
     } else {
       response =
-        "Sending your question to the company, you will get your answer shortly";
+        "Sorry, our system is unable to understand at the moment. Sending your question to ecoNest staff, you will get your answer shortly";
     }
     setLoading(true);
 
@@ -57,6 +65,7 @@ const Chatbot = () => {
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
+      e.preventDefault();
       onSubmit(null);
     }
   }
@@ -106,7 +115,7 @@ const Chatbot = () => {
       </div>
       
 
-        <div id="chatBotText" className="relative max-h-[20rem] overflow-y-auto ">
+        <div id="chatBotText" className="relative max-h-[20rem] overflow-y-auto " ref={messagesContainerRef}>
           <div
             style={{
               content: '""',
