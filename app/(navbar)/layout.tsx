@@ -7,6 +7,7 @@ import { TailwindIndicator } from "@/components/tailwind-indicator";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import MouseGradient from "@/components/mouse-gradient";
+import Chatbot from "@/components/chatbot/chatbot";
 
 export const metadata: Metadata = {
   title: "ecoNest",
@@ -20,19 +21,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className={`${quicksand.variable} max-w-screen-[1400px] relative mx-auto overflow-x-hidden font-sans text-black`}
-    >
-      <MouseGradient />
-      <Navbar />
-      <div className="mt-16 min-h-screen">{children}</div>
-      <Footer />
-      <TailwindIndicator />
-      {/* <Script
-        strategy="beforeInteractive"
-        type="text/javascript"
-        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places&loading=async`}
-      /> */}
-    </div>
+    <>
+      <div
+        className={`${quicksand.variable} max-w-screen-[1400px] relative mx-auto min-h-screen overflow-x-hidden font-sans text-black`}
+      >
+        <MouseGradient />
+        <Navbar />
+        <div className="mt-16 min-h-screen">{children}</div>
+        <Chatbot />
+        <Footer />
+        <TailwindIndicator />
+      </div>
+    </>
   );
 }
