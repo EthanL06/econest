@@ -89,7 +89,7 @@ const Chatbot = () => {
 
   return (
     <div
-      className="fixed bottom-4 right-4 z-50 min-w-[12rem] max-w-[24rem]"
+      className="fixed bottom-4 right-4 z-50 min-w-[12rem] max-w-[23rem]"
       id="sty"
     >
       <form
