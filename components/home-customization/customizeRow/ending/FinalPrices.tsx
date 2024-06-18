@@ -165,7 +165,7 @@ const Summary = (props: Props) => {
 
         <div className="flex w-full justify-between">
           <p className="font-medium">Estimated Price</p>
-          <p className="font-semibold text-black">${getTotalMoney(props.showWindMill, props.selectedWidmillPurchase, props.selectedWindmillCard || "", .74 || 1) }</p>
+          <p className="font-semibold text-black">${formatPrice(getTotalMoney(props.showWindMill, props.selectedWidmillPurchase, props.selectedWindmillCard || "", .74 || 1)) }</p>
         </div>
       </div>
 
